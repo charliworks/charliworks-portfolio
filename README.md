@@ -18,7 +18,7 @@ pnpm dev       # http://localhost:4321
 
 - Framework: Astro, Tailwind CSS, TypeScript
 - Database / auth: none
-- Hosting: Cloudflare Pages (`*.pages.dev`)
+- Hosting: Cloudflare Pages (`*.pages.dev`), see `docs/adr/0002-hosting.md`. Build: `pnpm build`, output `dist`.
 - Node: 24 (see `.nvmrc`)
 - Key decisions: see `docs/adr/`
 
