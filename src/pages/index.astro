@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
 import WorkList from '../components/WorkList.astro';
+import HeroArt from '../components/HeroArt.astro';
 import { Content as About } from '../content/about.md';
 import { site } from '../site';
 import { sortWork } from '../lib/work';
@@ -13,7 +14,12 @@ const work = sortWork(await getCollection('work'));
   title={site.name}
   description={`${site.name}, full-stack developer. ${site.openTo}`}
 >
-  <h1 class="text-lg font-medium">{site.name}</h1>
+  <HeroArt />
+  <h1 class="text-lg font-medium">
+    <span class="box-decoration-clone bg-[linear-gradient(transparent_55%,var(--spark)_55%)] px-1 -mx-1">
+      {site.name}
+    </span>
+  </h1>
   <p class="text-text-muted">{site.role}</p>
   {site.intro && <p class="mt-4">{site.intro}</p>}
 

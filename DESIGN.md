@@ -6,10 +6,8 @@ colors:
   ink: "#1c1c1a"
   graphite: "#63635e"
   focus: "#1c1c1a"
-  paper-dark: "#141413"
-  ink-dark: "#e9e9e6"
-  graphite-dark: "#a0a09a"
-  focus-dark: "#e9e9e6"
+  accent: "#FF7AC6"
+  spark: "#FFE066"
 typography:
   headline:
     fontFamily: "ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif"
@@ -78,33 +76,35 @@ components:
 
 **Creative North Star: "The Plain Page"**
 
-The site is one narrow column of plain text and links, read top to bottom. The owner pinned the category standard (text-first, single column, like leerob.com) as a deliberate choice. The interface recedes so the work and the writing lead. There is no hero, no card, no button and no decoration.
+The site is one narrow column of plain text and links, read top to bottom. The owner pinned the category standard (text-first, single column, like leerob.com) as a deliberate choice. The interface recedes so the work and the writing lead. The one picture on Home is a hand-painted scene at the top. There is no card, no button and no other decoration.
 
-Rank comes from space and weight, not from size. The type hierarchy is flat on purpose: body and section headings share one size, and the page heading is one step larger. The light and dark grounds follow the reader's system setting. The only motion is the link underline, which thickens on hover and focus.
+Rank comes from space and weight, not from size. The type hierarchy is flat on purpose: body and section headings share one size, and the page heading is one step larger. The site is light only. Motion is small and CSS-only: the link underline thickens on hover and focus, work rows fade in on scroll, the cover and title move between Home and a case study, and the Home painting drifts and sways.
 
 **Key Characteristics:**
 - One left-aligned column, 36rem wide, centred in the viewport.
-- Monochrome: one ground, one text colour, one grey.
+- Monochrome text: one ground, one text colour, one grey. Two brand accents from the Grape soda logo: pink and yellow.
 - System sans only, regular and medium weights.
 - Links in text colour with a thin underline.
 - No borders, cards, shadows, gradients or icons in the interface.
 
 ## Colors
 
-A monochrome palette: warm near-white paper, warm near-black ink and one mid grey. Each token has a light and a dark value; `prefers-color-scheme` selects the set.
+A monochrome palette: warm near-white paper, warm near-black ink and one mid grey. Two accents come from the Grape soda logo: pink and yellow.
 
 ### Primary
-- **Ink** (light `ink`, dark `ink-dark`): All body text, headings and links. The link colour is the text colour; the underline marks the link. Ink also fills the text selection, with paper as the selected text colour.
+- **Ink** (`ink`): All body text, headings and links. The link colour is the text colour; the underline marks the link. Ink is also the selected text colour.
 
 ### Neutral
-- **Paper** (light `paper`, dark `paper-dark`): The page ground. It is the only surface.
-- **Graphite** (light `graphite`, dark `graphite-dark`): Secondary text only: the role line, work pitches, the tools line, image captions, and the resting link underline.
-- **Focus** (light `focus`, dark `focus-dark`): The focus outline. It equals ink.
+- **Paper** (`paper`): The page ground. It is the only surface.
+- **Graphite** (`graphite`): Secondary text only: the role line, work pitches, the tools line, image captions, and the resting link underline.
+- **Accent** (`accent`): Pink. The link underline on hover and focus, and the text selection ground. Never a text colour: it has 2.2:1 contrast on paper.
+- **Spark** (`spark`): Yellow. The highlighter stroke behind the name on Home. Never a text colour.
+- **Focus** (`focus`): The focus outline. It equals ink.
 
 ### Named Rules
-**The Three Values Rule.** Each scheme uses exactly three colours: paper, ink and graphite. A new surface adds no accent, tint or second grey.
+**The Accent Rule.** Text uses only ink and graphite on paper. Pink and yellow appear only as marks behind or under ink text, never as text. A new surface adds no tint or second grey.
 
-**The System Ground Rule.** The reader's system setting picks light or dark. The site has no theme toggle.
+**The Light Ground Rule.** The site is light only, whatever the reader's system setting. The site has no dark mode and no theme toggle.
 
 ## Typography
 
@@ -156,17 +156,20 @@ There are no interface shapes. The only radii are a gently softened corner on th
 ### Links
 Plain and quiet; the underline is the only affordance.
 - **Rest:** text colour, 1px underline in graphite, offset 0.22em.
-- **Hover / Focus:** the underline thickens to 2px and turns ink, over 150ms ease-out. Reduced motion removes the transition.
+- **Hover / Focus:** the underline thickens to 2px and turns pink (`accent`), over 150ms ease-out. Reduced motion removes the transition.
 - **Focus ring:** 2px solid outline in the focus colour, offset 3px.
 
 ### Work List
-A list of rows, not cards. Each row is the project name as a medium-weight link and a one-line pitch in graphite below it. The list must accept more rows with no change to its form.
+A list of rows, not cards. Each row is the project name as a medium-weight link and a one-line pitch in graphite below it. The whole row is the click target, and hover on the row thickens the title underline. The list must accept more rows with no change to its form.
 
 ### Contact Row
 The footer on every page: a "Contact" section heading and a wrapping row of plain text links.
 
 ### Case Study Cover
 A full-column raster with a small corner radius, followed by a 14px graphite caption. The caption states that screens show sample data and names the stack.
+
+### Hero Art
+An inline SVG painting at the top of Home (`src/components/HeroArt.astro`): the Philippines at golden hour, with a volcano under a sunset sky, rice terraces, coconut palms and a person on a motorbike on the road. A noise filter gives the shapes brush-stroke edges, and a paper grain sits over the whole painting. It fills the column at 3:1 with the small corner radius. The motion runs all the time and is meant to be seen: the clouds drift, the volcano smoke rises, the sun glow pulses, the motorbike bobs, and a light wind sways the palms and grass. Hover on desktop, or scrolling the first 120px on phones, raises the wind to a strong gust. Reduced motion stops all of it.
 
 ### Skip Link
 Hidden until focused; it then appears at the top left of the page.
@@ -177,12 +180,12 @@ Hidden until focused; it then appears at the top left of the page.
 - **Do** keep every page in the one 36rem column.
 - **Do** use ink for text and links, and graphite for secondary text only.
 - **Do** mark rank with weight 500 and space above the heading (56px between Home sections).
-- **Do** keep the link underline as the only motion, and remove it under reduced motion.
+- **Do** limit motion to the link underline, the scroll fade-in, the page view transition and the hero painting. Put all motion in CSS and remove it under reduced motion.
 - **Do** label any raster that shows sample data in its caption.
 
 ### Don't:
-- **Don't** add a hero banner, project cards, buttons or decoration.
+- **Don't** add a second picture to the top of Home, project cards, buttons or decoration.
 - **Don't** add borders, shadows, gradients or icons to the interface.
-- **Don't** add a colour accent or a third weight.
+- **Don't** add a third accent colour, use an accent as a text colour, or add a third weight.
 - **Don't** add a display size above 18px.
-- **Don't** add a theme toggle; the system setting decides.
+- **Don't** add a dark mode or a theme toggle.
