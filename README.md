@@ -33,7 +33,7 @@ pnpm dev       # http://localhost:4321
 | `pnpm lint` | ESLint and Prettier check |
 | `pnpm format` | Format the code with Prettier |
 | `pnpm test` | Unit tests (Vitest) |
-| `pnpm test:e2e` | Browser tests (Playwright) against `pnpm preview` |
+| `pnpm test:e2e` | Browser tests (Playwright) against `pnpm preview` on port 4329 |
 | `pnpm lhci` | Lighthouse CI against the performance budget |
 
 ## Project rules

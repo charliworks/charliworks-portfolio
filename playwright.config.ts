@@ -7,12 +7,12 @@ export default defineConfig({
   retries: process.env.CI ? 1 : 0,
   reporter: process.env.CI ? 'github' : 'list',
   use: {
-    baseURL: 'http://localhost:4321',
+    baseURL: 'http://localhost:4329',
   },
   projects: [{ name: 'chromium', use: { ...devices['Desktop Chrome'] } }],
   webServer: {
-    command: 'pnpm preview --port 4321 --ignore-lock',
-    url: 'http://localhost:4321',
-    reuseExistingServer: !process.env.CI,
+    command: 'pnpm preview --port 4329 --ignore-lock',
+    url: 'http://localhost:4329',
+    reuseExistingServer: false,
   },
 });
