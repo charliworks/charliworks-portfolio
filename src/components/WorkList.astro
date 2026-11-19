@@ -1,0 +1,20 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  entries: CollectionEntry<'work'>[];
+}
+
+const { entries } = Astro.props;
+---
+
+<ul class="space-y-3">
+  {entries.map((entry) => (
+    <li>
+      <a href={`/work/${entry.id}`} class="font-medium">
+        {entry.data.title}
+      </a>
+      <p class="text-text-muted">{entry.data.pitch}</p>
+    </li>
+  ))}
+</ul>

@@ -1,16 +1,38 @@
 ---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import WorkList from '../components/WorkList.astro';
+import { Content as About } from '../content/about.md';
+import { site } from '../site';
+import { sortWork } from '../lib/work';
+
+const work = sortWork(await getCollection('work'));
 ---
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="icon" href="/favicon.ico" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="generator" content={Astro.generator} />
-    <title>Astro</title>
-  </head>
-  <body>
-    <h1>Astro</h1>
-  </body>
-</html>
+<Base
+  title={site.name}
+  description={`${site.name}, full-stack developer. ${site.openTo}`}
+>
+  <h1 class="text-lg font-medium">{site.name}</h1>
+  <div class="mt-4 space-y-4">
+    <p>{site.intro}</p>
+    <p>{site.openTo}</p>
+  </div>
+
+  <section class="mt-14" aria-labelledby="work">
+    <h2 id="work" class="mb-3 font-medium">
+      Work
+    </h2>
+    <WorkList entries={work} />
+  </section>
+
+  <section class="mt-14" aria-labelledby="about">
+    <h2 id="about" class="mb-3 font-medium">
+      About
+    </h2>
+    <div class="space-y-4">
+      <About />
+      <p class="text-text-muted">Tools I use: {site.tools.join(', ')}.</p>
+    </div>
+  </section>
+</Base>
