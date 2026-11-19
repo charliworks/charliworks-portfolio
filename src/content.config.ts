@@ -9,6 +9,7 @@ const work = defineCollection({
       title: z.string(),
       pitch: z.string().max(120),
       order: z.number(),
+      year: z.number().int(),
       cover: image(),
       coverAlt: z.string().min(1),
       repo: z.url(),

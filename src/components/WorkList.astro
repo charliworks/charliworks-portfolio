@@ -1,5 +1,6 @@
 ---
 import type { CollectionEntry } from 'astro:content';
+import { Image } from 'astro:assets';
 
 interface Props {
   entries: CollectionEntry<'work'>[];
@@ -8,13 +9,31 @@ interface Props {
 const { entries } = Astro.props;
 ---
 
-<ul class="space-y-3">
+<ul class="space-y-6">
   {entries.map((entry) => (
-    <li>
-      <a href={`/work/${entry.id}`} class="font-medium">
-        {entry.data.title}
-      </a>
-      <p class="text-text-muted">{entry.data.pitch}</p>
+    <li class="flex flex-col gap-3 sm:flex-row sm:items-start sm:gap-4">
+      <Image
+        src={entry.data.cover}
+        alt={entry.data.coverAlt}
+        widths={[128, 256]}
+        sizes="8rem"
+        class="h-auto w-32 shrink-0 rounded-sm sm:mt-1"
+      />
+      <div class="min-w-0 flex-1">
+        <div class="flex items-baseline justify-between gap-4">
+          <a href={`/work/${entry.id}`} class="font-medium">
+            {entry.data.title}
+          </a>
+          <time
+            class="text-sm text-text-muted"
+            datetime={String(entry.data.year)}
+          >
+            {entry.data.year}
+          </time>
+        </div>
+        <p class="text-text-muted">{entry.data.pitch}</p>
+        <p class="text-sm text-text-muted">{entry.data.stack.join(' · ')}</p>
+      </div>
     </li>
   ))}
 </ul>

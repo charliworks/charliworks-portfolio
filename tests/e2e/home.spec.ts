@@ -12,16 +12,52 @@ test.describe('home', () => {
   test('shows role and location line', async ({ page }) => {
     await page.goto('/');
     await expect(page.getByText(site.role)).toBeVisible();
+    await expect(page.getByText(site.role)).toContainText(
+      '4 years of experience',
+    );
   });
 
-  test('shows open-to line', async ({ page }) => {
+  test('does not show the open-to line', async ({ page }) => {
     await page.goto('/');
-    await expect(page.getByText(site.openTo)).toBeVisible();
+    await expect(page.getByText(site.openTo)).toHaveCount(0);
+  });
+
+  test('shows a small cover image in each work row', async ({ page }) => {
+    await page.goto('/');
+    const img = page.locator('section[aria-labelledby="work"] li img');
+    await expect(img).toHaveCount(1);
+    await expect(img).toHaveAttribute('alt', /.+/);
+    const box = await img.boundingBox();
+    expect(box?.width).toBeLessThanOrEqual(160);
   });
 
   test('links to the Habi case study', async ({ page }) => {
     await page.goto('/');
     await expect(page.locator('a[href="/work/habi"]')).toHaveCount(1);
+  });
+
+  test('shows the intro and the About text', async ({ page }) => {
+    await page.goto('/');
+    await expect(page.getByText(site.intro ?? 'missing intro')).toBeVisible();
+    const about = page.locator('section[aria-labelledby="about"] p');
+    expect(await about.count()).toBeGreaterThan(1);
+  });
+
+  test('lists the tools by group', async ({ page }) => {
+    await page.goto('/');
+    const about = page.locator('section[aria-labelledby="about"]');
+    for (const group of site.tools) {
+      await expect(
+        about.getByText(`${group.label}: ${group.items.join(', ')}.`),
+      ).toBeVisible();
+    }
+  });
+
+  test('shows the year of each work row', async ({ page }) => {
+    await page.goto('/');
+    await expect(
+      page.locator('section[aria-labelledby="work"] li time'),
+    ).toHaveText('2026');
   });
 
   test('no empty or dead contact links', async ({ page }) => {

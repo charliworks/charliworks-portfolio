@@ -2,6 +2,7 @@
 title: Habi
 pitch: One private app that tells you what needs you today.
 order: 1
+year: 2026
 cover: ../../assets/work/habi-banner.png
 coverAlt: 'Habi on Android: the Money, Todos, Home, Vehicle and Weather screens, with sample data'
 repo: https://github.com/charlitomecarez/habi
@@ -42,10 +43,6 @@ Habi went from v1.0.0 on 4 Nov 2026 to v2.0.1 on 12 Nov 2026: 12 releases in 9 d
 - Each release has a record in `docs/releases/`. Since v1.3.0, the larger releases also have a written plan, a design and release notes.
 - CI runs the type check, lint, unit tests with coverage, a web bundle budget and Lighthouse on every pull request.
 - End-to-end tests cover the web build with Playwright and the Android app with Maestro flows.
-
-## What I learned
-
-TODO(charlito): What I learned
 
 ## Links
 

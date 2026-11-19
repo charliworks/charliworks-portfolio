@@ -15,10 +15,7 @@ const work = sortWork(await getCollection('work'));
 >
   <h1 class="text-lg font-medium">{site.name}</h1>
   <p class="text-text-muted">{site.role}</p>
-  <div class="mt-4 space-y-4">
-    <p>{site.intro}</p>
-    <p>{site.openTo}</p>
-  </div>
+  {site.intro && <p class="mt-4">{site.intro}</p>}
 
   <section class="mt-14" aria-labelledby="work">
     <h2 id="work" class="mb-3 font-medium">
@@ -33,7 +30,16 @@ const work = sortWork(await getCollection('work'));
     </h2>
     <div class="space-y-4">
       <About />
-      <p class="text-text-muted">Tools I use: {site.tools.join(', ')}.</p>
+      <div class="text-text-muted">
+        <p>Tools I use:</p>
+        <ul>
+          {site.tools.map((group) => (
+            <li>
+              {group.label}: {group.items.join(', ')}.
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   </section>
 </Base>
