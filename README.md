@@ -10,22 +10,31 @@
 git clone <url>
 cd charliworks-portfolio
 cp .env.example .env   # fill in values; see comments in the file
-<install command>
-<run command>
+pnpm install
+pnpm dev       # http://localhost:4321
 ```
 
 ## Stack
 
 - Framework: Astro, Tailwind CSS, TypeScript
 - Database / auth: none
-- Hosting: to decide
+- Hosting: Cloudflare Pages (`*.pages.dev`)
+- Node: 24 (see `.nvmrc`)
 - Key decisions: see `docs/adr/`
 
 ## Scripts
 
 | Command | What it does |
 |---|---|
-| | |
+| `pnpm dev` | Start the dev server |
+| `pnpm build` | Build the static site into `dist/` |
+| `pnpm preview` | Serve `dist/` locally |
+| `pnpm check` | Type check with `astro check` |
+| `pnpm lint` | ESLint and Prettier check |
+| `pnpm format` | Format the code with Prettier |
+| `pnpm test` | Unit tests (Vitest) |
+| `pnpm test:e2e` | Browser tests (Playwright) against `pnpm preview` |
+| `pnpm lhci` | Lighthouse CI against the performance budget |
 
 ## Project rules
 

@@ -29,3 +29,10 @@ Thumbs.db
 
 # AI tools (personal/local settings only; shared skills are committed)
 .claude/settings.local.json
+
+# Astro and test output
+.astro/
+playwright-report/
+test-results/
+.lighthouseci/
+.superpowers/
