@@ -78,6 +78,16 @@
     border-radius: 2px;
   }
 
+  p,
+  li {
+    text-wrap: pretty;
+  }
+
+  h1,
+  h2 {
+    text-wrap: balance;
+  }
+
   time {
     font-variant-numeric: tabular-nums;
   }

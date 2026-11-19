@@ -9,6 +9,11 @@ test.describe('home', () => {
     await expect(page.locator('h1')).toContainText('Charlito Jr Mecarez');
   });
 
+  test('shows role and location line', async ({ page }) => {
+    await page.goto('/');
+    await expect(page.getByText(site.role)).toBeVisible();
+  });
+
   test('shows open-to line', async ({ page }) => {
     await page.goto('/');
     await expect(page.getByText(site.openTo)).toBeVisible();

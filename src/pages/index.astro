@@ -14,6 +14,7 @@ const work = sortWork(await getCollection('work'));
   description={`${site.name}, full-stack developer. ${site.openTo}`}
 >
   <h1 class="text-lg font-medium">{site.name}</h1>
+  <p class="text-text-muted">{site.role}</p>
   <div class="mt-4 space-y-4">
     <p>{site.intro}</p>
     <p>{site.openTo}</p>

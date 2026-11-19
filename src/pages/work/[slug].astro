@@ -40,7 +40,9 @@ const { Content } = await render(entry);
     class="mt-8 h-auto w-full rounded-sm"
     loading="eager"
   />
-  <p class="mt-2 text-sm text-text-muted">{entry.data.stack.join(' · ')}</p>
+  <p class="mt-2 text-sm text-text-muted">
+    Screens show sample data. {entry.data.stack.join(' · ')}
+  </p>
 
   <div class="case mt-4">
     <Content />
@@ -54,9 +56,11 @@ const { Content } = await render(entry);
     font-weight: 500;
   }
   .case :global(p),
-  .case :global(ul),
-  .case :global(blockquote) {
+  .case :global(ul) {
     margin-top: 1rem;
+  }
+  .case :global(strong) {
+    font-weight: 500;
   }
   .case :global(ul) {
     padding-left: 1.25rem;
@@ -67,10 +71,5 @@ const { Content } = await render(entry);
   }
   .case :global(code) {
     overflow-wrap: anywhere;
-  }
-  .case :global(blockquote) {
-    padding-left: 1rem;
-    border-left: 1px solid var(--text-muted);
-    color: var(--text-muted);
   }
 </style>

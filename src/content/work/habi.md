@@ -22,13 +22,10 @@ Sign-up is off. Only the admin adds accounts, and each account has fully separat
 
 ## The rules it follows
 
-> The app speaks first. It says what needs action, and the person does not have to look for it.
-
-> Numbers are the content. Money, kilometres and hours lead each screen.
-
-> A log takes seconds, with one hand, outside.
-
-> Private by default. Personal data stays in the account, and health data stays on the phone unless you turn on the health check.
+- The app speaks first. It says what needs action, and the person does not have to look for it.
+- Numbers are the content. Money, kilometres and hours lead each screen.
+- A log takes seconds, with one hand, outside.
+- Private by default. Personal data stays in the account, and health data stays on the phone unless you turn on the health check.
 
 ## How I built it
 
@@ -45,6 +42,10 @@ Habi went from v1.0.0 on 4 Nov 2026 to v2.0.1 on 12 Nov 2026: 12 releases in 9 d
 - Each release has a record in `docs/releases/`. Since v1.3.0, the larger releases also have a written plan, a design and release notes.
 - CI runs the type check, lint, unit tests with coverage, a web bundle budget and Lighthouse on every pull request.
 - End-to-end tests cover the web build with Playwright and the Android app with Maestro flows.
+
+## What I learned
+
+TODO(charlito): What I learned
 
 ## Links
 

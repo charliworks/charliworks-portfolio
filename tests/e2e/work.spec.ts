@@ -32,6 +32,11 @@ test.describe('work/habi', () => {
     ).toBeVisible();
   });
 
+  test('banner caption says the screens show sample data', async ({ page }) => {
+    await page.goto('/work/habi');
+    await expect(page.getByText('Screens show sample data.')).toBeVisible();
+  });
+
   test('cover image has alt text and dimensions', async ({ page }) => {
     await page.goto('/work/habi');
     const img = page.locator('main img').first();

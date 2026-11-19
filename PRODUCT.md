@@ -26,7 +26,7 @@ The site proves Charlito's craft through real personal work and a real voice. It
 
 ## Positioning
 
-The work is built for one real life in the Philippines, not for a demo. Habi joins a motorbike's kilometres, GCash and MariBank, ulam under ₱99 and Taglish voice notes in one private app. It shipped from v1.0.0 to v2.0.2 with written release records, CI, end-to-end tests and a bundle budget. A template portfolio cannot claim either fact.
+The work is built for one real life in the Philippines, not for a demo. Habi joins a motorbike's kilometres, GCash and MariBank, ulam under ₱99 and Taglish voice notes in one private app. It shipped from v1.0.0 to v2.0.1 with written release records, CI, end-to-end tests and a bundle budget. A template portfolio cannot claim either fact.
 
 ## Operating Context
 
