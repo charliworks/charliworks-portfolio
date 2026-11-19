@@ -36,3 +36,8 @@ playwright-report/
 test-results/
 .lighthouseci/
 .superpowers/
+
+# Impeccable runtime files (context files under .impeccable/ are committed)
+.impeccable/mocks/
+.impeccable/questions/
+.impeccable/review/

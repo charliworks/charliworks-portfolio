@@ -4,7 +4,7 @@
 
 **Goal:** Ship Charlito's static portfolio: a home page and a Habi case study, on Cloudflare Pages.
 
-**Architecture:** Astro builds static HTML with no client JavaScript. Personal facts live in one typed config file (`src/site.ts`). Case studies are Markdown files in an Astro content collection, so a new project is one new file. Impeccable sets the visual direction before any UI is built, and its tokens live in one CSS file.
+**Architecture:** Astro builds static HTML with no client JavaScript. Personal facts live in one typed config file (`src/site.ts`). Case studies are Markdown files in an Astro content collection, so a new project is one new file. The design is text-first, like leerob.com: one narrow column, monochrome tokens in one CSS file.
 
 **Tech Stack:** Astro (latest stable), TypeScript (strict), Tailwind CSS v4 through `@tailwindcss/vite`, pnpm, Vitest, Playwright, `@axe-core/playwright`, `@lhci/cli`, Cloudflare Pages.
 
@@ -63,26 +63,21 @@
 
 ### Task 2: Set the visual direction with Impeccable
 
-This task needs Charlito in the loop. It produces the look; it writes no page markup.
+Done in conversation on 2026-11-19: Charlito chose a simple, text-first direction like leerob.com. The direction contract lives in `.impeccable/surfaces/src-pages-index-astro.md`.
 
 **Files:**
-- Create: the Impeccable context files that `/impeccable init` writes (expected `PRODUCT.md` and `DESIGN.md` at the repo root; trust the installed version), and mock images under `.impeccable/mocks/`
+- Create: `PRODUCT.md`, `.impeccable/surfaces/src-pages-index-astro.md`
 - Modify: `src/styles/global.css` (tokens only)
 
 **Interfaces:**
 - Produces: CSS custom properties in `src/styles/global.css`, exposed to Tailwind v4 through `@theme`. Later tasks use only these tokens, never raw values:
-  - colors: `--color-surface`, `--color-surface-raised`, `--color-text`, `--color-text-muted`, `--color-accent`, `--color-focus`
-  - type: `--font-display`, `--font-body`, and six sizes `--text-xs` to `--text-2xl`
-  - spacing: Tailwind's default 4-px scale
-  - dark mode values for every color token under `@media (prefers-color-scheme: dark)`
-- Produces: one approved home mock and one approved case study mock.
+  - colors: `--color-surface`, `--color-text`, `--color-text-muted`, `--color-focus`, each with a dark value under `prefers-color-scheme: dark`
+  - type: `--font-body` (system sans stack, no web font files), sizes `--text-sm`, `--text-base` (1rem), `--text-lg`
+  - layout: `--measure` (36rem column width)
 
-- [ ] **Step 1:** Run `/impeccable init`. Give it the spec's Intent, Goals, Anti-goals and the three readers. Say that common design-system looks are an anti-goal.
-- [ ] **Step 2:** Ask Impeccable for two or three distinct directions for the home page. Show them to Charlito. Charlito picks one.
-- [ ] **Step 3:** Make the case study mock in the chosen direction. Charlito approves it.
-- [ ] **Step 4:** Write the tokens into `src/styles/global.css`. Choose fonts with a license that allows web use, self-hosted with `font-display: swap`. Record each font and its license in `PRODUCT.md` or `DESIGN.md`.
-- [ ] **Step 5:** Run `pnpm build`. Expected: exit 0.
-- [ ] **Step 6:** Commit: `feat(design): add Impeccable context and design tokens`.
+- [ ] **Step 1:** Write the tokens into `src/styles/global.css`, plus base element styles: body, links (text colour, thin underline that thickens on hover and focus), `:focus-visible` outline, and the reduced-motion rule.
+- [ ] **Step 2:** Run `pnpm build`. Expected: exit 0.
+- [ ] **Step 3:** Commit: `feat(design): add product context and design tokens`.
 
 ### Task 3: Site config and the work collection
 
@@ -123,14 +118,14 @@ This task needs Charlito in the loop. It produces the look; it writes no page ma
 ### Task 4: Base layout and the home page
 
 **Files:**
-- Create: `src/layouts/Base.astro`, `src/components/ContactLinks.astro`, `src/components/WorkTeaser.astro`
+- Create: `src/layouts/Base.astro`, `src/components/ContactLinks.astro`, `src/components/WorkList.astro`
 - Modify: `src/pages/index.astro`
 - Test: `tests/e2e/home.spec.ts`
 
 **Interfaces:**
 - Consumes: `site`, `contactLinks()`, `sortWork()`, the `work` collection, tokens from Task 2.
 - Produces: `Base.astro` with props `{ title: string; description: string; image?: ImageMetadata }`. It renders `<html lang="en">`, the title as `<title>`, the meta description, `<link rel="canonical">` built from `Astro.site`, Open Graph tags, a skip link to `#main`, and a footer with `ContactLinks`.
-- Produces: `WorkTeaser.astro` with prop `{ entry: CollectionEntry<'work'> }`. It links to `/work/<entry.id>`.
+- Produces: `WorkList.astro` with prop `{ entries: CollectionEntry<'work'>[] }`. Each row is the title as a link to `/work/<entry.id>` and the `pitch` as plain text. No image.
 
 The home page renders the spec's sections in order: Intro, Open to, Work, About, Contact. Each section has an `<h2>`, except the intro, which holds the only `<h1>`. About renders Charlito's paragraphs from `src/content/about.md`. Until Charlito writes it, that file holds the single line `TODO(charlito): About`. It ends with one sentence: "Tools I use: " + `site.tools` joined with commas.
 
@@ -144,7 +139,7 @@ The home page renders the spec's sections in order: Intro, Open to, Work, About,
   - `no sideways overflow at 320px with 200% text`: set the viewport to 320×640, set `document.documentElement.style.fontSize = '200%'`, and assert `scrollWidth <= clientWidth`.
   - `no axe violations`: `new AxeBuilder({ page }).analyze()` returns 0 violations.
 - [ ] **Step 2:** Run `pnpm build && pnpm test:e2e tests/e2e/home.spec.ts`. Expected: FAIL.
-- [ ] **Step 3:** Build `Base.astro`, `ContactLinks.astro`, `WorkTeaser.astro` and `index.astro` to match the approved home mock. Use tokens only. Ship no client `<script>`.
+- [ ] **Step 3:** Build `Base.astro`, `ContactLinks.astro`, `WorkList.astro` and `index.astro` to match the FIRST VIEWPORT block of the direction contract. Use tokens only. Ship no client `<script>`.
 - [ ] **Step 4:** Run the same command. Expected: PASS, 8 tests.
 - [ ] **Step 5:** Commit: `feat(home): add base layout and home page`.
 
@@ -169,7 +164,7 @@ The home page renders the spec's sections in order: Intro, Open to, Work, About,
   - `unknown work URL shows 404`: `/work/nope` returns status 404, and the page has a link to `/`.
   - `no axe violations` on `/work/habi` and on the 404 page.
 - [ ] **Step 2:** Run `pnpm build && pnpm test:e2e tests/e2e/work.spec.ts`. Expected: FAIL.
-- [ ] **Step 3:** Build `[slug].astro` and `404.astro` to match the approved case study mock. Write the `habi.md` body.
+- [ ] **Step 3:** Build `[slug].astro` and `404.astro` in the same column and tokens as the home page. Write the `habi.md` body.
 - [ ] **Step 4:** Run the same command. Expected: PASS, 7 tests.
 - [ ] **Step 5:** Ask Charlito to read the Habi copy and check every image for real data. Apply the edits.
 - [ ] **Step 6:** Commit: `feat(work): add Habi case study and 404 page`.
