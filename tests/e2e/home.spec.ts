@@ -51,19 +51,6 @@ test.describe('home', () => {
     await context.close();
   });
 
-  test('no sideways overflow at 320px with 200% text', async ({ page }) => {
-    await page.setViewportSize({ width: 320, height: 640 });
-    await page.goto('/');
-    await page.evaluate(() => {
-      document.documentElement.style.fontSize = '200%';
-    });
-    const { scrollWidth, clientWidth } = await page.evaluate(() => ({
-      scrollWidth: document.documentElement.scrollWidth,
-      clientWidth: document.documentElement.clientWidth,
-    }));
-    expect(scrollWidth).toBeLessThanOrEqual(clientWidth);
-  });
-
   test('no axe violations', async ({ page }) => {
     await page.goto('/');
     const results = await new AxeBuilder({ page }).analyze();

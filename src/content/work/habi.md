@@ -16,7 +16,7 @@ Todo apps, finance apps and service trackers each hold one part. None of them pu
 
 ## What Habi does
 
-Habi is one private Android app. Home says in one sentence what needs you today, and every module feeds it: todos, money, the vehicle, habits, health, weather, documents, a password vault and more. That is 24 modules in all.
+Habi is one private Android app. Home says in one sentence what needs you today, and every module feeds it: todos, money, the vehicle, habits, health, weather, documents, a password vault and more.
 
 Sign-up is off. Only the admin adds accounts, and each account has fully separate data.
 
@@ -40,7 +40,7 @@ Sign-up is off. Only the admin adds accounts, and each account has fully separat
 
 ## How it shipped
 
-Habi went from v1.0.0 on 4 Nov 2026 to v2.0.1 on 12 Nov 2026: 12 releases in 9 days. The repo had 262 commits by 13 Nov.
+Habi went from v1.0.0 on 4 Nov 2026 to v2.0.1 on 12 Nov 2026: 12 releases in 9 days. The repo had 263 commits by 13 Nov.
 
 - Each release has a record in `docs/releases/`. Since v1.3.0, the larger releases also have a written plan, a design and release notes.
 - CI runs the type check, lint, unit tests with coverage, a web bundle budget and Lighthouse on every pull request.
