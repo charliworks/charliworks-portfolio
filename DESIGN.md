@@ -99,7 +99,7 @@ A monochrome palette: warm near-white paper, warm near-black ink and one mid gre
 
 ### Neutral
 - **Paper** (`paper`): The page ground. It is the only surface.
-- **Graphite** (`graphite`): Secondary text only: the role line, work pitches, the tools line, image captions, and the resting link underline.
+- **Graphite** (`graphite`): Secondary text only: the role line, work pitches, the tools group labels, image captions, and the resting link underline.
 - **Accent** (`accent`): Pink. The link underline on hover and focus, and the text selection ground. Never a text colour: it has 2.2:1 contrast on paper.
 - **Spark** (`spark`): Yellow. The highlighter stroke behind the name on Home. Never a text colour.
 - **Focus** (`focus`): The focus outline. It equals ink.
@@ -136,7 +136,7 @@ One column, `max-width: 36rem`, centred with 20px side padding. Top padding is 6
 Spacing rhythm, as built:
 - 12px below every section heading.
 - 16px between paragraphs.
-- 56px above each Home section (Work, Experience, About).
+- 56px above each Home section (Work, Experience, About, Tools).
 - 48px above each section heading inside case study prose.
 - 64px above the footer Contact section.
 - 4px between a page heading and its pitch; 8px between an image and its caption; 32px above the case study cover.
@@ -163,13 +163,16 @@ Plain and quiet; the underline is the only affordance.
 - **Focus ring:** 2px solid outline in the focus colour, offset 3px.
 
 ### Experience List
-A list of job rows on Home, between Work and About, built like the work rows but with no link and no image. The first line is the company logo at 20px, then "Role · Company" in medium weight, with the company linked to its site. The years sit right-aligned in 14px graphite ("2023–present", or "Sep–Dec 2022" for a short job). Below it, one graphite line says what the job involves. No bullets or skill bars.
+A list of job rows on Home, between Work and About, built like the work rows but with no link and no image. The first line is the company logo at 20px, then "Role · Company" in medium weight, with the company linked to its site. The dates sit right-aligned in 14px graphite ("Mar 2023–present", or "Sep–Dec 2022" for a short job in one year). Below it, one graphite line says what the job involves. No bullets or skill bars.
 
 ### Brand Label
 charliworks is the maker label for Charlito's projects, not the subject of the site. The site stays about Charlito and speaks as "I". Home shows one graphite line under the intro: the 20px Grape soda logo and "I ship my projects under charliworks.", with charliworks linked to the GitHub org. Each case study shows "A charliworks project." in a 14px graphite line under the pitch.
 
 ### Work List
 A list of rows, not cards. Each row starts with a small cover image: 128px wide, with the small corner radius, and the same view-transition name as the case study cover. Next to it, the project name is a medium-weight link, with the year right-aligned in 14px graphite. Below it, a one-line pitch in graphite and the stack in 14px graphite. On phones, the image sits above the text. The whole row is the click target, and hover on the row thickens the title underline. The list must accept more rows with no change to its form.
+
+### Tools List
+A definition list in its own Home section, after About. Each group is a 14px graphite label (`dt`) and the tools in ink, in one line, split by " · " (`dd`). From 640px wide, the label sits in an 8rem column to the left, on the same baseline, with 4px between groups. On phones, the label sits above its tools, with 12px between groups. No bullets, icons or skill levels.
 
 ### Contact Row
 The footer on every page: a "Contact" section heading and a wrapping row of plain text links.

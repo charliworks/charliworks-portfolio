@@ -84,16 +84,20 @@ const work = sortWork(await getCollection('work'));
     </h2>
     <div class="space-y-4">
       <About />
-      <div class="text-text-muted">
-        <p>Tools I use:</p>
-        <ul>
-          {site.tools.map((group) => (
-            <li>
-              {group.label}: {group.items.join(', ')}.
-            </li>
-          ))}
-        </ul>
-      </div>
     </div>
+  </section>
+
+  <section class="mt-14" aria-labelledby="tools">
+    <h2 id="tools" class="mb-3 font-medium">
+      Tools
+    </h2>
+    <dl class="space-y-3 sm:space-y-1">
+      {site.tools.map((group) => (
+        <div class="sm:grid sm:grid-cols-[8rem_1fr] sm:items-baseline sm:gap-x-4">
+          <dt class="text-sm text-text-muted">{group.label}</dt>
+          <dd>{group.items.join(' · ')}</dd>
+        </div>
+      ))}
+    </dl>
   </section>
 </Base>

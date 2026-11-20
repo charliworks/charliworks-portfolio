@@ -41,7 +41,7 @@ export const site: Site = {
       company: 'QualityTrade Asia',
       url: 'https://qualitytrade.com/',
       logo: '/experience/qualitytrade-asia.webp',
-      start: '2023',
+      start: '2023-03',
       end: undefined,
       summary:
         'Builds web apps with Vite and Next.js, and uses Claude for agentic coding.',

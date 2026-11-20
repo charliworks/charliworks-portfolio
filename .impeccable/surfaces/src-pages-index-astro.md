@@ -21,7 +21,7 @@ OWN-WORLD: Light only. Near-white ground, near-black text, one mid grey for date
 
 STORY: The visitor reads who Charlito is, sees Habi as the work, reads how it was built, and emails or opens GitHub.
 
-FIRST VIEWPORT: Left-aligned column about 36rem wide, top padding about 6rem. The 3:1 hero painting with its pause control, then the name in medium weight at body size plus one step, with the yellow highlighter. The charliworks label line follows the intro. Two short bio paragraphs. There is no open-to line. A "Work" heading with one row: a small cover image (128px, small radius, above the text on phones), then "Habi" with its year, its one-line pitch and its stack. An "Experience" list and an "About" section follow; About ends with the tools list, grouped by area. A "Contact" row of plain links. All of it fits in the first viewport on desktop.
+FIRST VIEWPORT: Left-aligned column about 36rem wide, top padding about 6rem. The 3:1 hero painting with its pause control, then the name in medium weight at body size plus one step, with the yellow highlighter. The charliworks label line follows the intro. Two short bio paragraphs. There is no open-to line. A "Work" heading with one row: a small cover image (128px, small radius, above the text on phones), then "Habi" with its year, its one-line pitch and its stack. An "Experience" list, an "About" section and a "Tools" section follow. Tools is a list grouped by area: a 14px grey label, then the tools in one line, split by " · ". A "Contact" row of plain links. All of it fits in the first viewport on desktop.
 
 FORM: The canon, executed straight. Position on the ordered list: not on it (user pin). seed:74e981de92457ae6
 
