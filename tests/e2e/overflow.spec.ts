@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-for (const path of ['/', '/work/habi', '/work/nope']) {
+for (const path of ['/', '/work/habi/', '/work/nope/']) {
   test(`no sideways overflow at 320px with 200% text on ${path}`, async ({
     page,
   }) => {

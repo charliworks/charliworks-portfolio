@@ -8,7 +8,7 @@ const toSeconds = (value: string) =>
       .map((v) => (v.endsWith('ms') ? parseFloat(v) / 1000 : parseFloat(v))),
   );
 
-for (const path of ['/', '/work/habi']) {
+for (const path of ['/', '/work/habi/']) {
   test(`reduced motion stops animation on ${path}`, async ({ page }) => {
     await page.emulateMedia({ reducedMotion: 'reduce' });
     await page.goto(path);

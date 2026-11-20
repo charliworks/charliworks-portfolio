@@ -44,6 +44,10 @@ Habi went from v1.0.0 on 4 Nov 2026 to v2.0.1 on 12 Nov 2026: 12 releases in 9 d
 - CI runs the type check, lint, unit tests with coverage, a web bundle budget and Lighthouse on every pull request.
 - End-to-end tests cover the web build with Playwright and the Android app with Maestro flows.
 
+## What I learned
+
+I learned Android development with Expo while I built Habi.
+
 ## Links
 
 - [Source code on GitHub](https://github.com/charlitomecarez/habi)

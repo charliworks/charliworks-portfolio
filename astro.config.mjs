@@ -6,6 +6,7 @@ import tailwindcss from '@tailwindcss/vite';
 export default defineConfig({
   site: 'https://charliworks-portfolio.pages.dev',
   output: 'static',
+  trailingSlash: 'always',
   vite: {
     plugins: [tailwindcss()],
   },

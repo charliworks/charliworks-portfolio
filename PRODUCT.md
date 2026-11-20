@@ -65,7 +65,7 @@ The work is built for one real life in the Philippines, not for a demo. Habi joi
 
 1. The work speaks first. Real projects and real facts outrank claims about skill.
 2. Every page has one job. Cut anything that does not help a reader judge or contact Charlito.
-3. Charlito's own words, or nothing. Placeholders stay visible until Charlito writes them.
+3. Charlito's own words, or nothing. The site leaves out a part until Charlito writes it. It shows no placeholder text.
 4. Fast and light on a mid-range phone on mobile data.
 
 ## Accessibility & Inclusion

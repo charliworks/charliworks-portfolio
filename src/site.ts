@@ -34,7 +34,7 @@ export const site: Site = {
     'I enjoy turning ideas into clean, functional UIs, and I care a lot about the details that make an experience feel right.',
   email: 'charlitomecarezjr@gmail.com',
   github: 'charlitomecarez',
-  linkedin: undefined,
+  linkedin: 'https://www.linkedin.com/in/charlito-mecarez-jr-5565431b4/',
   experience: [
     {
       role: 'Frontend Developer',

@@ -33,7 +33,7 @@ test.describe('home', () => {
 
   test('links to the Habi case study', async ({ page }) => {
     await page.goto('/');
-    await expect(page.locator('a[href="/work/habi"]')).toHaveCount(1);
+    await expect(page.locator('a[href="/work/habi/"]')).toHaveCount(1);
   });
 
   test('shows the intro and the About text', async ({ page }) => {
@@ -87,8 +87,8 @@ test.describe('home', () => {
     const page = await context.newPage();
     await page.goto('/');
     await expect(page.locator('h1')).toBeVisible();
-    await page.locator('a[href="/work/habi"]').click();
-    await expect(page).toHaveURL(/\/work\/habi\/?$/);
+    await page.locator('a[href="/work/habi/"]').click();
+    await expect(page).toHaveURL(/\/work\/habi\/$/);
     await context.close();
   });
 

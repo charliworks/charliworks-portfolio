@@ -68,6 +68,9 @@ components:
   cover-image:
     rounded: "{rounded.sm}"
     width: "100%"
+  work-row-image:
+    rounded: "{rounded.sm}"
+    width: "128px"
 ---
 
 # Design System: Charlito Jr Mecarez
@@ -133,12 +136,12 @@ One column, `max-width: 36rem`, centred with 20px side padding. Top padding is 6
 Spacing rhythm, as built:
 - 12px below every section heading.
 - 16px between paragraphs.
-- 56px above each Home section (Work, About).
+- 56px above each Home section (Work, Experience, About).
 - 48px above each section heading inside case study prose.
 - 64px above the footer Contact section.
 - 4px between a page heading and its pitch; 8px between an image and its caption; 32px above the case study cover.
 
-The work list stacks rows 12px apart; each row is the project name and a one-line pitch. Contact links sit in one wrapping row, 20px apart horizontally and 4px vertically.
+The work list stacks rows 24px apart. Each row is a 128px cover image, then the project name and year, a one-line pitch and the stack. From 640px wide, the image sits to the left of the text, 16px apart. On phones, it sits above the text, 12px apart. Contact links sit in one wrapping row, 20px apart horizontally and 4px vertically.
 
 ### Named Rules
 **The Space Carries Rank Rule.** Separate sections with space, never with rules, borders or background bands.
@@ -149,7 +152,7 @@ The system is flat. There are no shadows, no layered surfaces and no tonal conta
 
 ## Shapes
 
-There are no interface shapes. The only radii are a gently softened corner on the case study cover image (`rounded.sm`) and a 2px corner on the focus outline. Bullet lists use plain discs with a 1.25rem indent.
+There are no interface shapes. The only radii are a gently softened corner on the case study cover image and the work-row image (`rounded.sm`) and a 2px corner on the focus outline. Bullet lists use plain discs with a 1.25rem indent.
 
 ## Components
 
@@ -166,10 +169,13 @@ A list of job rows on Home, between Work and About, built like the work rows but
 charliworks is the maker label for Charlito's projects, not the subject of the site. The site stays about Charlito and speaks as "I". Home shows one graphite line under the intro: the 20px Grape soda logo and "I ship my projects under charliworks.", with charliworks linked to the GitHub org. Each case study shows "A charliworks project." in a 14px graphite line under the pitch.
 
 ### Work List
-A list of rows, not cards. Each row is the project name as a medium-weight link and a one-line pitch in graphite below it. The whole row is the click target, and hover on the row thickens the title underline. The list must accept more rows with no change to its form.
+A list of rows, not cards. Each row starts with a small cover image: 128px wide, with the small corner radius, and the same view-transition name as the case study cover. Next to it, the project name is a medium-weight link, with the year right-aligned in 14px graphite. Below it, a one-line pitch in graphite and the stack in 14px graphite. On phones, the image sits above the text. The whole row is the click target, and hover on the row thickens the title underline. The list must accept more rows with no change to its form.
 
 ### Contact Row
 The footer on every page: a "Contact" section heading and a wrapping row of plain text links.
+
+### Link Preview Image
+`public/og.jpg` is a 1200 × 630 card. The top 400px is the hero painting, at rest, with a short fade into the page ground. Below it: the name with the yellow highlighter, a short role line in graphite, and the charliworks label with the logo. It uses the page colours and the system sans stack. Every page uses it as `og:image`, except a case study, which uses its cover. It was made by two Playwright screenshots: the `.hero` element under reduced motion, then an HTML card that holds it. Make it again when the name or the role changes.
 
 ### Case Study Cover
 A full-column raster with a small corner radius, followed by a 14px graphite caption. The caption states that screens show sample data and names the stack.
