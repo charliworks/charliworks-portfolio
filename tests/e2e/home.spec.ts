@@ -40,15 +40,16 @@ test.describe('home', () => {
     await page.goto('/');
     await expect(page.getByText(site.intro ?? 'missing intro')).toBeVisible();
     const about = page.locator('section[aria-labelledby="about"] p');
-    expect(await about.count()).toBeGreaterThan(1);
+    expect(await about.count()).toBeGreaterThan(0);
   });
 
   test('lists the tools by group', async ({ page }) => {
     await page.goto('/');
-    const about = page.locator('section[aria-labelledby="about"]');
+    const tools = page.locator('section[aria-labelledby="tools"]');
     for (const group of site.tools) {
+      await expect(tools.locator('dt', { hasText: group.label })).toBeVisible();
       await expect(
-        about.getByText(`${group.label}: ${group.items.join(', ')}.`),
+        tools.locator('dd', { hasText: group.items.join(' · ') }),
       ).toBeVisible();
     }
   });
