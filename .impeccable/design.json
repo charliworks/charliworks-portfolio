@@ -1,0 +1,270 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-19T23:50:04+00:00",
+  "title": "Design System: Charlito Jr Mecarez",
+  "extensions": {
+    "colorMeta": {
+      "paper": {
+        "role": "neutral",
+        "displayName": "Paper",
+        "canonical": "#fbfbfa",
+        "tonalRamp": [
+          "oklch(15% 0.003 100)",
+          "oklch(27% 0.003 100)",
+          "oklch(39% 0.004 100)",
+          "oklch(51% 0.004 100)",
+          "oklch(63% 0.004 100)",
+          "oklch(75% 0.003 100)",
+          "oklch(87% 0.002 100)",
+          "oklch(98.6% 0.002 100)"
+        ]
+      },
+      "ink": {
+        "role": "primary",
+        "displayName": "Ink",
+        "canonical": "#1c1c1a",
+        "tonalRamp": [
+          "oklch(15% 0.004 100)",
+          "oklch(21.5% 0.004 100)",
+          "oklch(35% 0.004 100)",
+          "oklch(48% 0.004 100)",
+          "oklch(60% 0.004 100)",
+          "oklch(72% 0.003 100)",
+          "oklch(84% 0.002 100)",
+          "oklch(95% 0.001 100)"
+        ]
+      },
+      "graphite": {
+        "role": "neutral",
+        "displayName": "Graphite",
+        "canonical": "#63635e",
+        "tonalRamp": [
+          "oklch(15% 0.006 100)",
+          "oklch(27% 0.007 100)",
+          "oklch(39% 0.008 100)",
+          "oklch(48.5% 0.009 100)",
+          "oklch(60% 0.008 100)",
+          "oklch(72% 0.006 100)",
+          "oklch(84% 0.004 100)",
+          "oklch(95% 0.002 100)"
+        ]
+      },
+      "focus": {
+        "role": "neutral",
+        "displayName": "Focus",
+        "canonical": "#1c1c1a",
+        "aliasOf": "ink"
+      },
+      "accent": {
+        "role": "secondary",
+        "displayName": "Grape Soda Pink",
+        "canonical": "#ff7ac6",
+        "tonalRamp": [
+          "oklch(15% 0.036 347)",
+          "oklch(25% 0.090 347)",
+          "oklch(35% 0.108 347)",
+          "oklch(48% 0.131 347)",
+          "oklch(60% 0.153 347)",
+          "oklch(72% 0.175 347)",
+          "oklch(84% 0.166 347)",
+          "oklch(95% 0.073 347)"
+        ]
+      },
+      "spark": {
+        "role": "tertiary",
+        "displayName": "Grape Soda Spark",
+        "canonical": "#ffe066",
+        "tonalRamp": [
+          "oklch(15% 0.018 95)",
+          "oklch(25% 0.049 95)",
+          "oklch(35% 0.063 95)",
+          "oklch(48% 0.082 95)",
+          "oklch(60% 0.099 95)",
+          "oklch(72% 0.117 95)",
+          "oklch(84% 0.134 95)",
+          "oklch(95% 0.069 95)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "The one page heading: the name on Home, the project title on a case study, the message on the 404 page."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Section headings and the project name in the work list."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "All prose, in the 36rem column."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Image captions only, in graphite."
+      },
+      "code": {
+        "displayName": "Code",
+        "purpose": "Inline code in case study prose only. Breaks anywhere to stop overflow."
+      }
+    },
+    "shadows": [],
+    "motion": [
+      {
+        "name": "link-underline",
+        "value": "text-decoration-thickness 150ms ease-out, text-decoration-color 150ms ease-out",
+        "purpose": "The link underline thickens from 1px to 2px and turns pink (accent) on hover and focus."
+      },
+      {
+        "name": "view-transition",
+        "value": "@view-transition { navigation: auto } with 250ms ease-out groups",
+        "purpose": "The work cover and title move between Home and a case study. Cross-document, no JavaScript."
+      },
+      {
+        "name": "scroll-reveal",
+        "value": "animation-timeline: view(); range entry 0% to entry 60%; fade and rise 12px",
+        "purpose": "Work rows and case study blocks fade in as they enter the viewport."
+      },
+      {
+        "name": "hero-ambient",
+        "value": "clouds 9s, smoke 3s, glow 3s, bike 0.35s, wind gust 2s; all infinite",
+        "purpose": "The Home painting moves all the time. Hover or the first 120px of scroll raises the wind. The pause control stops it."
+      },
+      {
+        "name": "reduced-motion",
+        "value": "@media (prefers-reduced-motion: reduce) sets every transition and animation to 0.01ms; the hero animations are set to none",
+        "purpose": "Readers who ask for less motion get a still page."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "sm",
+        "value": "640px",
+        "purpose": "Top page padding grows from 64px to 96px. The column does not change."
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Text Link",
+      "kind": "custom",
+      "refersTo": "link",
+      "description": "The only interactive element. Text colour, thin graphite underline that thickens on hover and focus.",
+      "html": "<p class=\"ds-body\">Read the <a class=\"ds-link\" href=\"#\">Habi case study</a>.</p>",
+      "css": ".ds-body { font-family: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; font-size: 1rem; line-height: 1.65; color: var(--text, #1c1c1a); background: var(--surface, #fbfbfa); margin: 0; padding: 16px; } .ds-link { color: inherit; text-decoration-line: underline; text-decoration-thickness: 1px; text-decoration-color: var(--text-muted, #63635e); text-underline-offset: 0.22em; transition: text-decoration-thickness 150ms ease-out, text-decoration-color 150ms ease-out; } .ds-link:hover, .ds-link:focus-visible { text-decoration-thickness: 2px; text-decoration-color: var(--accent, #ff7ac6); } .ds-link:focus-visible { outline: 2px solid var(--focus, #1c1c1a); outline-offset: 3px; border-radius: 2px; } @media (prefers-reduced-motion: reduce) { .ds-link { transition-duration: 0.01ms; } }"
+    },
+    {
+      "name": "Section Heading",
+      "kind": "custom",
+      "refersTo": "section-heading",
+      "description": "Body-size heading at weight 500. Space above it carries rank.",
+      "html": "<section class=\"ds-section\"><h2 class=\"ds-section-heading\">Work</h2><p class=\"ds-section-body\">One private app that tells you what needs you today.</p></section>",
+      "css": ".ds-section { font-family: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; color: var(--text, #1c1c1a); background: var(--surface, #fbfbfa); padding: 56px 16px 16px; } .ds-section-heading { font-size: 1rem; line-height: 1.65; font-weight: 500; margin: 0 0 12px; text-wrap: balance; } .ds-section-body { font-size: 1rem; line-height: 1.65; margin: 0; }"
+    },
+    {
+      "name": "Work List",
+      "kind": "custom",
+      "refersTo": "work-row-title",
+      "description": "Rows, not cards: a 128px cover image with the small radius (above the text on phones), then a medium-weight project link with the year, a one-line graphite pitch and the stack.",
+      "html": "<ul class=\"ds-work-list\"><li><div class=\"ds-work-img\" role=\"img\" aria-label=\"Project cover\"></div><div><a class=\"ds-work-title\" href=\"#\">Habi</a><p class=\"ds-work-pitch\">One private app that tells you what needs you today.</p></div></li></ul>",
+      "css": ".ds-work-list { list-style: none; margin: 0; padding: 16px; font-family: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; font-size: 1rem; line-height: 1.65; color: var(--text, #1c1c1a); background: var(--surface, #fbfbfa); } .ds-work-list li + li { margin-top: 12px; } .ds-work-title { font-weight: 500; color: inherit; text-decoration-line: underline; text-decoration-thickness: 1px; text-decoration-color: var(--text-muted, #63635e); text-underline-offset: 0.22em; transition: text-decoration-thickness 150ms ease-out, text-decoration-color 150ms ease-out; } .ds-work-title:hover, .ds-work-title:focus-visible { text-decoration-thickness: 2px; text-decoration-color: var(--text, #1c1c1a); } .ds-work-title:focus-visible { outline: 2px solid var(--focus, #1c1c1a); outline-offset: 3px; border-radius: 2px; } .ds-work-pitch { margin: 0; color: var(--text-muted, #63635e); } .ds-work-list li { display: flex; flex-wrap: wrap; gap: 12px 16px; align-items: flex-start; } .ds-work-img { width: 128px; aspect-ratio: 16 / 9; border-radius: 4px; background: var(--text-muted, #63635e); opacity: 0.25; flex-shrink: 0; }"
+    },
+    {
+      "name": "Contact Row",
+      "kind": "nav",
+      "refersTo": "link",
+      "description": "The footer on every page: a Contact heading and a wrapping row of plain links.",
+      "html": "<footer class=\"ds-contact\"><h2 class=\"ds-contact-heading\">Contact</h2><ul class=\"ds-contact-links\"><li><a href=\"#\">Email</a></li><li><a href=\"#\">GitHub</a></li></ul></footer>",
+      "css": ".ds-contact { font-family: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; font-size: 1rem; line-height: 1.65; color: var(--text, #1c1c1a); background: var(--surface, #fbfbfa); padding: 16px; } .ds-contact-heading { font-size: 1rem; font-weight: 500; margin: 0 0 12px; } .ds-contact-links { display: flex; flex-wrap: wrap; column-gap: 20px; row-gap: 4px; list-style: none; margin: 0; padding: 0; } .ds-contact-links a { color: inherit; text-decoration-line: underline; text-decoration-thickness: 1px; text-decoration-color: var(--text-muted, #63635e); text-underline-offset: 0.22em; transition: text-decoration-thickness 150ms ease-out, text-decoration-color 150ms ease-out; } .ds-contact-links a:hover, .ds-contact-links a:focus-visible { text-decoration-thickness: 2px; text-decoration-color: var(--text, #1c1c1a); } .ds-contact-links a:focus-visible { outline: 2px solid var(--focus, #1c1c1a); outline-offset: 3px; border-radius: 2px; }"
+    },
+    {
+      "name": "Page Heading",
+      "kind": "custom",
+      "refersTo": "headline",
+      "description": "The one 18px medium heading per page, with a graphite line below it.",
+      "html": "<header class=\"ds-page-head\"><h1 class=\"ds-page-title\">Charlito Jr Mecarez</h1><p class=\"ds-page-role\">Full-stack developer in the Philippines.</p></header>",
+      "css": ".ds-page-head { font-family: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; color: var(--text, #1c1c1a); background: var(--surface, #fbfbfa); padding: 16px; } .ds-page-title { font-size: 1.125rem; line-height: 1.45; font-weight: 500; margin: 0; text-wrap: balance; } .ds-page-role { font-size: 1rem; line-height: 1.65; margin: 0; color: var(--text-muted, #63635e); }"
+    },
+    {
+      "name": "Image Caption",
+      "kind": "custom",
+      "refersTo": "caption",
+      "description": "The 14px graphite line under a case study cover. It states that screens show sample data.",
+      "html": "<figure class=\"ds-figure\"><div class=\"ds-cover\" role=\"img\" aria-label=\"Cover placeholder\"></div><p class=\"ds-caption\">Screens show sample data. Expo · React Native · Supabase</p></figure>",
+      "css": ".ds-figure { margin: 0; padding: 16px; background: var(--surface, #fbfbfa); font-family: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; } .ds-cover { width: 100%; aspect-ratio: 1200 / 694; border-radius: 4px; background: var(--text-muted, #63635e); } .ds-caption { margin: 8px 0 0; font-size: 0.875rem; line-height: 1.5; color: var(--text-muted, #63635e); }"
+    },
+    {
+      "name": "Brand Label",
+      "kind": "custom",
+      "refersTo": "brand-label",
+      "description": "The charliworks maker label under the Home intro: a 20px logo and one graphite line.",
+      "html": "<p class=\"ds-brand\"><span class=\"ds-brand-logo\" aria-hidden=\"true\"></span><span>I ship my projects under <a class=\"ds-brand-link\" href=\"#\">charliworks</a>.</span></p>",
+      "css": ".ds-brand { display: flex; align-items: center; gap: 8px; margin: 0; padding: 16px; font-family: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; font-size: 1rem; line-height: 1.65; color: var(--text-muted, #63635e); background: var(--surface, #fbfbfa); } .ds-brand-logo { width: 20px; height: 20px; border-radius: 4px; background: #2d1b69; } .ds-brand-link { color: inherit; text-decoration-line: underline; text-decoration-thickness: 1px; text-decoration-color: var(--text-muted, #63635e); text-underline-offset: 0.22em; transition: text-decoration-thickness 150ms ease-out, text-decoration-color 150ms ease-out; } .ds-brand-link:hover, .ds-brand-link:focus-visible { text-decoration-thickness: 2px; text-decoration-color: var(--accent, #ff7ac6); }"
+    },
+    {
+      "name": "Hero Pause Control",
+      "kind": "custom",
+      "refersTo": "hero-pause",
+      "description": "A native checkbox with a 14px graphite label under the Home painting. It pauses all hero motion.",
+      "html": "<div class=\"ds-pause-wrap\"><input id=\"ds-pause\" type=\"checkbox\" class=\"ds-sr\"><label for=\"ds-pause\" class=\"ds-pause\"><span>Pause motion</span></label></div>",
+      "css": ".ds-pause-wrap { display: flex; justify-content: flex-end; padding: 16px; background: var(--surface, #fbfbfa); font-family: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; } .ds-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); } .ds-pause { cursor: pointer; padding: 4px 0; font-size: 0.875rem; line-height: 1.5; color: var(--text-muted, #63635e); } .ds-pause span { text-decoration-line: underline; text-decoration-thickness: 1px; text-decoration-color: var(--text-muted, #63635e); text-underline-offset: 0.22em; transition: text-decoration-thickness 150ms ease-out, text-decoration-color 150ms ease-out; } .ds-pause:hover span, .ds-sr:focus-visible + .ds-pause span { text-decoration-thickness: 2px; text-decoration-color: var(--accent, #ff7ac6); } .ds-sr:focus-visible + .ds-pause { outline: 2px solid var(--focus, #1c1c1a); outline-offset: 3px; border-radius: 2px; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Plain Page",
+    "overview": "The site is one narrow column of plain text and links, read top to bottom. The owner pinned the category standard (text-first, single column, like leerob.com) as a deliberate choice. The interface recedes so the work and the writing lead. The one picture on Home is a hand-painted scene at the top. There is no card, no button and no other decoration.\n\nRank comes from space and weight, not from size. The type hierarchy is flat on purpose: body and section headings share one size, and the page heading is one step larger. The site is light only. Motion is small and CSS-only: the link underline thickens on hover and focus, work rows fade in on scroll, the cover and title move between Home and a case study, and the Home painting drifts and sways.",
+    "keyCharacteristics": [
+      "One left-aligned column, 36rem wide, centred in the viewport.",
+      "Monochrome text: one ground, one text colour, one grey. Two brand accents from the Grape soda logo: pink and yellow.",
+      "System sans only, regular and medium weights.",
+      "Links in text colour with a thin underline.",
+      "No borders, cards, shadows, gradients or icons in the interface."
+    ],
+    "rules": [
+      {
+        "name": "The Accent Rule",
+        "body": "Text uses only ink and graphite on paper. Pink and yellow appear only as marks behind or under ink text, never as text. A new surface adds no tint or second grey.",
+        "section": "colors"
+      },
+      {
+        "name": "The Light Ground Rule",
+        "body": "The site is light only, whatever the reader's system setting. The site has no dark mode and no theme toggle.",
+        "section": "colors"
+      },
+      {
+        "name": "The Flat Ramp Rule",
+        "body": "Body and section headings share 16px; the page heading is 18px. Weight (500) and the space above a heading carry rank. Do not add a larger display size.",
+        "section": "typography"
+      },
+      {
+        "name": "The Two Weights Rule",
+        "body": "Use regular (400) and medium (500) only. Bold text in prose renders at 500.",
+        "section": "typography"
+      },
+      {
+        "name": "The Space Carries Rank Rule",
+        "body": "Separate sections with space, never with rules, borders or background bands.",
+        "section": "layout"
+      },
+      {
+        "name": "The Pause Rule",
+        "body": "Any motion that starts on its own and runs longer than 5 seconds has a visible control that stops it (WCAG 2.2.2).",
+        "section": "components"
+      }
+    ],
+    "dos": [
+      "**Do** keep every page in the one 36rem column.",
+      "**Do** use ink for text and links, and graphite for secondary text only.",
+      "**Do** mark rank with weight 500 and space above the heading (56px between Home sections).",
+      "**Do** limit motion to the link underline, the scroll fade-in, the page view transition and the hero painting. Put all motion in CSS and remove it under reduced motion.",
+      "**Do** label any raster that shows sample data in its caption."
+    ],
+    "donts": [
+      "**Don't** add a second picture to the top of Home, project cards, buttons or decoration.",
+      "**Don't** add borders, shadows, gradients or icons to the interface.",
+      "**Don't** add a third accent colour, use an accent as a text colour, or add a third weight.",
+      "**Don't** add a display size above 18px.",
+      "**Don't** add a dark mode or a theme toggle."
+    ]
+  }
+}

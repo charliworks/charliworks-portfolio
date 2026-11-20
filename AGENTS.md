@@ -14,9 +14,11 @@ Read and follow the rules in its `AGENTS.md`. The most important ones:
 
 - **What it is:** <one sentence: X helps Y do Z>
 - **Stack:** Astro, Tailwind CSS, TypeScript (see `docs/adr/0001-stack-choice.md`); hosting to decide
-- **Run locally:** `<command, set when the app is scaffolded>`
-- **Test:** `<command, set when the app is scaffolded>`
-- **Lint:** `<command, set when the app is scaffolded>`
+- **Node:** the version in `.nvmrc` (24). Package manager: pnpm.
+- **Run locally:** `pnpm dev`
+- **Type check:** `pnpm check`
+- **Test:** `pnpm test` (unit) and `pnpm build && pnpm test:e2e` (browser)
+- **Lint:** `pnpm lint`
 
 ## Project-specific rules
 

@@ -65,7 +65,7 @@ In order:
 
 1. **Intro:** the name "Charlito Jr Mecarez" and one plain line about what Charlito builds.
 2. **Open to:** one line: full-time roles, collaborations, freelance work.
-3. **Work:** the Habi teaser: the name, a one-line pitch, a sample-data image and a link to `/work/habi`. The layout must still work when there are two or three projects.
+3. **Work:** one text row per project: the name as a link to `/work/<slug>` and its one-line pitch. No image on the home page. The list must still work with two or three projects.
 4. **About:** two to four short paragraphs in Charlito's own voice. It ends with one plain line of the tools Charlito uses: Astro, Next.js, React, Tailwind CSS, Supabase, Appwrite. This is a sentence, not a skills grid.
 5. **Contact:** plain links to `charlitomecarezjr@gmail.com`, GitHub (`charlitomecarez`) and LinkedIn (URL to come from Charlito).
 
@@ -95,6 +95,7 @@ Images: start with `docs/images/readme-banner.png` and `readme-icon.svg` from th
 - Personal projects only. Habi is the main project for now.
 - Approach 1: Home + case study pages.
 - Impeccable owns the visual design. Avoid common UI design systems.
+- Visual direction (2026-11-19): simple and text-first, like leerob.com. One narrow column, monochrome, no cards or banners. Contract: `.impeccable/surfaces/src-pages-index-astro.md`.
 - Astro + Tailwind CSS, linked to charliworks-guides by URL.
 - The site shows the name "Charlito Jr Mecarez".
 - Contact: `charlitomecarezjr@gmail.com`, GitHub `charlitomecarez`, LinkedIn.
