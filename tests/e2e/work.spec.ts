@@ -53,6 +53,8 @@ test.describe('work/habi', () => {
 
   for (const path of ['/work/habi/', '/work/nope/']) {
     test(`no axe violations on ${path}`, async ({ page }) => {
+      // The scroll fade-in leaves text half-faded at the screen edge; check the final colours.
+      await page.emulateMedia({ reducedMotion: 'reduce' });
       await page.goto(path);
       const results = await new AxeBuilder({ page }).analyze();
       expect(results.violations).toEqual([]);

@@ -101,7 +101,10 @@
   @supports (animation-timeline: view()) {
     .reveal,
     .case > * {
-      animation: reveal linear both;
+      /* Longhands: the minifier folds a shorthand plus timeline into an invalid shorthand. */
+      animation-name: reveal;
+      animation-timing-function: linear;
+      animation-fill-mode: both;
       animation-timeline: view();
       animation-range: entry 0% entry 60%;
     }

@@ -81,14 +81,14 @@ components:
 
 The site is one narrow column of plain text and links, read top to bottom. The owner pinned the category standard (text-first, single column, like leerob.com) as a deliberate choice. The interface recedes so the work and the writing lead. The one picture on Home is a hand-painted scene at the top. There is no card, no button and no other decoration.
 
-Rank comes from space and weight, not from size. The type hierarchy is flat on purpose: body and section headings share one size, and the page heading is one step larger. The site is light only. Motion is small and CSS-only: the link underline thickens on hover and focus, work rows fade in on scroll, the cover and title move between Home and a case study, and the Home painting drifts and sways.
+Rank comes from space and weight, not from size. The type hierarchy is flat on purpose: body and section headings share one size, and the page heading is one step larger. The site is light only. Motion is small and CSS-only: the link underline thickens on hover and focus, work, job and tool rows fade in on scroll, tool icons turn pink on hover, the cover and title move between Home and a case study, and the Home painting drifts and sways.
 
 **Key Characteristics:**
 - One left-aligned column, 36rem wide, centred in the viewport.
 - Monochrome text: one ground, one text colour, one grey. Two brand accents from the Grape soda logo: pink and yellow.
 - System sans only, regular and medium weights.
 - Links in text colour with a thin underline.
-- No borders, cards, shadows, gradients or icons in the interface.
+- No borders, cards, shadows, gradients or icons in the interface. The exceptions are the company logos in Experience and the one-colour tool icons in Tools (user exception, 2026-11-20).
 
 ## Colors
 
@@ -172,7 +172,10 @@ charliworks is the maker label for Charlito's projects, not the subject of the s
 A list of rows, not cards. Each row starts with a small cover image: 128px wide, with the small corner radius, and the same view-transition name as the case study cover. Next to it, the project name is a medium-weight link, with the year right-aligned in 14px graphite. Below it, a one-line pitch in graphite and the stack in 14px graphite. On phones, the image sits above the text. The whole row is the click target, and hover on the row thickens the title underline. The list must accept more rows with no change to its form.
 
 ### Tools List
-A definition list in its own Home section, after About. Each group is a 14px graphite label (`dt`) and the tools in ink, in one line, split by " · " (`dd`). From 640px wide, the label sits in an 8rem column to the left, on the same baseline, with 4px between groups. On phones, the label sits above its tools, with 12px between groups. No bullets, icons or skill levels.
+A definition list in its own Home section, after About. Each group is a 14px graphite label (`dt`) and a wrapping row of tools (`dd`), 16px apart. Each tool is a 1em icon in graphite, 6px before the tool name in ink. From 640px wide, the label sits in an 8rem column to the left, on the same baseline, with 4px between groups. On phones, the label sits above its tools, with 12px between groups. No bullets or skill levels.
+
+- **Icons:** one colour only, never the brand colours. The paths come from Simple Icons 16.36.0 (CC0) and live in `src/lib/tool-icons.ts`, so the page loads no images and no JavaScript. The icons are decorative (`aria-hidden`); screen readers read the names only. A tool with no entry in the map shows its name only.
+- **Motion:** hover on a tool turns its icon pink (`accent`) and scales it to 1.2, over 200ms with a small spring (`cubic-bezier(0.34, 1.56, 0.64, 1)`). Each group fades in on scroll, like the work and job rows. Reduced motion removes both.
 
 ### Contact Row
 The footer on every page: a "Contact" section heading and a wrapping row of plain text links.
@@ -193,6 +196,15 @@ An inline SVG painting at the top of Home (`src/components/HeroArt.astro`): the 
 
 **The Pause Rule.** Any motion that starts on its own and runs longer than 5 seconds has a visible control that stops it (WCAG 2.2.2).
 
+### Off Hours Page
+`/off-hours/`, linked from the About line on Home. It uses the case study frame: the name link, a page heading, a one-line pitch in graphite.
+
+- **Sections:** "Listening" (recent Spotify tracks) and "Playing" (Steam games from the last two weeks). Each heading row has the source in 14px graphite, right-aligned.
+- **Rows:** art with the small radius, then the title in ink and one 14px graphite line. Tracks use 48px square album art and "Artist · 20 Nov, 2:42 pm" (Philippine time). Games use a 92 × 43px Steam capsule and "12.6 hours in two weeks · 358 hours total". Rows fade in on scroll.
+- **Stand-in art:** a row with no image gets a 135° gradient tile in two hero painting colours.
+- **Sample data:** while the page has no real data, a 14px graphite line says "Sample data", and the page carries a `TODO(charlito)` mark, so CI on `main` fails.
+- **Footer line:** "From Spotify and Steam. Updated <date>." The page sends no JavaScript; the build fetches the data.
+
 ### Skip Link
 Hidden until focused; it then appears at the top left of the page.
 
@@ -207,7 +219,7 @@ Hidden until focused; it then appears at the top left of the page.
 
 ### Don't:
 - **Don't** add a second picture to the top of Home, project cards, buttons or decoration.
-- **Don't** add borders, shadows, gradients or icons to the interface.
+- **Don't** add borders, shadows, gradients or icons to the interface. The Experience logos and the one-colour tool icons are the only exceptions.
 - **Don't** add a third accent colour, use an accent as a text colour, or add a third weight.
 - **Don't** add a display size above 18px.
 - **Don't** add a dark mode or a theme toggle.

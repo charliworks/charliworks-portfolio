@@ -48,9 +48,11 @@ test.describe('home', () => {
     const tools = page.locator('section[aria-labelledby="tools"]');
     for (const group of site.tools) {
       await expect(tools.locator('dt', { hasText: group.label })).toBeVisible();
-      await expect(
-        tools.locator('dd', { hasText: group.items.join(' · ') }),
-      ).toBeVisible();
+      for (const item of group.items) {
+        const li = tools.locator('dd li', { hasText: item }).first();
+        await expect(li).toBeVisible();
+        await expect(li.locator('svg[aria-hidden="true"]')).toHaveCount(1);
+      }
     }
   });
 
@@ -94,6 +96,8 @@ test.describe('home', () => {
   });
 
   test('no axe violations', async ({ page }) => {
+    // The scroll fade-in leaves text half-faded at the screen edge; check the final colours.
+    await page.emulateMedia({ reducedMotion: 'reduce' });
     await page.goto('/');
     const results = await new AxeBuilder({ page }).analyze();
     expect(results.violations).toEqual([]);

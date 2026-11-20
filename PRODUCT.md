@@ -37,6 +37,7 @@ The work is built for one real life in the Philippines, not for a demo. Habi joi
 ## Capabilities and Constraints
 
 - Two pages: Home (`/`) and one case study per project (`/work/<slug>`), plus a 404 page.
+- Exception (2026-11-20): an Off hours page (`/off-hours/`), linked from About. It shows recent Spotify tracks and Steam games, fetched at build time. It shows personality and backs the About line; it is not a portfolio piece.
 - Case studies cover personal projects only. Employer work appears only as a row in the Home Experience section: role, company, years and one line. No employer code, screens or client names.
 - Habi is the only project for now. The layout must accept two or three more later.
 - No contact form, blog, CMS, analytics, skills grid, logo wall or percentage bars.
