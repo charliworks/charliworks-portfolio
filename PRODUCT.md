@@ -37,10 +37,10 @@ The work is built for one real life in the Philippines, not for a demo. Habi joi
 ## Capabilities and Constraints
 
 - Two pages: Home (`/`) and one case study per project (`/work/<slug>`), plus a 404 page.
-- Personal projects only. Employer and client work never appears.
+- Case studies cover personal projects only. Employer work appears only as a row in the Home Experience section: role, company, years and one line. No employer code, screens or client names.
 - Habi is the only project for now. The layout must accept two or three more later.
 - No contact form, blog, CMS, analytics, skills grid, logo wall or percentage bars.
-- Free tiers only. The planned domain `charli.works` comes later.
+- Free tiers only, except the domain. The domain is not chosen yet: `charliworks.com` or `charli.works`.
 - Performance budget: LCP ≤ 2.5 s on throttled 4G, CLS ≤ 0.1, initial JS ≤ 200 KB, Lighthouse mobile ≥ 90.
 
 ## Brand Commitments
@@ -51,6 +51,8 @@ The work is built for one real life in the Philippines, not for a demo. Habi joi
 - Charlito writes the personal copy: the intro line, About and "What I learned". Nobody invents opinions, feelings or history for Charlito.
 - Anti-goal: the site must not look like a common UI design system or template.
 - Standing preference (chosen 2026-11-19): simple, text-first, one narrow column, like leerob.com. The writing carries the identity, not decoration.
+- Exceptions (chosen 2026-11-20): one hand-painted, animated hero on Home, and pink and yellow accents from the Grape soda logo. The site is light only.
+- charliworks is Charlito's maker label, not the subject of the site. The site stays personal and speaks as "I". The label appears once on Home and once on each case study.
 
 ## Evidence on Hand
 

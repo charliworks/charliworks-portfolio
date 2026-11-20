@@ -159,6 +159,12 @@ Plain and quiet; the underline is the only affordance.
 - **Hover / Focus:** the underline thickens to 2px and turns pink (`accent`), over 150ms ease-out. Reduced motion removes the transition.
 - **Focus ring:** 2px solid outline in the focus colour, offset 3px.
 
+### Experience List
+A list of job rows on Home, between Work and About, built like the work rows but with no link and no image. The first line is the company logo at 20px, then "Role · Company" in medium weight, with the company linked to its site. The years sit right-aligned in 14px graphite ("2023–present", or "Sep–Dec 2022" for a short job). Below it, one graphite line says what the job involves. No bullets or skill bars.
+
+### Brand Label
+charliworks is the maker label for Charlito's projects, not the subject of the site. The site stays about Charlito and speaks as "I". Home shows one graphite line under the intro: the 20px Grape soda logo and "I ship my projects under charliworks.", with charliworks linked to the GitHub org. Each case study shows "A charliworks project." in a 14px graphite line under the pitch.
+
 ### Work List
 A list of rows, not cards. Each row is the project name as a medium-weight link and a one-line pitch in graphite below it. The whole row is the click target, and hover on the row thickens the title underline. The list must accept more rows with no change to its form.
 
@@ -169,7 +175,14 @@ The footer on every page: a "Contact" section heading and a wrapping row of plai
 A full-column raster with a small corner radius, followed by a 14px graphite caption. The caption states that screens show sample data and names the stack.
 
 ### Hero Art
-An inline SVG painting at the top of Home (`src/components/HeroArt.astro`): the Philippines at golden hour, with a volcano under a sunset sky, rice terraces, coconut palms and a person on a motorbike on the road. A noise filter gives the shapes brush-stroke edges, and a paper grain sits over the whole painting. It fills the column at 3:1 with the small corner radius. The motion runs all the time and is meant to be seen: the clouds drift, the volcano smoke rises, the sun glow pulses, the motorbike bobs, and a light wind sways the palms and grass. Hover on desktop, or scrolling the first 120px on phones, raises the wind to a strong gust. Reduced motion stops all of it.
+An inline SVG painting at the top of Home (`src/components/HeroArt.astro`): the Philippines at golden hour, with a volcano under a sunset sky, rice terraces, coconut palms and a person on a motorbike on the road. A noise filter gives the shapes brush-stroke edges, and a paper grain sits over the whole painting. It fills the column at 3:1 with the small corner radius.
+
+- **Palette:** the painting has its own colours, outside the page tokens. Sky: coral `#e7835c` to amber `#f4b26f` to cream `#fbdca3`. Sun `#fff1c9` with a `#fff4d1` glow. Clouds `#f9c9a8`. Volcano: slate `#6c7b98` to dusk rose `#c49a92`, cap `#e9dcd6`. Hills `#6f9a6b`. Terraces `#7aa94e`, `#5f9142`, `#86b553` and `#4c7d36`, with `#46702f` edges and `#e2e28c` rice rows. Road `#e3b97f`. Palms `#3e6b30` with `#6e4f34` trunks. Motorbike `#c8553a`, rider `#2f5d8a`, helmet `#f2c14e`.
+- **Motion:** the motion runs all the time and is meant to be seen: the clouds drift, the volcano smoke rises, the sun glow pulses, the motorbike bobs, and a light wind sways the palms and grass. Hover on desktop, or scrolling the first 120px on phones, raises the wind to a strong gust.
+- **Pause control:** a 14px graphite "Pause motion" text control sits right-aligned under the painting. It is a native checkbox with a visible label, and it needs no JavaScript. When checked, it pauses every animation and reads "Play motion". Reduced motion stops all the motion and hides the control.
+- **Performance:** keep the moving parts inside the shared brush-filter groups. A measured test showed that a separate filter group for the smoke tripled the main-thread work.
+
+**The Pause Rule.** Any motion that starts on its own and runs longer than 5 seconds has a visible control that stops it (WCAG 2.2.2).
 
 ### Skip Link
 Hidden until focused; it then appears at the top left of the page.

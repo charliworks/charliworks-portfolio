@@ -6,6 +6,7 @@ import HeroArt from '../components/HeroArt.astro';
 import { Content as About } from '../content/about.md';
 import { site } from '../site';
 import { sortWork } from '../lib/work';
+import { jobDates } from '../lib/experience';
 
 const work = sortWork(await getCollection('work'));
 ---
@@ -16,18 +17,65 @@ const work = sortWork(await getCollection('work'));
 >
   <HeroArt />
   <h1 class="text-lg font-medium">
-    <span class="box-decoration-clone bg-[linear-gradient(transparent_55%,var(--spark)_55%)] px-1 -mx-1">
+    <span class="box-decoration-clone bg-[linear-gradient(transparent_55%,var(--color-spark)_55%)] px-1 -mx-1">
       {site.name}
     </span>
   </h1>
   <p class="text-text-muted">{site.role}</p>
   {site.intro && <p class="mt-4">{site.intro}</p>}
+  <p class="mt-4 flex items-center gap-2 text-text-muted">
+    <img src="/favicon.png" alt="" width="20" height="20" class="rounded-sm" />
+    <span>
+      I ship my projects under <a href={site.brand.url}>{site.brand.name}</a>.
+    </span>
+  </p>
 
   <section class="mt-14" aria-labelledby="work">
     <h2 id="work" class="mb-3 font-medium">
       Work
     </h2>
     <WorkList entries={work} />
+  </section>
+
+  <section class="mt-14" aria-labelledby="experience">
+    <h2 id="experience" class="mb-3 font-medium">
+      Experience
+    </h2>
+    <ul class="space-y-6">
+      {site.experience.map((job) => {
+        const dates = jobDates(job.start, job.end);
+        return (
+          <li class="reveal">
+            <div class="flex flex-wrap items-center justify-between gap-x-4">
+              <p class="flex items-center gap-2 font-medium">
+                {job.logo && (
+                  <img
+                    src={job.logo}
+                    alt=""
+                    width="20"
+                    height="20"
+                    class="size-5 shrink-0 object-contain"
+                  />
+                )}
+                <span>
+                  {job.role} ·{' '}
+                  {job.url ? <a href={job.url}>{job.company}</a> : job.company}
+                </span>
+              </p>
+              <p class="text-sm text-text-muted">
+                <time datetime={job.start}>{dates.start}</time>–
+                {job.end ? (
+                  <time datetime={job.end}>{dates.end}</time>
+                ) : (
+                  'present'
+                )}
+              </p>
+            </div>
+            <p class="text-text-muted">{job.summary}</p>
+          </li>
+        );
+      })}
+    </ul>
   </section>
 
   <section class="mt-14" aria-labelledby="about">
