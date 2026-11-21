@@ -3,12 +3,64 @@ import { site } from '../site';
 import { contactLinks } from '../lib/contact';
 
 const links = contactLinks(site);
+const email = links.find((l) => l.label === 'Email');
+const others = links.filter((l) => l !== email);
+const [user, domain] = site.email.split('@');
 ---
 
-<ul class="flex flex-wrap gap-x-5 gap-y-1">
-  {links.map((link) => (
-    <li>
-      <a href={link.href}>{link.label}</a>
-    </li>
-  ))}
-</ul>
+<div class="contact-links" data-contact>
+  {email && (
+    <a href={email.href} class="contact-email display">
+      {user}
+      <wbr />@{domain}
+    </a>
+  )}
+  <ul class="contact-others">
+    {others.map((link) => (
+      <li>
+        <a href={link.href} rel="noopener" target="_blank">
+          {link.label}
+        </a>
+      </li>
+    ))}
+  </ul>
+</div>
+
+<style>
+  .contact-links {
+    margin-top: clamp(2rem, 5vh, 3rem);
+    display: grid;
+    justify-items: center;
+    gap: 1.75rem;
+  }
+
+  .contact-email {
+    font-size: clamp(1.35rem, 4.8vw, 4rem);
+    font-stretch: 100%;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    color: var(--spark);
+    text-decoration-line: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 0.18em;
+    text-decoration-color: color-mix(in srgb, var(--spark) 45%, transparent);
+    overflow-wrap: anywhere;
+  }
+
+  .contact-email:hover,
+  .contact-email:focus-visible {
+    color: var(--cream);
+    text-decoration-color: var(--accent);
+    text-decoration-thickness: 3px;
+  }
+
+  .contact-others {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem 2.25rem;
+    font-size: var(--text-lg);
+    font-weight: 600;
+  }
+</style>

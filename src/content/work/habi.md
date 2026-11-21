@@ -21,28 +21,17 @@ Habi is one private Android app. Home says in one sentence what needs you today,
 
 Sign-up is off. Only the admin adds accounts, and each account has fully separate data.
 
-## The rules it follows
-
-- The app speaks first. It says what needs action, and the person does not have to look for it.
-- Numbers are the content. Money, kilometres and hours lead each screen.
-- A log takes seconds, with one hand, outside.
-- Private by default. Personal data stays in the account, and health data stays on the phone unless you turn on the health check.
-
 ## How I built it
 
-- **App:** Expo and React Native, styled with NativeWind. Android first, with a web build second. Two home screen widgets, and native modules for alarms, screen time and a secure clipboard.
+- **App:** Expo and React Native, styled with NativeWind.
 - **Backend:** Supabase Postgres with row-level security on every user-owned table, so one account never reaches another's rows.
-- **Reminders:** modules write rows to one `reminders` table. One Edge Function, run by `pg_cron`, sends every push. Alarms ring from the phone, because a push can arrive late.
-- **Vault:** the phone encrypts each entry with XChaCha20-Poly1305 before it reaches Supabase. The key comes from the master password through Argon2id.
+- **Reminders:** modules write rows to one `reminders` table.
+- **Vault:** the phone encrypts each entry with XChaCha20-Poly1305 before it reaches Supabase.
 - **Cost:** everything runs on free tiers.
 
 ## How it shipped
 
-Habi went from v1.0.0 on 4 Nov 2026 to v2.0.1 on 12 Nov 2026: 12 releases in 9 days. The repo had 263 commits by 13 Nov.
-
-- Each release has a record in `docs/releases/`. Since v1.3.0, the larger releases also have a written plan, a design and release notes.
-- CI runs the type check, lint, unit tests with coverage, a web bundle budget and Lighthouse on every pull request.
-- End-to-end tests cover the web build with Playwright and the Android app with Maestro flows.
+Habi went from v1.0.0 on 4 Nov 2026 to v2.0.1 on 12 Nov 2026: 12 releases in 9 days.
 
 ## What I learned
 

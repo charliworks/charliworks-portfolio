@@ -25,58 +25,226 @@ const { Content } = await render(entry);
   title={`${entry.data.title} · ${site.name}`}
   description={entry.data.pitch}
   image={entry.data.cover}
+  phase={3}
+  ride={{ from: 0.45, to: 0.85, km: 6 }}
+  stop={entry.data.title}
 >
-  <p>
-    <a href="/">{site.name}</a>
-  </p>
-  <h1
-    class="mt-10 text-lg font-medium"
-    style={`view-transition-name: title-${entry.id}`}
-  >
-    {entry.data.title}
-  </h1>
-  <p class="mt-1 text-text-muted">{entry.data.pitch}</p>
-  <p class="mt-1 text-sm text-text-muted">A {site.brand.name} project.</p>
+  <link slot="head" rel="expect" href="#case-cover" blocking="render" />
+  <article class="case-page" data-sky="3" data-stop={entry.data.title}>
+    <p class="back">
+      <a href="/#work">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path
+            d="M19 12H5M11 6l-6 6 6 6"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          ></path>
+        </svg>
+        {site.name}
+      </a>
+    </p>
+    <h1
+      class="display case-title"
+      style={`view-transition-name: title-${entry.id}`}
+    >
+      {entry.data.title}
+    </h1>
+    <div class="case-intro">
+      <p class="case-pitch">{entry.data.pitch}</p>
+      <p class="case-label">A {site.brand.name} project.</p>
+    </div>
 
-  <Image
-    src={entry.data.cover}
-    alt={entry.data.coverAlt}
-    widths={[576, 1152]}
-    sizes="(min-width: 36rem) 36rem, 100vw"
-    class="mt-8 h-auto w-full rounded-sm"
-    style={`view-transition-name: cover-${entry.id}`}
-    loading="eager"
-  />
-  <p class="mt-2 text-sm text-text-muted">
-    Screens show sample data. {entry.data.stack.join(' · ')}
-  </p>
+    <figure class="case-cover">
+      <div
+        class="case-frame"
+        id="case-cover"
 
-  <div class="case mt-4">
-    <Content />
-  </div>
+        style={`view-transition-name: cover-${entry.id}; view-transition-class: cover`}
+      >
+        <Image
+          src={entry.data.cover}
+          alt={entry.data.coverAlt}
+          widths={[640, 1024, 1600]}
+          sizes="(min-width: 80rem) 72rem, 92vw"
+          class="case-img"
+          loading="eager"
+          fetchpriority="high"
+        />
+      </div>
+      <figcaption>
+        Screens show sample data. {entry.data.stack.join(' · ')}
+      </figcaption>
+    </figure>
+
+    <div class="case" data-sky="3.6" data-stop="Story">
+      <Content />
+    </div>
+  </article>
 </Base>
 
 <style>
-  .case :global(h2) {
-    margin-top: 3rem;
-    margin-bottom: 0.75rem;
+  .case-page {
+    overflow-x: clip;
+    width: 100%;
+    max-width: 80rem;
+    margin-inline: auto;
+    padding: 8rem clamp(1.25rem, 5vw, 4rem) 4rem;
+    color: var(--cream);
+  }
+
+  .back a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 600;
+    text-decoration-color: transparent;
+  }
+
+  .back svg {
+    width: 1.1rem;
+    transition: transform 400ms var(--ease-out);
+  }
+
+  .back a:hover svg {
+    transform: translateX(-4px);
+  }
+
+  .case-title {
+    margin-top: clamp(3rem, 10vh, 6rem);
+    font-size: clamp(4rem, 16vw, 12rem);
+    font-stretch: 150%;
+    letter-spacing: -0.04em;
+    line-height: 0.85;
+    width: fit-content;
+  }
+
+  .case-intro {
+    margin-top: 2rem;
+    max-width: 40rem;
+  }
+
+  .case-pitch {
+    font-size: clamp(1.35rem, 2.6vw, 1.9rem);
+    line-height: 1.3;
     font-weight: 500;
   }
+
+  .case-label {
+    margin-top: 0.75rem;
+    font-size: var(--text-sm);
+    color: var(--haze);
+  }
+
+  .case-cover {
+    margin-top: clamp(3rem, 8vh, 5rem);
+  }
+
+  .case-frame {
+    overflow: hidden;
+    border-radius: var(--frame-radius);
+    box-shadow: var(--frame-shadow);
+    background: var(--frame-fill);
+  }
+
+  .case-img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .case-cover figcaption {
+    margin-top: 0.9rem;
+    font-size: var(--text-sm);
+    color: var(--haze);
+  }
+
+  .case {
+    max-width: 42rem;
+    margin: clamp(4rem, 10vh, 7rem) auto 0;
+    position: relative;
+    font-size: 1.125rem;
+    overflow-wrap: break-word;
+  }
+
+  /* A soft band of night behind the long read, feathered at the edges. */
+  .case::before {
+    content: '';
+    position: absolute;
+    inset: -3rem -4rem;
+    z-index: -1;
+    background: rgb(8 10 32 / 0.62);
+    mask-image: linear-gradient(
+      to right,
+      transparent,
+      #000 18%,
+      #000 82%,
+      transparent
+    );
+    pointer-events: none;
+  }
+
+  .case :global(h2) {
+    margin-top: 4.5rem;
+    margin-bottom: 1rem;
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-stretch: 125%;
+    font-size: clamp(1.9rem, 4vw, 2.75rem);
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+
+  .case :global(h2:first-child) {
+    margin-top: 0;
+  }
+
   .case :global(p),
   .case :global(ul) {
-    margin-top: 1rem;
+    margin-top: 1.1rem;
   }
+
   .case :global(strong) {
-    font-weight: 500;
+    font-weight: 650;
+    color: var(--spark);
   }
+
   .case :global(ul) {
     padding-left: 1.25rem;
-    list-style: disc;
+    list-style: none;
   }
+
+  .case :global(li) {
+    position: relative;
+  }
+
+  .case :global(li)::before {
+    content: '';
+    position: absolute;
+    left: -1.2rem;
+    top: 0.72em;
+    width: 0.5rem;
+    height: 2px;
+    background: var(--accent);
+  }
+
   .case :global(li + li) {
-    margin-top: 0.375rem;
+    margin-top: 0.6rem;
   }
+
   .case :global(code) {
     overflow-wrap: anywhere;
+    font-size: 0.92em;
+    padding: 0.1em 0.35em;
+    border-radius: 5px;
+    background: rgb(255 255 255 / 0.1);
+  }
+
+  @media (max-width: 480px) {
+    .case {
+      overflow-wrap: anywhere;
+    }
   }
 </style>
