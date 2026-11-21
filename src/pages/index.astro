@@ -2,79 +2,77 @@
 import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
 import WorkList from '../components/WorkList.astro';
+import Parol from '../components/Parol.astro';
+import Spark from '../components/Spark.astro';
 import { Content as About } from '../content/about.md';
 import { site } from '../site';
 import { sortWork } from '../lib/work';
 import { jobDates } from '../lib/experience';
 
 const work = sortWork(await getCollection('work'));
-const [first, ...rest] = site.name.split(' ');
-const nameLines = [first, rest.join(' ')].filter(Boolean);
+const lead = work[0];
+const now = site.experience[0];
 ---
 
 <Base
   title={site.name}
   description={`${site.name}, full-stack developer. ${site.openTo}`}
-  phase={0}
-  stop="Start"
 >
-  <section class="hero" data-sky="0" data-stop="Start" aria-labelledby="name">
-    <div class="hero-inner">
-      <h1 id="name" class="display hero-name">
-        {nameLines.map((line, i) => (
-          <span class="line" style={`--i:${i}`}>
-            <span>
-              <span class="name-ink">{line}</span>
-              {i < nameLines.length - 1 && ' '}
-            </span>
-          </span>
-        ))}
-      </h1>
-      <div class="hero-copy">
-        <p class="hero-role fade-up" style="--i:0">
-          {site.role}
-        </p>
-        {site.intro && (
-          <p class="hero-intro fade-up" style="--i:1">
-            {site.intro}
-          </p>
-        )}
-        <p class="hero-brand fade-up" style="--i:2">
-          <img src="/favicon.png" alt="" width="24" height="24" />
-          <span>
-            I ship my projects under{' '}
-            <a href={site.brand.url}>{site.brand.name}</a>.
-          </span>
-        </p>
-      </div>
+  <section class="hero" aria-labelledby="name">
+    <div class="lanterns">
+      <Parol size={5} drop={3} delay={0} />
+      <Parol size={3.2} drop={8} delay={260} />
+      <Parol size={4.2} drop={1.5} delay={520} />
     </div>
-    <a href="#work" class="hero-cue fade-up" style="--i:4">
-      <span class="sr-only">Scroll to Work</span>
-      <svg viewBox="0 0 16 24" aria-hidden="true">
-        <path
-          d="M8 3v17M2.5 14.5 8 20l5.5-5.5"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="1.8"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-        ></path>
-      </svg>
-    </a>
+
+    <h1 id="name" class="hero-name">
+      {site.name}
+    </h1>
+    <p class="hero-role">{site.role}</p>
+    {site.intro && <p class="hero-intro">{site.intro}</p>}
+    <p class="hero-brand">
+      <img src="/favicon.png" alt="" width="24" height="24" />
+      <span>
+        I ship my projects under <a href={site.brand.url}>{site.brand.name}</a>.
+      </span>
+    </p>
+
+    <ul class="hero-cards">
+      {lead && (
+        <li>
+          <a href="#work" class="capiz hero-card hero-card--lit">
+            <strong>{lead.data.title}</strong>
+            <span>{lead.data.pitch}</span>
+          </a>
+        </li>
+      )}
+      {now && (
+        <li>
+          <a href="#experience" class="capiz hero-card">
+            <strong>Experience</strong>
+            <span>
+              {now.role} at {now.company}
+              {now.end ? '' : ` since ${now.start.slice(0, 4)}`}.
+            </span>
+          </a>
+        </li>
+      )}
+      <li>
+        <a href="#contact" class="capiz hero-card">
+          <strong>Say hi</strong>
+          <span>Email, GitHub, LinkedIn or résumé.</span>
+        </a>
+      </li>
+    </ul>
   </section>
 
-  <section
-    id="work"
-    tabindex="-1"
-    class="stop"
-    data-sky="1"
-    data-stop="Work"
-    aria-labelledby="work-h"
-  >
-    <h2 id="work-h" class="display stop-title stop-title--quiet" data-rise>
-      <span class="line">
-        <span>Work</span>
-      </span>
+  <section id="work" tabindex="-1" class="stop" aria-labelledby="work-h">
+    <div class="section-lantern" style="--x:12%">
+      <Parol size={3} drop={5} delay={150} />
+    </div>
+    <h2 id="work-h" class="heading">
+      <Spark />
+      Work
     </h2>
     <WorkList entries={work} />
   </section>
@@ -83,21 +81,17 @@ const nameLines = [first, rest.join(' ')].filter(Boolean);
     id="experience"
     tabindex="-1"
     class="stop"
-    data-sky="2"
-    data-stop="Experience"
     aria-labelledby="experience-h"
   >
-    <h2 id="experience-h" class="display stop-title" data-rise>
-      <span class="line">
-        <span>Experience</span>
-      </span>
+    <h2 id="experience-h" class="heading">
+      <Spark />
+      Experience
     </h2>
     <ul class="jobs">
       {site.experience.map((job) => {
         const dates = jobDates(job.start, job.end);
         return (
-          <li class="job" data-row>
-            <span class="job-rule" data-rule aria-hidden="true" />
+          <li class="job">
             <p class="job-dates">
               <time datetime={job.start}>{dates.start}</time>–
               {job.end ? (
@@ -107,7 +101,7 @@ const nameLines = [first, rest.join(' ')].filter(Boolean);
               )}
             </p>
             <div class="job-main">
-              <p class="job-company display">
+              <p class="job-company">
                 {job.logo && (
                   <img
                     src={job.logo}
@@ -128,44 +122,29 @@ const nameLines = [first, rest.join(' ')].filter(Boolean);
     </ul>
   </section>
 
-  <section
-    id="about"
-    tabindex="-1"
-    class="stop"
-    data-sky="3"
-    data-stop="About"
-    aria-labelledby="about-h"
-  >
-    <h2 id="about-h" class="display stop-title stop-title--quiet" data-rise>
-      <span class="line">
-        <span>About</span>
-      </span>
+  <section id="about" tabindex="-1" class="stop" aria-labelledby="about-h">
+    <h2 id="about-h" class="heading">
+      <Spark />
+      About
     </h2>
-    <div class="about" data-read>
+    <div class="about">
       <About />
     </div>
   </section>
 
-  <section
-    id="tools"
-    tabindex="-1"
-    class="stop tools-stop"
-    data-sky="3.5"
-    data-stop="Tools"
-    aria-labelledby="tools-h"
-  >
-    <h2 id="tools-h" class="display stop-title stop-title--mid" data-rise>
-      <span class="line">
-        <span>Tools</span>
-      </span>
+  <section id="tools" tabindex="-1" class="stop" aria-labelledby="tools-h">
+    <div class="section-lantern" style="--x:30%">
+      <Parol size={2.4} drop={3.5} delay={300} />
+    </div>
+    <h2 id="tools-h" class="heading">
+      <Spark />
+      Tools
     </h2>
     <dl class="tools">
       {site.tools.map((group) => (
-        <div class="tool-row">
+        <div class="capiz tool-card">
           <dt>{group.label}</dt>
-          <dd class="display" data-drift>
-            {group.items.join(' · ')}
-          </dd>
+          <dd>{group.items.join(' · ')}</dd>
         </div>
       ))}
     </dl>
@@ -176,174 +155,173 @@ const nameLines = [first, rest.join(' ')].filter(Boolean);
   /* ——— first viewport ——— */
   .hero {
     position: relative;
-    overflow-x: clip;
-    min-height: 100svh;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    padding: clamp(7rem, 20vh, 12rem) clamp(1.25rem, 5vw, 4rem) 6rem;
-    color: var(--ink);
-    /* Golden-hour haze settles over the hills behind the copy. */
-    background-image: radial-gradient(
-      70% 55% at 22% 68%,
-      rgb(253 225 168 / 0.72),
-      rgb(253 225 168 / 0.3) 55%,
-      transparent 80%
-    );
-  }
-
-  @media (max-width: 760px) {
-    .hero {
-      background-image: radial-gradient(
-        130% 62% at 30% 60%,
-        rgb(253 225 168 / 0.9),
-        rgb(253 225 168 / 0.62) 55%,
-        transparent 85%
-      );
-    }
-  }
-
-  .hero-inner {
     width: 100%;
     max-width: 80rem;
     margin-inline: auto;
+    padding: clamp(3rem, 10vh, 6rem) clamp(1rem, 5vw, 4rem)
+      clamp(2rem, 6vh, 4rem);
+  }
+
+  /* Lanterns hang from the top edge of the page, top right. */
+  .lanterns {
+    position: absolute;
+    /* Strings start at the page's top edge, behind the header. */
+    top: -4.5rem;
+    right: clamp(1rem, 30vw, 28rem);
+    z-index: 0;
+    display: flex;
+    align-items: flex-start;
+    gap: clamp(1rem, 3vw, 2.25rem);
+    pointer-events: none;
   }
 
   .hero-name {
-    font-size: clamp(3rem, 11.5vw, 9.5rem);
-    font-stretch: 118%;
-    font-weight: 850;
-    letter-spacing: -0.035em;
-    line-height: 0.86;
-    margin-left: -0.04em;
-  }
-
-  /* Wind: scroll speed stretches each line sideways. A transform, not a
-     font-width change, so nothing reflows and the lines never re-wrap. */
-  .hero-name .line {
-    overflow: visible clip;
-    transform: scaleX(calc(1 + var(--wind) * var(--wind-max, 0.04)));
-    transform-origin: left center;
-    will-change: transform;
-  }
-
-  .hero-name .line:last-child .name-ink {
-    background: linear-gradient(
-      transparent 62%,
-      var(--spark) 62% 92%,
-      transparent 92%
-    );
-    box-decoration-break: clone;
-    -webkit-box-decoration-break: clone;
-  }
-
-  .hero-copy {
-    margin-top: clamp(2rem, 5vh, 3.5rem);
-    max-width: 34rem;
-    display: grid;
-    gap: 1rem;
+    max-width: 11ch;
+    font-weight: 800;
+    font-size: clamp(3rem, 9vw, 6rem);
+    line-height: 0.92;
+    letter-spacing: -0.025em;
+    color: var(--pink);
   }
 
   .hero-role {
+    margin-top: 1.25rem;
+    max-width: 34rem;
     font-size: var(--text-lg);
     line-height: var(--text-lg--line-height);
-    font-weight: 600;
+    font-weight: 700;
+    color: var(--yellow);
   }
 
   .hero-intro {
-    color: var(--ink);
-    font-size: 1.125rem;
+    margin-top: 0.75rem;
+    max-width: 36rem;
+    font-size: 1.2rem;
+    color: var(--lavender);
   }
 
   .hero-brand {
+    margin-top: 1.25rem;
     display: flex;
     align-items: center;
     gap: 0.6rem;
-    color: var(--ink);
     font-size: var(--text-sm);
-    font-weight: 500;
+    font-weight: 600;
+    color: var(--mist);
   }
 
   .hero-brand img {
-    border-radius: 5px;
+    border-radius: 6px;
   }
 
-  .hero-cue {
-    position: absolute;
-    left: 50%;
-    bottom: 1.6rem;
-    translate: -50% 0;
-    display: inline-flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.35rem;
-    font-size: 0.75rem;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    text-decoration: none;
+  .hero-cards {
+    margin-top: clamp(2rem, 5vh, 3rem);
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
+    gap: 1rem;
   }
 
-  .hero-cue svg {
-    width: 14px;
-    animation: nudge 1.8s var(--ease-out) infinite;
+  .hero-card {
+    display: grid;
+    gap: 0.3rem;
+    height: 100%;
+    padding: 1rem 1.25rem 1.15rem;
   }
 
-  :global(.is-paused) .hero-cue svg {
-    animation-play-state: paused;
+  /* Habi is the first lit card. */
+  .hero-card--lit {
+    border-color: var(--capiz-edge-lit);
+    box-shadow: 0 0 40px -12px rgb(255 224 102 / 0.45);
   }
 
-  @keyframes nudge {
-    50% {
-      transform: translateY(5px);
+  .hero-card strong {
+    font-size: 1.5rem;
+    font-weight: 800;
+    line-height: 1.1;
+    color: var(--yellow);
+  }
+
+  .hero-card span {
+    font-size: 1rem;
+    line-height: 1.4;
+    color: var(--lavender);
+  }
+
+  @media (max-width: 640px) {
+    /* On phones the lanterns hang below the header, clear of the nav. */
+    .lanterns {
+      top: 0;
+      right: 0.75rem;
+      transform: scale(0.55);
+      transform-origin: top right;
+    }
+
+    .hero-name {
+      padding-top: 5.5rem;
     }
   }
 
-  /* ——— stops ——— */
+  /* ——— sections ——— */
   .stop {
     position: relative;
     width: 100%;
     max-width: 80rem;
     margin-inline: auto;
-    padding: clamp(6rem, 16vh, 11rem) clamp(1.25rem, 5vw, 4rem);
-    color: var(--cream);
+    padding: clamp(4.5rem, 12vh, 8rem) clamp(1rem, 5vw, 4rem) 0;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: clamp(2rem, 5vh, 3rem);
+  }
+
+  /* A lantern hung over a section, lighting what sits below it. */
+  .section-lantern {
+    position: absolute;
+    top: 0;
+    right: var(--x);
+    pointer-events: none;
+  }
+
+  .section-lantern::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 60%;
+    width: 36rem;
+    height: 26rem;
+    translate: -50% 0;
+    background: radial-gradient(
+      closest-side,
+      rgb(255 224 102 / 0.17),
+      transparent
+    );
+    z-index: -1;
+  }
+
+  @media (max-width: 640px) {
+    .section-lantern {
+      transform: scale(0.7);
+      transform-origin: top center;
+    }
   }
 
   .stop:focus {
     outline: none;
   }
 
-  .stop-title {
-    font-size: clamp(2rem, 11vw, 8rem);
-    font-stretch: 125%;
-    letter-spacing: -0.04em;
-    margin-bottom: clamp(2.5rem, 6vh, 4.5rem);
-  }
-
-  /* Where the content is the headline (Habi, the About text), the
-     heading steps back; where the list is plain, it leads. */
-  .stop-title--quiet {
-    font-size: clamp(1.5rem, 2.6vw, 2.25rem);
-    font-stretch: 112%;
-    letter-spacing: -0.01em;
-    margin-bottom: clamp(1.5rem, 4vh, 2.5rem);
-  }
-
-  .stop-title--mid {
-    font-size: clamp(2rem, 7vw, 5rem);
-  }
-
   /* ——— experience ——— */
   .jobs {
     display: grid;
-    gap: 0;
   }
 
   .job {
-    position: relative;
     display: grid;
-    gap: 0.75rem 2rem;
-    padding: 2.25rem 0;
+    gap: 0.5rem 2rem;
+    padding: 1.75rem 0;
+    border-top: 1px solid rgb(255 255 255 / 0.12);
+  }
+
+  .job:last-child {
+    border-bottom: 1px solid rgb(255 255 255 / 0.12);
   }
 
   @media (min-width: 760px) {
@@ -353,63 +331,62 @@ const nameLines = [first, rest.join(' ')].filter(Boolean);
     }
   }
 
-  .job-rule {
-    position: absolute;
-    inset: 0 0 auto;
-    height: 1px;
-    background: color-mix(in srgb, var(--cream) 28%, transparent);
+  @media (max-width: 759px) {
+    .job-dates {
+      order: 1;
+    }
   }
 
   .job-dates {
     font-size: var(--text-sm);
     font-weight: 600;
-    color: var(--haze);
+    color: var(--mist);
   }
 
   .job-company {
     display: flex;
     align-items: center;
-    gap: 0.9rem;
-    font-size: clamp(1.75rem, 4.6vw, 3.25rem);
-    font-stretch: 120%;
-    line-height: 1;
+    gap: 0.8rem;
+    font-weight: 800;
+    font-size: clamp(1.6rem, 4vw, 2.5rem);
+    line-height: 1.05;
+    color: var(--moon);
   }
 
   .job-company a {
     text-decoration-thickness: 2px;
-    text-underline-offset: 0.12em;
   }
 
   .job-logo {
-    width: clamp(1.75rem, 3vw, 2.25rem);
+    flex: none;
+    width: clamp(1.9rem, 3vw, 2.3rem);
     height: auto;
-    border-radius: 8px;
-    background: var(--cream);
     padding: 3px;
+    border-radius: 10px;
+    background: var(--moon);
     object-fit: contain;
   }
 
   .job-role {
-    margin-top: 0.9rem;
-    font-weight: 600;
+    margin-top: 0.6rem;
+    font-weight: 700;
     font-size: var(--text-lg);
+    color: var(--yellow);
   }
 
   .job-summary {
-    margin-top: 0.25rem;
     max-width: 38rem;
-    color: var(--haze);
+    color: var(--lavender);
   }
 
   /* ——— about ——— */
   .about {
-    max-width: 62rem;
-    font-family: var(--font-display);
+    max-width: 52rem;
     font-weight: 600;
-    font-stretch: 100%;
-    font-size: clamp(1.75rem, 4.4vw, 3.5rem);
-    line-height: 1.12;
-    letter-spacing: -0.02em;
+    font-size: clamp(1.6rem, 3.6vw, 2.75rem);
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    color: var(--moon);
     overflow-wrap: break-word;
   }
 
@@ -418,39 +395,30 @@ const nameLines = [first, rest.join(' ')].filter(Boolean);
   }
 
   /* ——— tools ——— */
-  .tools-stop {
-    overflow-x: clip;
-  }
-
   .tools {
     display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+    gap: 1rem;
   }
 
-  .tool-row {
+  .tool-card {
+    padding: 1.1rem 1.3rem 1.25rem;
     display: grid;
-    gap: 0.4rem 2rem;
-    padding: 1.6rem 0;
-    border-top: 1px solid color-mix(in srgb, var(--cream) 22%, transparent);
+    align-content: start;
+    gap: 0.35rem;
   }
 
-  @media (min-width: 760px) {
-    .tool-row {
-      grid-template-columns: 12rem 1fr;
-      align-items: baseline;
-    }
+  .tool-card dt {
+    font-size: 1.35rem;
+    font-weight: 800;
+    line-height: 1.15;
+    color: var(--yellow);
   }
 
-  .tool-row dt {
-    font-size: var(--text-sm);
-    font-weight: 600;
-    color: var(--haze);
-  }
-
-  .tool-row dd {
-    font-size: clamp(1.5rem, 4vw, 3rem);
-    font-stretch: 112%;
-    font-weight: 700;
-    line-height: 1.1;
+  .tool-card dd {
+    font-size: 1.05rem;
+    line-height: 1.5;
+    color: var(--lavender);
   }
 
   @media (max-width: 480px) {

@@ -1,12 +1,11 @@
 @import 'tailwindcss';
 
 @font-face {
-  font-family: 'Anybody';
+  font-family: 'Baloo 2';
   font-style: normal;
-  font-weight: 100 900;
-  font-stretch: 50% 150%;
+  font-weight: 400 800;
   font-display: swap;
-  src: url('/fonts/anybody-latin.woff2') format('woff2');
+  src: url('/fonts/baloo2-latin.woff2') format('woff2');
   unicode-range:
     U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
     U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212,
@@ -15,41 +14,34 @@
 
 @theme {
   --font-body:
-    ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto,
-    'Helvetica Neue', Arial, sans-serif;
-  --font-display: 'Anybody', var(--font-body);
-  --text-sm: 0.875rem;
+    'Baloo 2', ui-rounded, ui-sans-serif, system-ui, -apple-system, 'Segoe UI',
+    Roboto, sans-serif;
+  --text-sm: 0.9rem;
   --text-sm--line-height: 1.5;
-  --text-base: 1.0625rem;
-  --text-base--line-height: 1.65;
-  --text-lg: 1.25rem;
-  --text-lg--line-height: 1.5;
-  --color-ink: var(--ink);
-  --color-cream: var(--cream);
-  --color-haze: var(--haze);
-  --color-accent: var(--accent);
-  --color-spark: var(--spark);
+  --text-base: 1.125rem;
+  --text-base--line-height: 1.6;
+  --text-lg: 1.3rem;
+  --text-lg--line-height: 1.45;
 }
 
 :root {
-  /* Day: ink on the golden sky. Night: cream on the dark sky. */
-  --ink: #24130b;
-  /* Pink that holds contrast on the bright day sky. */
-  --accent-day: #b0236e;
-  --selection-ink: #1a0a12;
-  /* Image frames: the night fill shown while a cover loads, and its lift. */
-  --frame-fill: #2a1c3c;
-  --frame-shadow: 0 40px 80px -30px rgb(10 6 30 / 0.65);
-  --frame-radius: 20px;
-  --cream: #fff4e6;
-  --haze: #e6cfe0;
-  --accent: #ff7ac6;
-  --spark: #ffe066;
-  --night: #0a0f2a;
-  --sky-top: #e47a58;
-  --sky-mid: #f2a768;
-  --sky-horizon: #fde1a8;
-  --wind: 0;
+  /* The night, from the favicon's indigo. */
+  --night: #170e38;
+  --indigo: #2b1b5e;
+  --dusk: #3d2a80;
+  /* Text under the lanterns. */
+  --moon: #f4efff;
+  --lavender: #d9cff7;
+  --mist: #b9addf;
+  /* The favicon's pink C and yellow sparkle. */
+  --pink: #ff7ac6;
+  --yellow: #ffe066;
+  --string: #8d7cc7;
+  /* Capiz cards: light coming through a thin shell. */
+  --capiz: rgb(255 255 255 / 0.06);
+  --capiz-edge: rgb(255 224 102 / 0.3);
+  --capiz-edge-lit: rgb(255 224 102 / 0.75);
+  --glow: drop-shadow(0 0 14px rgb(255 224 102 / 0.55));
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   color-scheme: dark;
 }
@@ -57,40 +49,47 @@
 @layer base {
   html {
     background: var(--night);
-    color: var(--cream);
+    color: var(--moon);
     font-family: var(--font-body);
     font-size: 100%;
     -webkit-text-size-adjust: 100%;
-    scrollbar-color: var(--accent) var(--night);
-  }
-
-  html.lenis,
-  html.lenis body {
-    height: auto;
-  }
-
-  .lenis.lenis-smooth {
-    scroll-behavior: auto !important;
+    scrollbar-color: var(--yellow) var(--night);
   }
 
   body {
+    position: relative;
     margin: 0;
     font-size: var(--text-base);
     line-height: var(--text-base--line-height);
-    caret-color: var(--accent);
+    caret-color: var(--pink);
+    /* The sky is lightest at the top, where the lanterns hang. */
+    background: radial-gradient(
+        90rem 50rem at 75% -10rem,
+        var(--dusk),
+        var(--indigo) 45%,
+        transparent 100%
+      )
+      no-repeat;
+  }
+
+  /* Lanterns and long words never scroll the page sideways. */
+  body > header,
+  main,
+  body > footer {
+    overflow-x: clip;
   }
 
   ::selection {
-    background: var(--accent);
-    color: var(--selection-ink);
+    background: var(--pink);
+    color: var(--night);
   }
 
   a {
     color: inherit;
     text-decoration-line: underline;
-    text-decoration-thickness: 1px;
-    text-decoration-color: color-mix(in srgb, currentColor 45%, transparent);
-    text-underline-offset: 0.24em;
+    text-decoration-thickness: 1.5px;
+    text-decoration-color: var(--pink);
+    text-underline-offset: 0.2em;
     transition:
       text-decoration-thickness 200ms var(--ease-out),
       text-decoration-color 200ms var(--ease-out),
@@ -99,19 +98,14 @@
 
   a:hover,
   a:focus-visible {
-    text-decoration-thickness: 2px;
-    text-decoration-color: var(--accent);
+    color: var(--pink);
+    text-decoration-thickness: 2.5px;
   }
 
   :focus-visible {
-    outline: 2px solid var(--spark);
+    outline: 2px solid var(--yellow);
     outline-offset: 4px;
-    border-radius: 3px;
-  }
-
-  [data-tone='day'] :focus-visible,
-  .tone-day :focus-visible {
-    outline-color: var(--ink);
+    border-radius: 4px;
   }
 
   p,
@@ -124,6 +118,7 @@
   h2,
   h3 {
     text-wrap: balance;
+    overflow-wrap: break-word;
   }
 
   time {
@@ -132,113 +127,102 @@
 }
 
 @layer components {
-  /* The display voice: Anybody, stretched wide. */
-  .display {
-    font-family: var(--font-display);
+  /* Section headings: heavy and bright, led by one small lantern spark. */
+  .heading {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
     font-weight: 800;
-    font-stretch: 130%;
-    line-height: 0.92;
-    letter-spacing: -0.02em;
-    /* Only breaks a word when it cannot fit at all (200% text on 320px). */
-    overflow-wrap: break-word;
-    hyphens: auto;
+    font-size: clamp(2rem, 5vw, 3.25rem);
+    line-height: 1;
+    letter-spacing: -0.015em;
+    color: var(--moon);
   }
 
-  /* The fixed world behind every page: CSS sky first, the 3D ride over it. */
-  .world {
-    position: fixed;
-    inset: 0;
-    z-index: 0;
-    background: linear-gradient(
-      to bottom,
-      var(--sky-top) 0%,
-      var(--sky-mid) 48%,
-      var(--sky-horizon) 72%,
-      color-mix(in srgb, var(--sky-horizon) 40%, #3e5a2c) 100%
-    );
+  .heading svg {
+    flex: none;
+    width: 0.6em;
+    height: 0.6em;
+    fill: var(--yellow);
+    filter: var(--glow);
   }
 
-  .world canvas {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    opacity: 0;
-    transition: opacity 1.4s var(--ease-out);
+  /* Capiz card: a soft rounded panel lit from inside. */
+  .capiz {
+    position: relative;
+    isolation: isolate;
+    border-radius: 22px;
+    /* Lit from above, like light through a capiz shell. */
+    background:
+      radial-gradient(
+        120% 90% at 50% -30%,
+        rgb(255 224 102 / 0.16),
+        transparent 65%
+      ),
+      var(--capiz);
+    border: 1px solid var(--capiz-edge);
+    transition:
+      border-color 300ms var(--ease-out),
+      background-color 300ms var(--ease-out);
   }
 
-  .world canvas[data-ready] {
-    opacity: 1;
+  a.capiz {
+    text-decoration: none;
   }
 
-  /* Keeps text readable where the valley meets the copy. */
-  .world::after {
+  a.capiz:hover,
+  a.capiz:focus-visible,
+  .capiz:has(a:hover),
+  .capiz:has(a:focus-visible) {
+    border-color: var(--capiz-edge-lit);
+    background-color: rgb(255 255 255 / 0.04);
+  }
+
+  /* With the script on, a warm spot follows the pointer inside a card. */
+  .lanterns-live .capiz::before {
     content: '';
     position: absolute;
     inset: 0;
-    background:
-      radial-gradient(
-        120% 80% at 50% 40%,
-        transparent 45%,
-        rgb(8 10 30 / 0.25) 100%
-      ),
-      linear-gradient(to bottom, transparent 55%, rgb(8 10 30 / 0.25));
-    opacity: var(--veil, 0);
-    transition: opacity 1.2s var(--ease-out);
-  }
-
-  [data-tone='night'] .world::after {
-    --veil: 1;
-  }
-
-  main,
-  body > footer {
-    position: relative;
-    z-index: 1;
-  }
-
-  .word {
-    display: inline;
-  }
-
-  /* Lines that rise out of a clip on first paint. */
-  .line {
-    display: block;
-    overflow: clip;
-    padding-bottom: 0.06em;
-  }
-
-  .line > span {
-    display: block;
-  }
-
-  /* Only the name rises on first paint; section headings rise on scroll. */
-  .hero-name .line > span {
-    animation: rise 1.3s var(--ease-out) both;
-    animation-delay: calc(var(--i, 0) * 110ms + 150ms);
-  }
-
-  .fade-up {
-    animation: fade-up 1.2s var(--ease-out) both;
-    animation-delay: calc(var(--i, 0) * 90ms + 500ms);
-  }
-
-  .is-paused .line > span,
-  .is-paused .fade-up {
-    animation-play-state: paused;
-  }
-}
-
-@keyframes rise {
-  from {
-    transform: translateY(105%);
-  }
-}
-
-@keyframes fade-up {
-  from {
+    z-index: -1;
+    border-radius: inherit;
+    background: radial-gradient(
+      16rem circle at var(--mx, 50%) var(--my, 0%),
+      rgb(255 224 102 / 0.14),
+      transparent 70%
+    );
     opacity: 0;
-    transform: translateY(16px);
+    transition: opacity 400ms var(--ease-out);
+    pointer-events: none;
+  }
+
+  .lanterns-live .capiz:hover::before {
+    opacity: 1;
+  }
+
+  /* Sparks shaken loose from a tapped lantern. */
+  .spark-fall {
+    position: fixed;
+    z-index: 30;
+    width: 9px;
+    height: 9px;
+    margin: -4.5px 0 0 -4.5px;
+    background: var(--yellow);
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M10 0Q11 9 20 10Q11 11 10 20Q9 11 0 10Q9 9 10 0Z'/%3E%3C/svg%3E")
+      center / contain no-repeat;
+    filter: drop-shadow(0 0 4px rgb(255 224 102 / 0.9));
+    pointer-events: none;
+    animation: spark-fall 1.1s var(--ease-out) both;
+  }
+}
+
+@keyframes spark-fall {
+  from {
+    transform: translate(0, 0) rotate(0deg) scale(1.2);
+    opacity: 1;
+  }
+  to {
+    transform: translate(var(--dx), var(--dy)) rotate(var(--spin)) scale(0.4);
+    opacity: 0;
   }
 }
 
@@ -252,9 +236,8 @@
     animation-timing-function: var(--ease-out);
   }
 
-  /* The cover is the same image file on both pages (matching srcset, so it
-     comes from cache, and the case page render-blocks on it). Morph one
-     image: no cross-fade, so nothing doubles, washes or brightens. */
+  /* The cover is the same image file on both pages. Morph one image: no
+     cross-fade, so nothing doubles or washes out. */
   ::view-transition-old(*.cover) {
     display: none;
   }
@@ -276,10 +259,12 @@
   }
 }
 
-/* At 200% text on a narrow phone, a display word may break rather than
-   push the page sideways. At normal sizes every title fits whole. */
+/* At 200% text on a narrow phone, a long word may break rather than push
+   the page sideways. At normal sizes every word fits whole. */
 @media (max-width: 480px) {
-  .display {
+  h1,
+  h2,
+  .capiz {
     overflow-wrap: anywhere;
   }
 }
