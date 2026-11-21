@@ -4,6 +4,7 @@ import { Image } from 'astro:assets';
 import Base from '../../layouts/Base.astro';
 import { site } from '../../site';
 import { sortWork } from '../../lib/work';
+import { caseTitle } from '../../lib/seo';
 
 export async function getStaticPaths() {
   const work = sortWork(await getCollection('work'));
@@ -22,7 +23,7 @@ const { Content } = await render(entry);
 ---
 
 <Base
-  title={`${entry.data.title} · ${site.name}`}
+  title={caseTitle(entry.data.title, site)}
   description={entry.data.pitch}
   image={entry.data.cover}
   phase={3}
