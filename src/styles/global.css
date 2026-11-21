@@ -27,7 +27,6 @@
   --color-ink: var(--ink);
   --color-cream: var(--cream);
   --color-haze: var(--haze);
-  --color-dusk-ink: var(--dusk-ink);
   --color-accent: var(--accent);
   --color-spark: var(--spark);
 }
@@ -35,7 +34,13 @@
 :root {
   /* Day: ink on the golden sky. Night: cream on the dark sky. */
   --ink: #24130b;
-  --dusk-ink: #5a2f1c;
+  /* Pink that holds contrast on the bright day sky. */
+  --accent-day: #b0236e;
+  --selection-ink: #1a0a12;
+  /* Image frames: the night fill shown while a cover loads, and its lift. */
+  --frame-fill: #2a1c3c;
+  --frame-shadow: 0 40px 80px -30px rgb(10 6 30 / 0.65);
+  --frame-radius: 20px;
   --cream: #fff4e6;
   --haze: #e6cfe0;
   --accent: #ff7ac6;
@@ -77,7 +82,7 @@
 
   ::selection {
     background: var(--accent);
-    color: #1a0a12;
+    color: var(--selection-ink);
   }
 
   a {
@@ -205,6 +210,10 @@
 
   .line > span {
     display: block;
+  }
+
+  /* Only the name rises on first paint; section headings rise on scroll. */
+  .hero-name .line > span {
     animation: rise 1.3s var(--ease-out) both;
     animation-delay: calc(var(--i, 0) * 110ms + 150ms);
   }
@@ -242,6 +251,18 @@
     animation-duration: 450ms;
     animation-timing-function: var(--ease-out);
   }
+
+  /* The cover is the same image file on both pages (matching srcset, so it
+     comes from cache, and the case page render-blocks on it). Morph one
+     image: no cross-fade, so nothing doubles, washes or brightens. */
+  ::view-transition-old(*.cover) {
+    display: none;
+  }
+
+  ::view-transition-new(*.cover) {
+    animation: none;
+    mix-blend-mode: normal;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -258,9 +279,7 @@
 /* At 200% text on a narrow phone, a display word may break rather than
    push the page sideways. At normal sizes every title fits whole. */
 @media (max-width: 480px) {
-  .display,
-  .about,
-  .case {
+  .display {
     overflow-wrap: anywhere;
   }
 }

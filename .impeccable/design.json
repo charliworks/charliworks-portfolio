@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-21T00:00:00+00:00",
+  "generatedAt": "2026-11-21T03:21:43+00:00",
   "title": "Design System: Charlito Jr Mecarez",
   "extensions": {
     "colorMeta": {
@@ -226,12 +226,28 @@
           "oklch(84% 0.03 300)",
           "oklch(95% 0.01 300)"
         ]
+      },
+      "selection-ink": {
+        "role": "neutral",
+        "displayName": "Selection Ink",
+        "canonical": "#1a0a12",
+        "oklch": "oklch(16.9% 0.032 355)",
+        "tonalRamp": [
+          "oklch(15% 0.010 355)",
+          "oklch(26% 0.016 355)",
+          "oklch(38% 0.022 355)",
+          "oklch(49% 0.028 355)",
+          "oklch(61% 0.032 355)",
+          "oklch(72% 0.026 355)",
+          "oklch(84% 0.019 355)",
+          "oklch(95% 0.012 355)"
+        ]
       }
     },
     "typographyMeta": {
       "display": {
         "displayName": "Display",
-        "purpose": "The name in the first viewport only; width widens with scroll speed via --wind."
+        "purpose": "The name in the first viewport only, width 118%; scroll speed stretches each line with scaleX(1 + wind × --wind-max), fitted per line and capped at 0.14. The font width never changes."
       },
       "headline": {
         "displayName": "Headline",
@@ -263,7 +279,7 @@
       },
       "hud": {
         "displayName": "HUD",
-        "purpose": "Odometer stop name: narrow, uppercase, tabular."
+        "purpose": "Odometer stop name: narrow, uppercase, tabular. Hidden below 1024px, where the odometer shows km only."
       }
     },
     "skyPhases": {
@@ -315,7 +331,18 @@
       {
         "name": "window-drop",
         "value": "0 40px 80px -30px rgb(10 6 30 / 0.65)",
-        "purpose": "Under image frames only (project covers, case study cover)."
+        "token": "--frame-shadow",
+        "purpose": "Under image frames only; a box-shadow on the case study cover."
+      },
+      {
+        "name": "window-drop-revealed",
+        "value": "drop-shadow(0 34px 34px rgb(10 6 30 / 0.5))",
+        "purpose": "Work covers: a filter on the outer frame so the shadow follows the scroll-reveal clip."
+      },
+      {
+        "name": "hud-halo",
+        "value": "0 1px 14px rgb(8 10 30 / 0.55); day: 0 1px 14px rgb(253 225 168 / 0.8)",
+        "purpose": "Text-shadow under the odometer and pause control, tuned to the tone, so they read over scrolling content."
       }
     ],
     "veils": [
@@ -349,7 +376,7 @@
       {
         "name": "line-rise",
         "value": "1.3s, stagger 110ms",
-        "purpose": "First-paint display lines rising out of a clip."
+        "purpose": "The hero name only, rising out of a clip on first paint (CSS)."
       },
       {
         "name": "fade-up",
@@ -359,7 +386,7 @@
       {
         "name": "heading-rise",
         "value": "1.1s expo.out, yPercent 110",
-        "purpose": "Stop titles rising on scroll."
+        "purpose": "Section headings rising on scroll: the inner span moves inside a still .line mask."
       },
       {
         "name": "sky-tween",
@@ -374,13 +401,28 @@
       {
         "name": "view-transition",
         "value": "450ms",
-        "purpose": "Cover and title morph between Work and case study."
+        "purpose": "Cover and title morph between Work and case study; the cover morphs as one image (old snapshot hidden, new not animated), and the case page render-blocks on #case-cover."
+      },
+      {
+        "name": "header-away",
+        "value": "out 300ms, back 600ms",
+        "purpose": "Header leaves faster than it returns."
+      },
+      {
+        "name": "wind",
+        "value": "time-based smoothing 1 - 0.92^deltaRatio, snaps to 0 below 0.002",
+        "purpose": "Scroll-speed wind on the hero name and the Tools push, frame-rate independent."
+      },
+      {
+        "name": "scene-ease",
+        "value": "1 - 0.0015^dt, dt = real elapsed time up to 0.25s",
+        "purpose": "Camera and sky easing in the 3D scene; renders only on view change when paused or under reduced motion."
       }
     ],
     "breakpoints": [
       {
         "name": "nav-compact",
-        "value": "520px"
+        "value": "560px"
       },
       {
         "name": "scene-small",
@@ -393,6 +435,10 @@
       {
         "name": "project-split",
         "value": "900px"
+      },
+      {
+        "name": "hud-compact",
+        "value": "1023px"
       }
     ]
   },
@@ -409,25 +455,25 @@
       "name": "Header Nav",
       "kind": "nav",
       "refersTo": "link",
-      "description": "Fixed transparent header: CJM mark in wide display, section links with a pink underline on hover.",
+      "description": "Fixed transparent header: logo and CJM wordmark in wide display, section links with a pink underline on hover. At 560px and below every link stays and the wordmark hides. Leaves in 300ms, returns in 600ms.",
       "html": "<header class=\"ds-header\"><a class=\"ds-mark\" href=\"#\">CJM</a><nav><a href=\"#\">Work</a><a href=\"#\">Experience</a><a href=\"#\">About</a><a href=\"#\">Contact</a></nav></header>",
-      "css": ".ds-header{display:flex;justify-content:space-between;align-items:center;padding:16px 32px;background:linear-gradient(#e47a58,#f2a768);color:#24130b;} .ds-mark{font-family: Anybody, ui-sans-serif, system-ui, sans-serif;font-weight:800;font-stretch:130%;font-size:1.05rem;color:inherit;text-decoration:none;} .ds-header nav{display:flex;gap:1.4rem;font-size:0.95rem;font-weight:500;} .ds-header nav a{color:inherit;text-decoration:underline;text-decoration-color:transparent;text-underline-offset:0.24em;transition:text-decoration-color 200ms;} .ds-header nav a:hover,.ds-header nav a:focus-visible{text-decoration-color:#ff7ac6;text-decoration-thickness:2px;} .ds-header a:focus-visible{outline:2px solid #24130b;outline-offset:4px;border-radius:3px;}"
+      "css": ".ds-header{display:flex;justify-content:space-between;align-items:center;padding:16px 32px;background:linear-gradient(#e47a58,#f2a768);color:#24130b;} .ds-mark{font-family: Anybody, ui-sans-serif, system-ui, sans-serif;font-weight:800;font-stretch:130%;font-size:1.05rem;color:inherit;text-decoration:none;} .ds-header nav{display:flex;gap:1.4rem;font-size:0.95rem;font-weight:500;} .ds-header nav a{color:inherit;text-decoration:underline;text-decoration-color:transparent;text-underline-offset:0.24em;transition:text-decoration-color 200ms;} .ds-header nav a:hover,.ds-header nav a:focus-visible{text-decoration-color:#ff7ac6;text-decoration-thickness:2px;} .ds-header a:focus-visible{outline:2px solid #24130b;outline-offset:4px;border-radius:3px;} @media (max-width:560px){.ds-header{padding-inline:16px;} .ds-header nav{gap:0.9rem;font-size:0.875rem;}}"
     },
     {
       "name": "Hero Name",
       "kind": "custom",
       "refersTo": "display",
-      "description": "The name in the first viewport: Anybody 850, stretched wide, dark ink on the golden sky, yellow highlighter under the last line.",
-      "html": "<div class=\"ds-sky\"><h1 class=\"ds-name\"><span>Charlito</span><br><span class=\"ds-hl\">Jr Mecarez</span></h1></div>",
-      "css": ".ds-sky{background:linear-gradient(#e47a58,#f2a768 48%,#fde1a8 72%);padding:40px;color:#24130b;} .ds-name{font-family: Anybody, ui-sans-serif, system-ui, sans-serif;font-size:4.5rem;font-weight:850;font-stretch:118%;line-height:0.86;letter-spacing:-0.035em;margin:0;transition:font-stretch 400ms;} .ds-name:hover{font-stretch:150%;} .ds-hl{background:linear-gradient(transparent 62%,#ffe066 62% 92%,transparent 92%);box-decoration-break:clone;-webkit-box-decoration-break:clone;}"
+      "description": "The name in the first viewport: Anybody 850 at 118% width, dark ink on the golden sky, yellow highlighter under the last line. Scroll speed stretches each line sideways with scaleX (hover stands in for wind here).",
+      "html": "<div class=\"ds-sky\"><h1 class=\"ds-name\"><span class=\"ds-line\">Charlito</span><span class=\"ds-line\"><span class=\"ds-hl\">Jr Mecarez</span></span></h1></div>",
+      "css": ".ds-sky{background:linear-gradient(#e47a58,#f2a768 48%,#fde1a8 72%);padding:40px;color:#24130b;overflow-x:clip;} .ds-name{font-family: Anybody, ui-sans-serif, system-ui, sans-serif;font-size:4.5rem;font-weight:850;font-stretch:118%;line-height:0.86;letter-spacing:-0.035em;margin:0;} .ds-line{display:block;transform-origin:left center;transition:transform 400ms cubic-bezier(0.16,1,0.3,1);} .ds-name:hover .ds-line{transform:scaleX(1.14);} .ds-hl{background:linear-gradient(transparent 62%,#ffe066 62% 92%,transparent 92%);box-decoration-break:clone;-webkit-box-decoration-break:clone;}"
     },
     {
       "name": "Project",
       "kind": "card",
       "refersTo": "project-title",
-      "description": "Work entry: framed cover with window drop shadow, wide title that turns pink on hover, pitch and a yellow case study cue. Not a card: no fill behind the text.",
-      "html": "<a class=\"ds-project\" href=\"#\"><div class=\"ds-cover\"></div><div class=\"ds-ptitle\">Habi</div><p class=\"ds-pitch\">One private app for the whole day.</p><span class=\"ds-cta\">Read the case study <svg viewBox=\"0 0 24 24\" width=\"20\" height=\"20\"><path d=\"M5 12h14M13 6l6 6-6 6\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg></span></a>",
-      "css": ".ds-project{display:block;background:#2c1d4c;color:#fff4e6;padding:32px;text-decoration:none;} .ds-cover{height:160px;border-radius:20px;background:#2a1c3c;box-shadow:0 40px 80px -30px rgb(10 6 30 / 0.65);transition:transform 600ms cubic-bezier(0.16,1,0.3,1);} .ds-ptitle{font-family: Anybody, ui-sans-serif, system-ui, sans-serif;font-weight:800;font-stretch:150%;font-size:3.5rem;line-height:0.9;margin-top:2rem;transition:color 200ms;} .ds-pitch{font-size:1.35rem;line-height:1.35;font-weight:500;margin:1rem 0 0;} .ds-cta{display:inline-flex;align-items:center;gap:0.6rem;margin-top:1.5rem;font-weight:600;color:#ffe066;} .ds-cta svg{transition:transform 500ms cubic-bezier(0.16,1,0.3,1);} .ds-project:hover .ds-ptitle,.ds-project:focus-visible .ds-ptitle{color:#ff7ac6;} .ds-project:hover .ds-cta svg,.ds-project:focus-visible .ds-cta svg{transform:translateX(6px);} .ds-project:hover .ds-cover{transform:perspective(1100px) rotateY(4deg) rotateX(-2deg);} .ds-project:focus-visible{outline:2px solid #ffe066;outline-offset:8px;}"
+      "description": "Work entry: framed cover (outer frame carries the drop-shadow, view-transition name and tilt; inner clip carries the fill and reveal clip), wide title that turns pink on hover, pitch, plain stack line and a yellow case study cue. Keyboard focus rings the whole row. Not a card: no fill behind the text.",
+      "html": "<div class=\"ds-wrap\"><div class=\"ds-project\"><div class=\"ds-cover\"><div class=\"ds-clip\"></div></div><a class=\"ds-ptitle\" href=\"#\"><span>Habi</span></a><p class=\"ds-pitch\">One private app for the whole day.</p><p class=\"ds-stack\">Astro · Supabase · TypeScript</p><span class=\"ds-cta\" aria-hidden=\"true\">Read the case study <svg viewBox=\"0 0 24 24\" width=\"20\" height=\"20\"><path d=\"M5 12h14M13 6l6 6-6 6\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg></span></div></div>",
+      "css": ".ds-wrap{background:#2c1d4c;color:#fff4e6;padding:32px;} .ds-project{position:relative;} .ds-cover{border-radius:20px;filter:drop-shadow(0 34px 34px rgb(10 6 30 / 0.5));transition:transform 600ms cubic-bezier(0.16,1,0.3,1);} .ds-clip{height:160px;border-radius:20px;overflow:hidden;background:#2a1c3c;} .ds-ptitle{display:inline-block;font-family: Anybody, ui-sans-serif, system-ui, sans-serif;font-weight:800;font-stretch:150%;font-size:3.5rem;line-height:0.9;margin-top:2rem;color:inherit;text-decoration:none;transition:color 200ms;} .ds-ptitle::after{content:'';position:absolute;inset:0;border-radius:20px;} .ds-ptitle:focus-visible{outline:none;} .ds-ptitle:focus-visible::after{outline:2px solid #ffe066;outline-offset:8px;} .ds-pitch{font-size:1.35rem;line-height:1.35;font-weight:500;margin:1rem 0 0;} .ds-stack{margin:1rem 0 0;font-size:0.875rem;font-weight:600;letter-spacing:0.01em;color:#e6cfe0;} .ds-cta{display:inline-flex;align-items:center;gap:0.6rem;margin-top:1.5rem;font-weight:600;color:#ffe066;} .ds-cta svg{transition:transform 500ms cubic-bezier(0.16,1,0.3,1);} .ds-project:hover .ds-ptitle,.ds-project:focus-within .ds-ptitle{color:#ff7ac6;} .ds-project:hover .ds-cta svg,.ds-project:focus-within .ds-cta svg{transform:translateX(6px);} .ds-project:hover .ds-cover{transform:perspective(1100px) rotateY(4deg) rotateX(-2deg);}"
     },
     {
       "name": "Rail Row",
@@ -449,22 +495,22 @@
       "name": "Odometer",
       "kind": "custom",
       "refersTo": "odometer-km",
-      "description": "Fixed HUD bottom left: pink km reading, uppercase stop name, yellow progress track.",
-      "html": "<div class=\"ds-hudbg\"><div class=\"ds-odo\"><span class=\"ds-km\"><span>14.2</span> km</span><span>Tools</span><span class=\"ds-track\"><span></span></span></div></div>",
-      "css": ".ds-hudbg{background:#0e1540;color:#fff4e6;padding:24px;} .ds-odo{display:grid;gap:0.2rem;font-family: Anybody, ui-sans-serif, system-ui, sans-serif;font-stretch:85%;font-size:0.8rem;font-weight:600;letter-spacing:0.04em;text-transform:uppercase;font-variant-numeric:tabular-nums;} .ds-km{font-size:1.35rem;font-weight:800;letter-spacing:0;} .ds-km span{color:#ff7ac6;} .ds-track{display:block;width:7rem;height:2px;background:color-mix(in srgb,currentColor 25%,transparent);} .ds-track span{display:block;height:100%;width:78%;background:#ffe066;}"
+      "description": "Fixed HUD bottom left: pink km reading, uppercase stop name, yellow progress track, soft halo text-shadow. Below 1024px it shows km only.",
+      "html": "<div class=\"ds-hudbg\"><div class=\"ds-odo\"><span class=\"ds-km\"><span>14.2</span> km</span><span class=\"ds-stop\">Tools</span><span class=\"ds-track\"><span></span></span></div></div>",
+      "css": ".ds-hudbg{background:#0e1540;color:#fff4e6;padding:24px;} .ds-odo{text-shadow:0 1px 14px rgb(8 10 30 / 0.55);display:grid;gap:0.2rem;font-family: Anybody, ui-sans-serif, system-ui, sans-serif;font-stretch:85%;font-size:0.8rem;font-weight:600;letter-spacing:0.04em;text-transform:uppercase;font-variant-numeric:tabular-nums;} .ds-km{font-size:1.35rem;font-weight:800;letter-spacing:0;} .ds-km span{color:#ff7ac6;} .ds-track{display:block;width:7rem;height:2px;background:color-mix(in srgb,currentColor 25%,transparent);} .ds-track span{display:block;height:100%;width:78%;background:#ffe066;} @media (max-width:1023px){.ds-stop,.ds-track{display:none;}}"
     },
     {
       "name": "Pause Control",
       "kind": "button",
       "refersTo": "pause-control",
-      "description": "Text button with drawn pause bars, underlined like a link, 2.75rem tall; stops the scene and all animation.",
-      "html": "<div class=\"ds-hudbg2\"><button class=\"ds-pause\" type=\"button\" aria-pressed=\"false\"><svg viewBox=\"0 0 16 16\" width=\"14\" height=\"14\" aria-hidden=\"true\"><rect x=\"3.5\" y=\"2.5\" width=\"3\" height=\"11\" rx=\"1\" fill=\"currentColor\"/><rect x=\"9.5\" y=\"2.5\" width=\"3\" height=\"11\" rx=\"1\" fill=\"currentColor\"/></svg><span>Pause motion</span></button></div>",
-      "css": ".ds-hudbg2{background:#0e1540;padding:24px;} .ds-pause{display:inline-flex;align-items:center;gap:0.5rem;min-height:2.75rem;padding:0 0.25rem;font-size:0.875rem;font-weight:500;color:#fff4e6;background:none;border:0;cursor:pointer;} .ds-pause span{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:0.24em;text-decoration-color:color-mix(in srgb,currentColor 45%,transparent);} .ds-pause:hover span{text-decoration-color:#ff7ac6;text-decoration-thickness:2px;} .ds-pause:focus-visible{outline:2px solid #ffe066;outline-offset:4px;border-radius:3px;}"
+      "description": "Text button with drawn pause bars, underlined like a link, 2.75rem tall, early in tab order; stops the scene and all animation. Paused, the icon becomes a play triangle and the label reads Play motion at a fixed width.",
+      "html": "<div class=\"ds-hudbg2\"><button class=\"ds-pause\" type=\"button\" aria-pressed=\"false\" onclick=\"var p=this.getAttribute('aria-pressed')==='true';this.setAttribute('aria-pressed',String(!p));this.querySelector('span').textContent=p?'Pause motion':'Play motion';\"><svg viewBox=\"0 0 16 16\" width=\"14\" height=\"14\" aria-hidden=\"true\"><g class=\"ds-icon-pause\" fill=\"currentColor\"><rect x=\"3.5\" y=\"2.5\" width=\"3\" height=\"11\" rx=\"1\"/><rect x=\"9.5\" y=\"2.5\" width=\"3\" height=\"11\" rx=\"1\"/></g><path class=\"ds-icon-play\" d=\"M4.5 2.8v10.4a.8.8 0 0 0 1.2.7l8-5.2a.8.8 0 0 0 0-1.4l-8-5.2a.8.8 0 0 0-1.2.7Z\" fill=\"currentColor\"/></svg><span>Pause motion</span></button></div>",
+      "css": ".ds-hudbg2{background:#0e1540;padding:24px;} .ds-pause{display:inline-flex;align-items:center;gap:0.5rem;min-height:2.75rem;padding:0 0.25rem;font-size:0.875rem;font-weight:500;color:#fff4e6;background:none;border:0;cursor:pointer;text-shadow:0 1px 14px rgb(8 10 30 / 0.55);} .ds-pause span{display:inline-block;min-width:6.6em;text-align:left;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:0.24em;text-decoration-color:color-mix(in srgb,currentColor 45%,transparent);} .ds-pause:hover span{text-decoration-color:#ff7ac6;text-decoration-thickness:2px;} .ds-pause:focus-visible{outline:2px solid #ffe066;outline-offset:4px;border-radius:3px;} .ds-pause .ds-icon-play,.ds-pause[aria-pressed='true'] .ds-icon-pause{display:none;} .ds-pause[aria-pressed='true'] .ds-icon-play{display:inline;}"
     }
   ],
   "narrative": {
     "northStar": "The Golden Hour Ride",
-    "overview": "The page is a road. A live three.js scene is fixed behind every page: stepped rice terraces, Mayon's cone with smoke, palms, a nipa hut, kilometre posts on the shoulder and a rider on a motorbike. Scrolling drives the camera down the road and moves the time of day with it, from coral and amber golden hour, through rose and violet dusk, to navy night with stars, fireflies and a yellow headlight. Content does not sit in boxes on top of this world; it rides through it as large type set straight onto the sky.\n\nTwo voices carry everything. Anybody, a variable-width face pushed wide (112 to 150 percent), speaks for names, stops, titles and lists that should read as signage. The system sans carries reading text. Colour has strict jobs: pink marks what you can act on (links, selection, the odometer), and yellow is light (the sun, the headlight, the highlighter under the name, and the email address at the close). Text tone flips with the sky: dark ink while the sky is bright, cream once it darkens.\n\nThe world rejects the dark-neon developer template and the plain text column it replaced. There are no cards, no glass and no gradient text. Depth comes from the 3D scene and from soft veils of night, not from stacked surfaces.",
+    "overview": "The page is a road. A live three.js scene is fixed behind every page: terraced hills banded with paddies whose flooded levels take on the sky's colour at every time of day, Mayon's cone with smoke, palms, a nipa hut, kilometre posts on the shoulder and a rider on a motorbike. Scrolling drives the camera down the road and moves the time of day with it, from coral and amber golden hour, through rose and violet dusk, to navy night with stars, fireflies and a yellow headlight. Content does not sit in boxes on top of this world; it rides through it as large type set straight onto the sky.\n\nTwo voices carry everything. Anybody, a variable-width face pushed wide (112 to 150 percent), speaks for names, stops, titles and lists that should read as signage. The system sans carries reading text. Colour has strict jobs: pink marks what you can act on (links, selection, the odometer), and yellow is light (the sun, the headlight, the highlighter under the name, and the email address at the close). Text tone flips with the sky: dark ink while the sky is bright, cream once it darkens.\n\nThe world rejects the dark-neon developer template and the plain text column it replaced. There are no cards, no glass and no gradient text. Depth comes from the 3D scene and from soft veils of night, not from stacked surfaces.",
     "keyCharacteristics": [
       "A fixed 3D world behind every page, with a CSS sky gradient standing in until it is ready.",
       "Time of day as the page's colour system: five sky phases, keyed to sections through `data-sky`.",
@@ -521,6 +567,7 @@
       "**Don't** set body paragraphs in the display face or at a stretched width.",
       "**Don't** add tracked uppercase labels above headings; uppercase tracking belongs to the odometer and the scroll cue only.",
       "**Don't** use light pink (`accent`) text on the day sky; it fails contrast there."
-    ]
+    ],
+    "linkPreviewImage": "`public/og.jpg` is a 1200 × 630 Playwright capture of the built Home first viewport, with the HUD, pause control, scroll cue, nav, intro and brand lines hidden. Every page uses it as `og:image`, except a case study, which uses its cover. Capture it again when the name, the role or the hero changes; its origin is embedded in the file."
   }
 }

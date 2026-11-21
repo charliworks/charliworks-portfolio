@@ -14,25 +14,28 @@ const { entries } = Astro.props;
     <li class="project" data-tilt>
       <div
         class="cover"
-        data-cover
-        style={`view-transition-name: cover-${entry.id}`}
+        data-tilt-frame
+        style={`view-transition-name: cover-${entry.id}; view-transition-class: cover`}
       >
-        <Image
-          src={entry.data.cover}
-          alt={entry.data.coverAlt}
-          widths={[640, 1024, 1600]}
-          sizes="(min-width: 80rem) 72rem, 92vw"
-          class="cover-img"
-        />
+        <div class="cover-clip" data-cover>
+          <Image
+            src={entry.data.cover}
+            alt={entry.data.coverAlt}
+            widths={[640, 1024, 1600]}
+            sizes="(min-width: 80rem) 72rem, 92vw"
+            class="cover-img"
+          />
+        </div>
       </div>
       <div class="project-meta">
         <div class="project-head">
-          <a
-            href={`/work/${entry.id}/`}
-            class="project-title display"
-            style={`view-transition-name: title-${entry.id}`}
-          >
-            {entry.data.title}
+          <a href={`/work/${entry.id}/`} class="project-title display">
+            <span
+              class="project-title-text"
+              style={`view-transition-name: title-${entry.id}`}
+            >
+              {entry.data.title}
+            </span>
           </a>
           <time datetime={String(entry.data.year)}>{entry.data.year}</time>
         </div>
@@ -68,12 +71,19 @@ const { entries } = Astro.props;
     position: relative;
   }
 
+  /* The frame's shadow is a drop-shadow on the outer box, so it follows the
+     clip of the reveal instead of being cut away by it. */
   .cover {
+    border-radius: var(--frame-radius);
+    filter: drop-shadow(0 34px 34px rgb(10 6 30 / 0.5));
+    will-change: transform;
+  }
+
+  .cover-clip {
     overflow: hidden;
-    border-radius: 20px;
-    will-change: clip-path, transform;
-    box-shadow: 0 40px 80px -30px rgb(10 6 30 / 0.65);
-    background: #2a1c3c;
+    border-radius: var(--frame-radius);
+    background: var(--frame-fill);
+    will-change: clip-path;
   }
 
   .cover-img {
@@ -102,6 +112,10 @@ const { entries } = Astro.props;
     gap: 1.25rem;
   }
 
+  .project-title-text {
+    display: inline-block;
+  }
+
   .project-title {
     font-size: clamp(3rem, 9vw, 6.5rem);
     font-stretch: 150%;
@@ -114,7 +128,7 @@ const { entries } = Astro.props;
     content: '';
     position: absolute;
     inset: 0;
-    border-radius: 20px;
+    border-radius: var(--frame-radius);
   }
 
   .project-head time {
@@ -160,7 +174,9 @@ const { entries } = Astro.props;
     color: var(--accent);
   }
 
-  .project:focus-within .project-title::after {
+  /* Keyboard only: a mouse click must not draw the ring (or carry it into
+     the page transition). */
+  .project-title:focus-visible::after {
     outline: 2px solid var(--spark);
     outline-offset: 8px;
   }

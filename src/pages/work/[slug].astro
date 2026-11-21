@@ -29,6 +29,7 @@ const { Content } = await render(entry);
   ride={{ from: 0.45, to: 0.85, km: 6 }}
   stop={entry.data.title}
 >
+  <link slot="head" rel="expect" href="#case-cover" blocking="render" />
   <article class="case-page" data-sky="3" data-stop={entry.data.title}>
     <p class="back">
       <a href="/#work">
@@ -59,13 +60,14 @@ const { Content } = await render(entry);
     <figure class="case-cover">
       <div
         class="case-frame"
+        id="case-cover"
 
-        style={`view-transition-name: cover-${entry.id}`}
+        style={`view-transition-name: cover-${entry.id}; view-transition-class: cover`}
       >
         <Image
           src={entry.data.cover}
           alt={entry.data.coverAlt}
-          widths={[640, 1152, 1600]}
+          widths={[640, 1024, 1600]}
           sizes="(min-width: 80rem) 72rem, 92vw"
           class="case-img"
           loading="eager"
@@ -142,9 +144,9 @@ const { Content } = await render(entry);
 
   .case-frame {
     overflow: hidden;
-    border-radius: 20px;
-    box-shadow: 0 40px 80px -30px rgb(10 6 30 / 0.65);
-    background: #2a1c3c;
+    border-radius: var(--frame-radius);
+    box-shadow: var(--frame-shadow);
+    background: var(--frame-fill);
   }
 
   .case-img {
@@ -238,5 +240,11 @@ const { Content } = await render(entry);
     padding: 0.1em 0.35em;
     border-radius: 5px;
     background: rgb(255 255 255 / 0.1);
+  }
+
+  @media (max-width: 480px) {
+    .case {
+      overflow-wrap: anywhere;
+    }
   }
 </style>

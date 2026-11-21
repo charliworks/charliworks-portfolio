@@ -78,6 +78,7 @@ const nav = [
     {canonical && <meta property="og:url" content={canonical} />}
     <meta property="og:image" content={ogImage} />
     <meta name="twitter:card" content="summary_large_image" />
+    <slot name="head" />
   </head>
   <body
     data-phase={phase}
@@ -114,6 +115,28 @@ const nav = [
         </ul>
       </nav>
     </header>
+    <!-- Early in tab order: the stop control for the moving scene (WCAG 2.2.2). -->
+    <button
+      type="button"
+      class="pause fade-up"
+      style="--i:5"
+      data-pause
+      aria-pressed="false"
+      hidden
+    >
+      <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
+        <g class="icon-pause" fill="currentColor">
+          <rect x="3.5" y="2.5" width="3" height="11" rx="1"></rect>
+          <rect x="9.5" y="2.5" width="3" height="11" rx="1"></rect>
+        </g>
+        <path
+          class="icon-play"
+          d="M4.5 2.8v10.4a.8.8 0 0 0 1.2.7l8-5.2a.8.8 0 0 0 0-1.4l-8-5.2a.8.8 0 0 0-1.2.7Z"
+          fill="currentColor"
+        ></path>
+      </svg>
+      <span>Pause motion</span>
+    </button>
 
     <main id="main" tabindex="-1">
       <slot />
@@ -152,27 +175,6 @@ const nav = [
         </span>
       </div>
     </div>
-    <button type="button" class="pause" data-pause aria-pressed="false" hidden>
-      <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
-        <rect
-          x="3.5"
-          y="2.5"
-          width="3"
-          height="11"
-          rx="1"
-          fill="currentColor"
-        ></rect>
-        <rect
-          x="9.5"
-          y="2.5"
-          width="3"
-          height="11"
-          rx="1"
-          fill="currentColor"
-        ></rect>
-      </svg>
-      <span>Pause motion</span>
-    </button>
 
     <script>
       import '../scripts/motion';
@@ -197,9 +199,11 @@ const nav = [
       opacity 400ms var(--ease-out);
   }
 
+  /* Leaves faster than it returns. */
   .site-header:global(.is-away) {
     transform: translateY(-110%);
     opacity: 0;
+    transition-duration: 300ms, 300ms, 200ms;
   }
 
   :global([data-tone='day']) .site-header {
@@ -236,9 +240,19 @@ const nav = [
     text-decoration-color: var(--accent);
   }
 
-  @media (max-width: 520px) {
-    .site-header nav li:nth-child(-n + 3) {
+  /* Phones keep every section link: the wordmark steps back to the logo. */
+  @media (max-width: 560px) {
+    .site-mark .display {
       display: none;
+    }
+
+    .site-header {
+      padding-inline: 1rem;
+    }
+
+    .site-header ul {
+      gap: 0.25rem 0.9rem;
+      font-size: 0.875rem;
     }
   }
 
@@ -314,7 +328,7 @@ const nav = [
   }
 
   :global([data-tone='day']) .odo-km [data-odo-km] {
-    color: #b0236e;
+    color: var(--accent-day);
   }
 
   .odo-track {
@@ -366,7 +380,34 @@ const nav = [
     display: none;
   }
 
-  @media (max-width: 520px) {
+  /* The icon shows what a press will do next; the label keeps its width. */
+  .pause .icon-play,
+  .pause[aria-pressed='true'] .icon-pause {
+    display: none;
+  }
+
+  .pause[aria-pressed='true'] .icon-play {
+    display: inline;
+  }
+
+  .pause span {
+    display: inline-block;
+    min-width: 6.6em;
+    text-align: left;
+  }
+
+  /* Content scrolls beneath the HUD: a soft shadow keeps it readable. */
+  .hud,
+  .pause {
+    text-shadow: 0 1px 14px rgb(8 10 30 / 0.55);
+  }
+
+  :global([data-tone='day']) .hud,
+  :global([data-tone='day']) .pause {
+    text-shadow: 0 1px 14px rgb(253 225 168 / 0.8);
+  }
+
+  @media (max-width: 1023px) {
     .odo-stop,
     .odo-track {
       display: none;

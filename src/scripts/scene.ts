@@ -666,9 +666,21 @@ export function startScene(
     return sunDir;
   }
 
+  // Phones resize the viewport whenever the address bar shows or hides.
+  // Following that would make the camera jump mid-scroll, so on touch
+  // screens only a width change or a large height change resizes.
+  const coarse = window.matchMedia('(pointer: coarse)').matches;
+  let sizeW = 0;
+  let sizeH = 0;
+  let dirty = true;
+
   function resize() {
     const w = window.innerWidth;
     const h = window.innerHeight;
+    if (coarse && w === sizeW && Math.abs(h - sizeH) < 160) return;
+    sizeW = w;
+    sizeH = h;
+    dirty = true;
     renderer.setSize(w, h, false);
     camera.aspect = w / h;
     camera.fov = w < h ? 68 : 56;
@@ -682,15 +694,45 @@ export function startScene(
   let raf = 0;
   let firstFrame = true;
   let running = true;
+  // Frame-time budget: a phone that cannot hold ~40fps drops to 1x pixels.
+  let slowFrames = 0;
+  let sampled = 0;
+  let lowered = false;
 
   function frame(now: number) {
     raf = requestAnimationFrame(frame);
-    const dt = Math.min((now - last) / 1000, 0.05);
+    const rawDt = (now - last) / 1000;
+    const dt = Math.min(rawDt, 0.05);
     last = now;
     const still = state.paused || state.reduced;
     if (!still) time += dt;
 
-    const k = state.reduced ? 1 : 1 - Math.pow(0.0015, dt);
+    if (!lowered && !still && sampled < 180) {
+      sampled++;
+      if (rawDt > 1 / 40) slowFrames++;
+      if (sampled === 180 && slowFrames > 90 && renderer.getPixelRatio() > 1) {
+        renderer.setPixelRatio(1);
+        lowered = true;
+        dirty = true;
+      }
+    }
+
+    // Paused or reduced motion: draw only when the view actually changes.
+    if (
+      still &&
+      !dirty &&
+      Math.abs(state.progress - lerped.progress) < 1e-4 &&
+      Math.abs(state.phase - lerped.phase) < 1e-4 &&
+      Math.abs((state.reduced ? 0 : state.pointer.x) - lerped.px) < 1e-3 &&
+      Math.abs((state.reduced ? 0 : state.pointer.y) - lerped.py) < 1e-3
+    ) {
+      return;
+    }
+    dirty = false;
+
+    // Easing uses real elapsed time (up to 0.25s), so a slow device settles
+    // the camera as quickly as a fast one instead of crawling.
+    const k = state.reduced ? 1 : 1 - Math.pow(0.0015, Math.min(rawDt, 0.25));
     lerped.progress += (state.progress - lerped.progress) * k;
     lerped.phase += (state.phase - lerped.phase) * k;
     lerped.px += ((state.reduced ? 0 : state.pointer.x) - lerped.px) * k * 0.6;
@@ -714,7 +756,7 @@ export function startScene(
     );
     road.getPointAt(Math.min(u + 0.07, 1), look);
     // At the opening the camera looks up, so the sky sits behind the copy.
-    const lift = Math.max(0, 1 - lerped.phase) * 7;
+    const lift = state.reduced ? 7 : Math.max(0, 1 - lerped.phase) * 7;
     look.y = 3.2 + lift + lerped.py * 0.6;
     camera.lookAt(look);
     sky.position.copy(camera.position);
@@ -796,7 +838,18 @@ export function startScene(
   }
   document.addEventListener('visibilitychange', onVisibility);
 
+  // If the GPU drops the context, hand the page back to the CSS sky.
+  function onContextLost(e: Event) {
+    e.preventDefault();
+    cancelAnimationFrame(raf);
+    running = false;
+    delete canvas.dataset.ready;
+    document.removeEventListener('visibilitychange', onVisibility);
+  }
+  canvas.addEventListener('webglcontextlost', onContextLost);
+
   return () => {
+    canvas.removeEventListener('webglcontextlost', onContextLost);
     cancelAnimationFrame(raf);
     window.removeEventListener('resize', resize);
     document.removeEventListener('visibilitychange', onVisibility);

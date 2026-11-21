@@ -18,6 +18,7 @@ All notable changes to this project are listed here. The format follows [Keep a 
 - Redesigned Home, the case study and the 404 page as one motorbike ride through the Philippines: a three.js scene behind the page moves from golden hour to night as you scroll, with smooth scroll (lenis) and scroll-linked motion (GSAP). Content is unchanged.
 - New display face: Anybody (variable width), self-hosted.
 - New link preview image from the redesigned first screen.
+- Polish: every section link now shows on phones; the pause control comes early in the tab order and its icon shows play or pause; the name's wind stretch no longer reflows or clips; headings rise inside a still mask; the Habi cover keeps its shadow during the scroll reveal and morphs as one image into the case study; the 3D scene idles when paused, adapts its resolution on slow devices and falls back to the CSS sky if WebGL is lost.
 
 ### Removed
 

@@ -114,14 +114,42 @@ window.addEventListener(
 );
 header?.addEventListener('focusin', () => header.classList.remove('is-away'));
 
-// Wind from scroll speed; the name stretches with it.
+// Wind from scroll speed; the name stretches with it. Smoothing is per
+// time, not per frame, so a 30fps phone settles as fast as a 120Hz screen.
 let wind = 0;
+let windOut = '';
 gsap.ticker.add(() => {
   const v = lenis ? Math.abs(lenis.velocity) : 0;
-  wind += (Math.min(v / 45, 1) - wind) * 0.08;
+  const a = 1 - Math.pow(0.92, gsap.ticker.deltaRatio(60));
+  wind += (Math.min(v / 45, 1) - wind) * a;
+  if (wind < 0.002) wind = 0;
   state.wind = wind;
-  root.style.setProperty('--wind', wind.toFixed(3));
+  const next = wind.toFixed(3);
+  if (next !== windOut) {
+    windOut = next;
+    root.style.setProperty('--wind', next);
+  }
 });
+
+// Each name line may stretch only into the room it has, so the wind never
+// pushes a letter past the edge of the page.
+const nameLines = [
+  ...document.querySelectorAll<HTMLElement>('.hero-name .line'),
+];
+function fitWind() {
+  for (const line of nameLines) {
+    const ink = line.querySelector<HTMLElement>('.name-ink');
+    const room = line.parentElement?.getBoundingClientRect().width ?? 0;
+    const used = ink?.getBoundingClientRect().width ?? room;
+    const max = used > 0 ? Math.min(0.14, Math.max(0, room / used - 1)) : 0;
+    line.style.setProperty('--wind-max', max.toFixed(3));
+  }
+}
+if (nameLines.length) {
+  fitWind();
+  document.fonts?.ready.then(fitWind);
+  window.addEventListener('resize', fitWind, { passive: true });
+}
 
 window.addEventListener(
   'pointermove',
@@ -209,16 +237,17 @@ if (!reduced) {
     }
     // Tilt toward the pointer.
     const card = frame.closest<HTMLElement>('[data-tilt]');
+    const tilt = frame.closest<HTMLElement>('[data-tilt-frame]') ?? frame;
     if (card && window.matchMedia('(hover: hover)').matches) {
-      const rx = gsap.quickTo(frame, 'rotationX', {
+      const rx = gsap.quickTo(tilt, 'rotationX', {
         duration: 0.6,
         ease: 'power3.out',
       });
-      const ry = gsap.quickTo(frame, 'rotationY', {
+      const ry = gsap.quickTo(tilt, 'rotationY', {
         duration: 0.6,
         ease: 'power3.out',
       });
-      gsap.set(frame, { transformPerspective: 1100 });
+      gsap.set(tilt, { transformPerspective: 1100 });
       card.addEventListener('pointermove', (e) => {
         const r = frame.getBoundingClientRect();
         ry(((e.clientX - r.left) / r.width - 0.5) * 8);
@@ -233,7 +262,9 @@ if (!reduced) {
 
   // Big headings rise out of their line.
   for (const h of document.querySelectorAll<HTMLElement>('[data-rise]')) {
-    gsap.from(h.children.length ? h.children : h, {
+    // Move the text inside each line; the line itself is the still mask.
+    const inner = h.querySelectorAll<HTMLElement>('.line > span');
+    gsap.from(inner.length ? inner : h, {
       yPercent: 110,
       duration: 1.1,
       ease: 'expo.out',
@@ -317,7 +348,8 @@ if (!reduced) {
         -max,
         Math.min(max, (lenis?.velocity ?? 0) * 1.4),
       );
-      push += (target - push) * 0.08;
+      push +=
+        (target - push) * (1 - Math.pow(0.92, gsap.ticker.deltaRatio(60)));
       if (Math.abs(push) < 0.05) push = 0;
       setters.forEach((set, i) => set(i % 2 ? push : -push));
     });

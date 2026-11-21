@@ -176,6 +176,7 @@ const nameLines = [first, rest.join(' ')].filter(Boolean);
   /* ——— first viewport ——— */
   .hero {
     position: relative;
+    overflow-x: clip;
     min-height: 100svh;
     display: flex;
     flex-direction: column;
@@ -210,11 +211,20 @@ const nameLines = [first, rest.join(' ')].filter(Boolean);
 
   .hero-name {
     font-size: clamp(3rem, 11.5vw, 9.5rem);
-    font-stretch: calc(118% + var(--wind) * 32%);
+    font-stretch: 118%;
     font-weight: 850;
     letter-spacing: -0.035em;
     line-height: 0.86;
     margin-left: -0.04em;
+  }
+
+  /* Wind: scroll speed stretches each line sideways. A transform, not a
+     font-width change, so nothing reflows and the lines never re-wrap. */
+  .hero-name .line {
+    overflow: visible clip;
+    transform: scaleX(calc(1 + var(--wind) * var(--wind-max, 0.04)));
+    transform-origin: left center;
+    will-change: transform;
   }
 
   .hero-name .line:last-child .name-ink {
@@ -441,5 +451,11 @@ const nameLines = [first, rest.join(' ')].filter(Boolean);
     font-stretch: 112%;
     font-weight: 700;
     line-height: 1.1;
+  }
+
+  @media (max-width: 480px) {
+    .about {
+      overflow-wrap: anywhere;
+    }
   }
 </style>
