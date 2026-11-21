@@ -2,7 +2,6 @@
 import type { ImageMetadata } from 'astro';
 import { getImage } from 'astro:assets';
 import ContactLinks from '../components/ContactLinks.astro';
-import Parol from '../components/Parol.astro';
 import { site } from '../site';
 import '../styles/global.css';
 
@@ -40,12 +39,12 @@ const nav = [
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
-    <meta name="theme-color" content="#2b1b5e" />
+    <meta name="theme-color" content="#eeeaf6" />
     {canonical && <link rel="canonical" href={canonical} />}
     {notFound && <meta name="robots" content="noindex" />}
     <link
       rel="preload"
-      href="/fonts/baloo2-latin.woff2"
+      href="/fonts/archivo-latin.woff2"
       as="font"
       type="font/woff2"
       crossorigin
@@ -89,14 +88,25 @@ const nav = [
     </main>
 
     <footer id="contact" tabindex="-1" class="contact">
-      <Parol size={6.5} drop={4} class="contact-parol" />
-      <h2 class="contact-title">Say hi</h2>
-      <ContactLinks />
-      <p class="contact-foot">{site.name}</p>
+      <h2 class="heading">Contact</h2>
+      <div class="label">
+        <div class="label-row">
+          <span class="label-key mono">Send to</span>
+          <span class="label-name">{site.name}</span>
+          <span class="label-sub">Philippines · works remotely, anywhere</span>
+        </div>
+        <div class="label-row label-row--main">
+          <ContactLinks />
+        </div>
+        <div class="label-foot">
+          <span class="barcode" aria-hidden="true"></span>
+          <span>Philippine time, UTC+8</span>
+        </div>
+      </div>
     </footer>
 
     <script>
-      import '../scripts/lanterns';
+      import '../scripts/drive';
     </script>
   </body>
 </html>
@@ -108,9 +118,9 @@ const nav = [
     top: -4rem;
     z-index: 50;
     padding: 0.5rem 0.9rem;
-    border-radius: 10px;
-    background: var(--yellow);
-    color: var(--night);
+    border-radius: 8px;
+    background: var(--indigo);
+    color: var(--on-indigo);
     font-weight: 700;
     text-decoration: none;
   }
@@ -120,16 +130,14 @@ const nav = [
   }
 
   .site-header {
-    position: relative;
-    z-index: 5;
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 1rem;
     width: 100%;
-    max-width: 80rem;
+    max-width: 76rem;
     margin-inline: auto;
-    padding: 1.25rem clamp(1rem, 5vw, 4rem) 0;
+    padding: 1.25rem clamp(1rem, 5vw, 3rem) 0;
   }
 
   .site-mark img {
@@ -142,8 +150,8 @@ const nav = [
     flex-wrap: wrap;
     justify-content: flex-end;
     gap: 0.25rem 1.5rem;
-    font-size: 1.05rem;
-    font-weight: 600;
+    font-weight: 700;
+    font-size: 0.95rem;
   }
 
   .site-header nav a {
@@ -152,13 +160,13 @@ const nav = [
 
   .site-header nav a:hover,
   .site-header nav a:focus-visible {
-    text-decoration-color: var(--pink);
+    text-decoration-color: var(--action);
   }
 
   @media (max-width: 560px) {
     .site-header ul {
       gap: 0.25rem 0.9rem;
-      font-size: 0.95rem;
+      font-size: 0.875rem;
     }
   }
 
@@ -167,31 +175,69 @@ const nav = [
     outline: none;
   }
 
-  /* ——— The close: under the biggest lantern ——— */
+  /* ——— the close: a shipping label addressed to Charlito ——— */
   .contact {
     width: 100%;
-    max-width: 80rem;
+    max-width: 76rem;
     margin-inline: auto;
-    padding: clamp(4rem, 10vh, 6rem) clamp(1rem, 5vw, 4rem)
+    padding: clamp(4.5rem, 12vh, 7rem) clamp(1rem, 5vw, 3rem)
       clamp(3rem, 8vh, 5rem);
     display: grid;
     grid-template-columns: minmax(0, 1fr);
-    justify-items: center;
-    text-align: center;
+    gap: clamp(1.75rem, 4vh, 2.5rem);
   }
 
-  .contact-title {
-    margin-top: 1.5rem;
-    font-weight: 800;
-    font-size: clamp(2.75rem, 9vw, 6rem);
-    line-height: 0.95;
-    letter-spacing: -0.02em;
-    color: var(--pink);
+  .label {
+    max-width: 46rem;
+    background: var(--card);
+    border: 2px solid var(--ink);
+    border-radius: 14px;
+    box-shadow: var(--card-shadow);
+    overflow: hidden;
   }
 
-  .contact-foot {
-    margin-top: clamp(3rem, 8vh, 5rem);
-    font-size: var(--text-sm);
-    color: var(--mist);
+  .label-row {
+    display: grid;
+    gap: 0.2rem;
+    padding: 1.1rem clamp(1rem, 3vw, 1.5rem);
+    border-bottom: 2px solid var(--ink);
+  }
+
+  .label-key {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .label-name {
+    font-weight: 900;
+    font-stretch: 118%;
+    font-size: clamp(1.4rem, 3.6vw, 2rem);
+    line-height: 1.05;
+    text-transform: uppercase;
+    overflow-wrap: anywhere;
+  }
+
+  .label-sub {
+    color: var(--muted);
+    font-weight: 600;
+  }
+
+  .label-row--main {
+    padding-block: 1.4rem;
+  }
+
+  .label-foot {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem 1.5rem;
+    padding: 0.9rem clamp(1rem, 3vw, 1.5rem);
+    background: var(--card-soft);
+    font-size: 0.75rem;
+    color: var(--muted);
   }
 </style>

@@ -1,12 +1,10 @@
 ---
 import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
-import WorkList from '../components/WorkList.astro';
-import Parol from '../components/Parol.astro';
-import Spark from '../components/Spark.astro';
+import Parcel from '../components/Parcel.astro';
 import { Content as About } from '../content/about.md';
 import { site } from '../site';
-import { sortWork } from '../lib/work';
+import { shipping, sortWork } from '../lib/work';
 import { jobDates } from '../lib/experience';
 import {
   homeDescription,
@@ -16,70 +14,73 @@ import {
 } from '../lib/seo';
 
 const work = sortWork(await getCollection('work'));
-const lead = work[0];
-const now = site.experience[0];
 const jsonLd = jsonLdScript(homeJsonLd(site, Astro.site!));
+
+// The proof up front: the lead project's shipping record.
+const lead = work[0];
+const leadShip = lead ? shipping(lead.data.releases) : null;
 ---
 
 <Base title={homeTitle(site)} description={homeDescription(site)}>
   <script slot="head" is:inline type="application/ld+json" set:html={jsonLd} />
   <section class="hero" aria-labelledby="name">
-    <div class="lanterns">
-      <Parol size={5} drop={3} delay={0} />
-      <Parol size={3.2} drop={8} delay={260} />
-      <Parol size={4.2} drop={1.5} delay={520} />
+    <div class="hero-main">
+      <h1 id="name" class="hero-name">
+        {site.name}
+      </h1>
+      <p class="hero-line">Track what I ship.</p>
+      <p class="hero-role">{site.role}</p>
+      {site.intro && <p class="hero-intro">{site.intro}</p>}
+      <p class="hero-brand">
+        <img src="/favicon.png" alt="" width="24" height="24" />
+        <span>
+          I ship my projects under{' '}
+          <a href={site.brand.url}>{site.brand.name}</a>.
+        </span>
+      </p>
     </div>
 
-    <h1 id="name" class="hero-name">
-      {site.name}
-    </h1>
-    <p class="hero-role">{site.role}</p>
-    {site.intro && <p class="hero-intro">{site.intro}</p>}
-    <p class="hero-brand">
-      <img src="/favicon.png" alt="" width="24" height="24" />
-      <span>
-        I ship my projects under <a href={site.brand.url}>{site.brand.name}</a>.
-      </span>
-    </p>
-
-    <ul class="hero-cards">
-      {lead && (
-        <li>
-          <a href="#work" class="capiz hero-card hero-card--lit">
-            <strong>{lead.data.title}</strong>
-            <span>{lead.data.pitch}</span>
-          </a>
-        </li>
-      )}
-      {now && (
-        <li>
-          <a href="#experience" class="capiz hero-card">
-            <strong>Experience</strong>
-            <span>
-              {now.role} at {now.company}
-              {now.end ? '' : ` since ${now.start.slice(0, 4)}`}.
-            </span>
-          </a>
-        </li>
-      )}
-      <li>
-        <a href="#contact" class="capiz hero-card">
-          <strong>Say hi</strong>
-          <span>Email, GitHub, LinkedIn or résumé.</span>
+    <aside class="sender" aria-label="Sender">
+      <div class="sender-row">
+        <span class="sender-key mono">From</span>
+        <span class="sender-val">{site.name}</span>
+      </div>
+      <div class="sender-grid">
+        <div class="sender-row">
+          <span class="sender-key mono">Origin</span>
+          <span class="sender-val">Philippines</span>
+        </div>
+        <div class="sender-row">
+          <span class="sender-key mono">Ships to</span>
+          <span class="sender-val">Anywhere, remote</span>
+        </div>
+      </div>
+      {lead && leadShip && (
+        <a href="#work" class="sender-row sender-proof">
+          <span class="sender-key mono">Last delivery</span>
+          <span class="sender-val">
+            {lead.data.title} {leadShip.latest.version}
+          </span>
+          <span class="sender-note mono">
+            {leadShip.count} releases in {leadShip.days} days
+          </span>
         </a>
-      </li>
-    </ul>
+      )}
+      <span class="barcode sender-code" aria-hidden="true"></span>
+    </aside>
   </section>
 
   <section id="work" tabindex="-1" class="stop" aria-labelledby="work-h">
-    <div class="section-lantern" style="--x:12%">
-      <Parol size={3} drop={5} delay={150} />
-    </div>
     <h2 id="work-h" class="heading">
-      <Spark />
       Work
     </h2>
-    <WorkList entries={work} />
+    <ul class="parcels">
+      {work.map((entry) => (
+        <li>
+          <Parcel entry={entry} compact />
+        </li>
+      ))}
+    </ul>
   </section>
 
   <section
@@ -89,15 +90,16 @@ const jsonLd = jsonLdScript(homeJsonLd(site, Astro.site!));
     aria-labelledby="experience-h"
   >
     <h2 id="experience-h" class="heading">
-      <Spark />
       Experience
     </h2>
-    <ul class="jobs">
-      {site.experience.map((job) => {
+    <ol class="route">
+      {site.experience.map((job, i) => {
         const dates = jobDates(job.start, job.end);
         return (
-          <li class="job">
-            <p class="job-dates">
+          <li
+            class:list={['stopover', { 'stopover--now': i === 0 && !job.end }]}
+          >
+            <p class="stopover-dates mono">
               <time datetime={job.start}>{dates.start}</time>–
               {job.end ? (
                 <time datetime={job.end}>{dates.end}</time>
@@ -105,7 +107,8 @@ const jsonLd = jsonLdScript(homeJsonLd(site, Astro.site!));
                 'present'
               )}
             </p>
-            <div class="job-main">
+            <span class="stopover-dot" aria-hidden="true" />
+            <div class="stopover-main">
               <p class="job-company">
                 {job.logo && (
                   <img
@@ -124,12 +127,11 @@ const jsonLd = jsonLdScript(homeJsonLd(site, Astro.site!));
           </li>
         );
       })}
-    </ul>
+    </ol>
   </section>
 
   <section id="about" tabindex="-1" class="stop" aria-labelledby="about-h">
     <h2 id="about-h" class="heading">
-      <Spark />
       About
     </h2>
     <div class="about">
@@ -138,71 +140,96 @@ const jsonLd = jsonLdScript(homeJsonLd(site, Astro.site!));
   </section>
 
   <section id="tools" tabindex="-1" class="stop" aria-labelledby="tools-h">
-    <div class="section-lantern" style="--x:30%">
-      <Parol size={2.4} drop={3.5} delay={300} />
-    </div>
     <h2 id="tools-h" class="heading">
-      <Spark />
       Tools
     </h2>
-    <dl class="tools">
-      {site.tools.map((group) => (
-        <div class="capiz tool-card">
-          <dt>{group.label}</dt>
-          <dd>{group.items.join(' · ')}</dd>
-        </div>
-      ))}
-    </dl>
+    <div class="manifest">
+      <p class="manifest-head">
+        <span class="manifest-key mono">Packing list</span>
+        <span class="manifest-key mono">Qty</span>
+      </p>
+      <dl class="tools">
+        {site.tools.map((group) => (
+          <div class="tool-row">
+            <dt>{group.label}</dt>
+            <dd>
+              {group.items.map((item, i) => (
+                <>
+                  <span class="chip">{item}</span>
+                  {i < group.items.length - 1 && (
+                    <span class="sep" aria-hidden="true">
+                      {' · '}
+                    </span>
+                  )}
+                </>
+              ))}
+            </dd>
+            <span class="tool-qty mono" aria-hidden="true">
+              {group.items.length}
+            </span>
+          </div>
+        ))}
+      </dl>
+    </div>
   </section>
 </Base>
 
 <style>
   /* ——— first viewport ——— */
   .hero {
-    position: relative;
     width: 100%;
-    max-width: 80rem;
+    max-width: 76rem;
     margin-inline: auto;
-    padding: clamp(3rem, 10vh, 6rem) clamp(1rem, 5vw, 4rem)
-      clamp(2rem, 6vh, 4rem);
+    padding: clamp(2.5rem, 9vh, 5.5rem) clamp(1rem, 5vw, 3rem)
+      clamp(2rem, 6vh, 3.5rem);
+    display: grid;
+    gap: 2.5rem;
+    align-items: start;
   }
 
-  /* Lanterns hang from the top edge of the page, top right. */
-  .lanterns {
-    position: absolute;
-    /* Strings start at the page's top edge, behind the header. */
-    top: -4.5rem;
-    right: clamp(1rem, 30vw, 28rem);
-    z-index: 0;
-    display: flex;
-    align-items: flex-start;
-    gap: clamp(1rem, 3vw, 2.25rem);
-    pointer-events: none;
+  @media (min-width: 960px) {
+    .hero {
+      grid-template-columns: minmax(0, 1fr) 20rem;
+      gap: 3rem;
+    }
+  }
+
+  .hero-main {
+    min-width: 0;
   }
 
   .hero-name {
-    max-width: 11ch;
-    font-weight: 800;
-    font-size: clamp(3rem, 9vw, 6rem);
-    line-height: 0.92;
-    letter-spacing: -0.025em;
-    color: var(--pink);
+    font-weight: 900;
+    font-stretch: 122%;
+    font-size: clamp(3rem, 9.5vw, 6rem);
+    line-height: 0.86;
+    letter-spacing: -0.035em;
+    color: var(--indigo);
+  }
+
+  .hero-line {
+    margin-top: 0.9rem;
+    font-weight: 900;
+    font-stretch: 112%;
+    font-size: clamp(1.75rem, 4.4vw, 3rem);
+    line-height: 1;
+    letter-spacing: -0.02em;
+    color: var(--action);
   }
 
   .hero-role {
-    margin-top: 1.25rem;
-    max-width: 34rem;
+    margin-top: 1.5rem;
+    max-width: 36rem;
+    font-weight: 700;
     font-size: var(--text-lg);
     line-height: var(--text-lg--line-height);
-    font-weight: 700;
-    color: var(--yellow);
   }
 
   .hero-intro {
-    margin-top: 0.75rem;
+    margin-top: 0.5rem;
     max-width: 36rem;
-    font-size: 1.2rem;
-    color: var(--lavender);
+    font-size: 1.125rem;
+    color: var(--muted);
   }
 
   .hero-brand {
@@ -212,150 +239,203 @@ const jsonLd = jsonLdScript(homeJsonLd(site, Astro.site!));
     gap: 0.6rem;
     font-size: var(--text-sm);
     font-weight: 600;
-    color: var(--mist);
+    color: var(--muted);
   }
 
   .hero-brand img {
     border-radius: 6px;
   }
 
-  .hero-cards {
-    margin-top: clamp(2rem, 5vh, 3rem);
+  /* The sender label: a sticker on the parcel. */
+  .sender {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
-    gap: 1rem;
+    background: var(--card);
+    border: 2px solid var(--ink);
+    border-radius: 14px;
+    box-shadow: var(--card-shadow);
+    overflow: hidden;
+    transform: rotate(1.2deg);
   }
 
-  .hero-card {
+  .sender-grid {
     display: grid;
-    gap: 0.3rem;
-    height: 100%;
-    padding: 1rem 1.25rem 1.15rem;
+    grid-template-columns: 1fr 1fr;
   }
 
-  /* Habi is the first lit card. */
-  .hero-card--lit {
-    border-color: var(--capiz-edge-lit);
-    box-shadow: 0 0 40px -12px rgb(255 224 102 / 0.45);
+  .sender-grid .sender-row + .sender-row {
+    border-left: 2px solid var(--ink);
   }
 
-  .hero-card strong {
-    font-size: 1.5rem;
+  .sender-row {
+    display: grid;
+    gap: 0.15rem;
+    padding: 0.85rem 1rem;
+    border-bottom: 2px solid var(--ink);
+  }
+
+  .sender-key {
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .sender-val {
     font-weight: 800;
-    line-height: 1.1;
-    color: var(--yellow);
+    font-size: 1.05rem;
+    line-height: 1.2;
   }
 
-  .hero-card span {
-    font-size: 1rem;
-    line-height: 1.4;
-    color: var(--lavender);
+  .sender-note {
+    font-size: 0.78rem;
+    color: var(--action);
+    font-weight: 700;
   }
 
-  @media (max-width: 640px) {
-    /* On phones the lanterns hang below the header, clear of the nav. */
-    .lanterns {
-      top: 0;
-      right: 0.75rem;
-      transform: scale(0.55);
-      transform-origin: top right;
-    }
+  a.sender-proof {
+    text-decoration: none;
+    transition: background-color 200ms var(--ease-out);
+  }
 
-    .hero-name {
-      padding-top: 5.5rem;
+  a.sender-proof:hover,
+  a.sender-proof:focus-visible {
+    background: var(--card-soft);
+    color: inherit;
+  }
+
+  .sender-proof .sender-val {
+    text-decoration: underline;
+    text-decoration-color: var(--action);
+    text-decoration-thickness: 1.5px;
+    text-underline-offset: 0.2em;
+  }
+
+  .sender-code {
+    margin: 0.9rem 1rem;
+    width: auto;
+    height: 2.25rem;
+  }
+
+  @media (max-width: 959px) {
+    .sender {
+      max-width: 24rem;
+      transform: rotate(-0.8deg);
     }
   }
 
   /* ——— sections ——— */
   .stop {
-    position: relative;
     width: 100%;
-    max-width: 80rem;
+    max-width: 76rem;
     margin-inline: auto;
-    padding: clamp(4.5rem, 12vh, 8rem) clamp(1rem, 5vw, 4rem) 0;
+    padding: clamp(4rem, 11vh, 7rem) clamp(1rem, 5vw, 3rem) 0;
     display: grid;
     grid-template-columns: minmax(0, 1fr);
-    gap: clamp(2rem, 5vh, 3rem);
-  }
-
-  /* A lantern hung over a section, lighting what sits below it. */
-  .section-lantern {
-    position: absolute;
-    top: 0;
-    right: var(--x);
-    pointer-events: none;
-  }
-
-  .section-lantern::after {
-    content: '';
-    position: absolute;
-    left: 50%;
-    top: 60%;
-    width: 36rem;
-    height: 26rem;
-    translate: -50% 0;
-    background: radial-gradient(
-      closest-side,
-      rgb(255 224 102 / 0.17),
-      transparent
-    );
-    z-index: -1;
-  }
-
-  @media (max-width: 640px) {
-    .section-lantern {
-      transform: scale(0.7);
-      transform-origin: top center;
-    }
+    gap: clamp(1.75rem, 4vh, 2.5rem);
   }
 
   .stop:focus {
     outline: none;
   }
 
-  /* ——— experience ——— */
-  .jobs {
+  .parcels {
+    display: grid;
+    gap: 2rem;
+  }
+
+  /* ——— experience: a route history, dated stops on a line ——— */
+  .route {
     display: grid;
   }
 
-  .job {
+  .stopover {
+    --dot: 14px;
+    position: relative;
     display: grid;
-    gap: 0.5rem 2rem;
-    padding: 1.75rem 0;
-    border-top: 1px solid rgb(255 255 255 / 0.12);
+    grid-template-columns: 9rem var(--dot) minmax(0, 1fr);
+    gap: 0 1.25rem;
+    padding-bottom: 2.25rem;
   }
 
-  .job:last-child {
-    border-bottom: 1px solid rgb(255 255 255 / 0.12);
+  /* The line between stops. */
+  .stopover::before {
+    content: '';
+    position: absolute;
+    left: calc(9rem + 1.25rem + var(--dot) / 2 - 1px);
+    top: 0.6rem;
+    bottom: -0.4rem;
+    width: 2px;
+    background: repeating-linear-gradient(
+      to bottom,
+      var(--dash) 0 6px,
+      transparent 6px 11px
+    );
   }
 
-  @media (min-width: 760px) {
-    .job {
-      grid-template-columns: 12rem 1fr;
-      align-items: baseline;
-    }
+  .stopover:last-child::before {
+    display: none;
   }
 
-  @media (max-width: 759px) {
-    .job-dates {
-      order: 1;
-    }
-  }
-
-  .job-dates {
-    font-size: var(--text-sm);
+  .stopover-dates {
+    padding-top: 0.35rem;
+    font-size: 0.8rem;
     font-weight: 600;
-    color: var(--mist);
+    color: var(--muted);
+    text-align: right;
+  }
+
+  .stopover-dot {
+    width: var(--dot);
+    height: var(--dot);
+    margin-top: 0.45rem;
+    border-radius: 50%;
+    background: var(--card);
+    border: 3px solid var(--indigo);
+    position: relative;
+  }
+
+  .stopover--now .stopover-dot {
+    background: var(--action);
+    border-color: var(--action);
+    box-shadow: 0 0 0 5px rgb(176 35 110 / 0.16);
+  }
+
+  @media (max-width: 640px) {
+    .stopover {
+      grid-template-columns: var(--dot) minmax(0, 1fr);
+      gap: 0.2rem 1rem;
+    }
+
+    .stopover::before {
+      left: calc(var(--dot) / 2 - 1px);
+    }
+
+    .stopover-dates {
+      grid-column: 2;
+      text-align: left;
+      padding-top: 0;
+    }
+
+    .stopover-dot {
+      grid-row: 1;
+      grid-column: 1;
+      margin-top: 0.25rem;
+    }
+
+    .stopover-main {
+      grid-column: 2;
+    }
   }
 
   .job-company {
     display: flex;
     align-items: center;
-    gap: 0.8rem;
-    font-weight: 800;
-    font-size: clamp(1.6rem, 4vw, 2.5rem);
+    gap: 0.75rem;
+    font-weight: 900;
+    font-stretch: 112%;
+    font-size: clamp(1.5rem, 3.6vw, 2.25rem);
     line-height: 1.05;
-    color: var(--moon);
   }
 
   .job-company a {
@@ -364,71 +444,137 @@ const jsonLd = jsonLdScript(homeJsonLd(site, Astro.site!));
 
   .job-logo {
     flex: none;
-    width: clamp(1.9rem, 3vw, 2.3rem);
+    width: clamp(1.8rem, 3vw, 2.2rem);
     height: auto;
     padding: 3px;
-    border-radius: 10px;
-    background: var(--moon);
+    border-radius: 8px;
+    background: var(--card);
+    border: 1px solid var(--hair);
     object-fit: contain;
   }
 
   .job-role {
-    margin-top: 0.6rem;
+    margin-top: 0.5rem;
     font-weight: 700;
     font-size: var(--text-lg);
-    color: var(--yellow);
+    color: var(--indigo);
   }
 
   .job-summary {
-    max-width: 38rem;
-    color: var(--lavender);
+    max-width: 40rem;
+    color: var(--muted);
   }
 
   /* ——— about ——— */
   .about {
     max-width: 52rem;
-    font-weight: 600;
+    font-weight: 700;
+    font-stretch: 100%;
     font-size: clamp(1.6rem, 3.6vw, 2.75rem);
-    line-height: 1.2;
-    letter-spacing: -0.01em;
-    color: var(--moon);
-    overflow-wrap: break-word;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: var(--ink);
   }
 
   .about :global(p + p) {
     margin-top: 1em;
   }
 
-  /* ——— tools ——— */
+  /* ——— tools: a packing list ——— */
+  .manifest {
+    max-width: 56rem;
+    background: var(--card);
+    border-radius: 14px;
+    box-shadow: var(--card-shadow);
+    overflow: hidden;
+  }
+
+  .manifest-head {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.7rem clamp(1rem, 3vw, 1.5rem);
+    background: var(--indigo);
+  }
+
+  .manifest-key {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--on-indigo-soft);
+  }
+
   .tools {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
-    gap: 1rem;
   }
 
-  .tool-card {
-    padding: 1.1rem 1.3rem 1.25rem;
+  .tool-row {
     display: grid;
-    align-content: start;
-    gap: 0.35rem;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 0.6rem 1.5rem;
+    align-items: center;
+    padding: 1rem clamp(1rem, 3vw, 1.5rem);
+    border-top: 1.5px dashed var(--dash);
   }
 
-  .tool-card dt {
-    font-size: 1.35rem;
+  .tool-row:first-child {
+    border-top: 0;
+  }
+
+  .tool-row dt {
+    grid-column: 1;
     font-weight: 800;
-    line-height: 1.15;
-    color: var(--yellow);
-  }
-
-  .tool-card dd {
     font-size: 1.05rem;
-    line-height: 1.5;
-    color: var(--lavender);
   }
 
-  @media (max-width: 480px) {
-    .about {
-      overflow-wrap: anywhere;
+  .tool-row dd {
+    grid-column: 1;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+  }
+
+  .tool-qty {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    align-self: center;
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--indigo);
+  }
+
+  @media (min-width: 760px) {
+    .tool-row {
+      grid-template-columns: 12rem minmax(0, 1fr) auto;
     }
+
+    .tool-row dd {
+      grid-column: 2;
+    }
+
+    .tool-qty {
+      grid-column: 3;
+      grid-row: 1;
+    }
+  }
+
+  .chip {
+    padding: 0.3rem 0.7rem;
+    border: 1.5px solid var(--indigo);
+    border-radius: 6px;
+    background: var(--card);
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--indigo);
+  }
+
+  /* Kept in the text so each group reads as one line to tests and copy. */
+  .sep {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
   }
 </style>

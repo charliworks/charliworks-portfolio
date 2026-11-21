@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <!--
+  Habi "proof of delivery" for the portfolio's parcel card.
+  Three real Habi clips, rendered with HyperFrames in the habi-site repo
+  (ads/compositions/home-screen.html, todos-card.html, vault-card.html),
+  laid out in one landscape scene. 30 s = one loop of all three
+  (Home is 15 s, the cards are 10 s), so the render loops without a seam.
+  Render: ./render.sh proof  ->  ../public/media/habi-proof.mp4 and .webp poster
+-->
+    <style>
+      @font-face {
+        font-family: 'Archivo';
+        src: url('../fonts/archivo-latin.woff2') format('woff2');
+        font-weight: 100 900;
+        font-stretch: 62% 125%;
+      }
+      html,
+      body {
+        margin: 0;
+        background: #23205c;
+      }
+      #root {
+        position: relative;
+        width: 1600px;
+        height: 1000px;
+        overflow: hidden;
+        background:
+          radial-gradient(
+            70% 60% at 30% 20%,
+            rgb(255 255 255 / 0.07),
+            transparent 70%
+          ),
+          #23205c;
+        font-family: 'Archivo', system-ui, sans-serif;
+        color: #fff;
+      }
+      .label {
+        position: absolute;
+        font-weight: 800;
+        font-stretch: 112%;
+        font-size: 26px;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: #ffe066;
+      }
+      /* Home: the phone. */
+      .phone {
+        position: absolute;
+        left: 250px;
+        top: 98px;
+        width: 420px;
+        height: 840px;
+        padding: 14px;
+        border-radius: 56px;
+        background: #14123a;
+        box-shadow:
+          0 40px 80px -30px rgb(0 0 0 / 0.6),
+          inset 0 0 0 2px rgb(255 255 255 / 0.08);
+      }
+      .phone .glass {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        border-radius: 44px;
+        overflow: hidden;
+        background: #f4ecd6;
+      }
+      .phone video {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      /* Todos and Vault: two cards, as on habi-site. */
+      .card {
+        position: absolute;
+        left: 750px;
+        width: 600px;
+        border-radius: 24px;
+        overflow: hidden;
+        background: #fffbf0;
+        box-shadow: 0 30px 60px -28px rgb(0 0 0 / 0.6);
+      }
+      .card video {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      #todos {
+        top: 98px;
+        height: 340px;
+      }
+      #vault {
+        top: 522px;
+        height: 425px;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="root"
+      data-composition-id="habi-proof"
+      data-no-timeline
+      data-start="0"
+      data-duration="30"
+      data-width="1600"
+      data-height="1000"
+    >
+      <span class="label" style="left: 250px; top: 50px">Home</span>
+      <div class="phone">
+        <div class="glass">
+          <video
+            id="home-screen-1"
+            class="clip"
+            src="../media/home-screen.mp4"
+            muted
+            data-start="0"
+            data-duration="15"
+          ></video>
+          <video
+            id="home-screen-2"
+            class="clip"
+            src="../media/home-screen.mp4"
+            muted
+            data-start="15"
+            data-duration="15"
+          ></video>
+        </div>
+      </div>
+
+      <span class="label" style="left: 750px; top: 50px">Todos</span>
+      <div class="card" id="todos">
+        <video
+          id="todos-card-1"
+          class="clip"
+          src="../media/todos-card.mp4"
+          muted
+          data-start="0"
+          data-duration="10"
+        ></video>
+        <video
+          id="todos-card-2"
+          class="clip"
+          src="../media/todos-card.mp4"
+          muted
+          data-start="10"
+          data-duration="10"
+        ></video>
+        <video
+          id="todos-card-3"
+          class="clip"
+          src="../media/todos-card.mp4"
+          muted
+          data-start="20"
+          data-duration="10"
+        ></video>
+      </div>
+
+      <span class="label" style="left: 750px; top: 474px">Vault</span>
+      <div class="card" id="vault">
+        <video
+          id="vault-card-1"
+          class="clip"
+          src="../media/vault-card.mp4"
+          muted
+          data-start="0"
+          data-duration="10"
+        ></video>
+        <video
+          id="vault-card-2"
+          class="clip"
+          src="../media/vault-card.mp4"
+          muted
+          data-start="10"
+          data-duration="10"
+        ></video>
+        <video
+          id="vault-card-3"
+          class="clip"
+          src="../media/vault-card.mp4"
+          muted
+          data-start="20"
+          data-duration="10"
+        ></video>
+      </div>
+    </div>
+  </body>
+</html>

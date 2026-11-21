@@ -1,0 +1,314 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <!--
+  Live tracking strip for the hero's sender label, 320 x 108 shown, rendered
+  at 2x (640 x 216). Habi's 12 real releases (github.com/charlitomecarez/habi
+  releases, Philippine dates) placed along the road by date. The line
+  fills from v1.0.0 on 4 Nov to v2.0.1 on 12 Nov, the count steps through
+  each release, the Delivered stamp lands, then it resets. A seamless 10 s
+  loop: the first and last frames match.
+  Render: ./render.sh tracking
+-->
+    <script src="../shared/gsap.min.js"></script>
+    <style>
+      @font-face {
+        font-family: 'Archivo';
+        src: url('../fonts/archivo-latin.woff2') format('woff2');
+        font-weight: 100 900;
+        font-stretch: 62% 125%;
+      }
+      @font-face {
+        font-family: 'JetBrains Mono';
+        src: url('../fonts/jetbrains-mono-latin.woff2') format('woff2');
+        font-weight: 400 700;
+      }
+      html,
+      body {
+        margin: 0;
+        background: #2b1b5e;
+      }
+      #root {
+        position: relative;
+        width: 640px;
+        height: 216px;
+        overflow: hidden;
+        background: #2b1b5e;
+        color: #fff;
+        font-family: 'Archivo', system-ui, sans-serif;
+      }
+      .mono {
+        font-family: 'JetBrains Mono', ui-monospace, monospace;
+      }
+      .head {
+        position: absolute;
+        left: 36px;
+        /* Room top right for the page's pause button. */
+        right: 92px;
+        top: 28px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .live {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        white-space: nowrap;
+        font-size: 21px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        color: #d9cff7;
+      }
+      #dot {
+        width: 14px;
+        height: 14px;
+        border-radius: 50%;
+        background: #ff7ac6;
+      }
+      .counter {
+        position: relative;
+        width: 250px;
+        height: 30px;
+        font-size: 24px;
+        font-weight: 700;
+        text-align: right;
+      }
+      .counter span {
+        position: absolute;
+        right: 0;
+        top: 0;
+        opacity: 0;
+        white-space: nowrap;
+      }
+      .counter b {
+        color: #ffe066;
+        font-weight: 700;
+      }
+      /* The road. */
+      .road {
+        position: absolute;
+        left: 72px;
+        right: 72px;
+        top: 128px;
+        height: 8px;
+      }
+      .track,
+      #fill {
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 8px;
+        border-radius: 4px;
+      }
+      .track {
+        right: 0;
+        background: #4b3d78;
+      }
+      #fill {
+        width: 0;
+        background: #ff7ac6;
+      }
+      .tick {
+        position: absolute;
+        top: -7px;
+        width: 22px;
+        height: 22px;
+        margin-left: -11px;
+        border-radius: 50%;
+        background: #2b1b5e;
+        border: 4px solid #6c5fa0;
+        box-sizing: border-box;
+      }
+      /* The leading edge: a glowing marker on the line. */
+      #head {
+        position: absolute;
+        top: -11px;
+        left: 0;
+        width: 30px;
+        height: 30px;
+        margin-left: -15px;
+        border-radius: 50%;
+        background: #ff7ac6;
+        border: 5px solid #2b1b5e;
+        box-sizing: border-box;
+        box-shadow:
+          0 0 0 4px #ff7ac6,
+          0 0 24px 6px rgb(255 122 198 / 0.55);
+      }
+      .ends {
+        position: absolute;
+        left: 40px;
+        right: 40px;
+        top: 166px;
+        display: flex;
+        justify-content: space-between;
+        font-size: 20px;
+        color: #d9cff7;
+      }
+      #stamp {
+        position: absolute;
+        right: 92px;
+        top: 22px;
+        padding: 6px 18px;
+        border-radius: 999px;
+        background: #ffe066;
+        color: #1d1438;
+        font-weight: 900;
+        font-stretch: 112%;
+        font-size: 22px;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        opacity: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="root"
+      data-composition-id="tracking"
+      data-start="0"
+      data-duration="10"
+      data-width="640"
+      data-height="216"
+    >
+      <div class="head">
+        <span class="live mono"><span id="dot"></span>LIVE · HABI</span>
+        <span class="counter mono" id="counter"></span>
+      </div>
+
+      <div class="road">
+        <span class="track"></span>
+        <span id="fill"></span>
+        <span id="ticks"></span>
+        <span id="head"></span>
+      </div>
+
+      <div class="ends mono">
+        <span>4 Nov</span><span id="end-date">12 Nov 2026</span>
+      </div>
+      <span id="stamp">Delivered</span>
+    </div>
+
+    <script>
+      // Habi's releases: version and day of November 2026 (Philippine time).
+      const releases = [
+        ['v1.0.0', 4],
+        ['v1.1.0', 5],
+        ['v1.2.0', 5],
+        ['v1.2.1', 6],
+        ['v1.2.2', 6],
+        ['v1.3.0', 10],
+        ['v1.4.0', 10],
+        ['v1.4.1', 10],
+        ['v1.5.0', 11],
+        ['v1.6.0', 11],
+        ['v2.0.0', 12],
+        ['v2.0.1', 12],
+      ];
+      const first = 4;
+      const span = 12 - first;
+      const ROAD = 640 - 144;
+      const at = (day) => (day - first) / span;
+
+      const ticks = document.getElementById('ticks');
+      const counter = document.getElementById('counter');
+      releases.forEach(([v, d], i) => {
+        const t = document.createElement('span');
+        t.className = 'tick';
+        t.id = `tick-${i}`;
+        t.style.left = `${at(d) * ROAD}px`;
+        ticks.append(t);
+        const c = document.createElement('span');
+        c.id = `count-${i}`;
+        c.innerHTML = `<b>${v}</b> · ${i + 1}/12`;
+        counter.append(c);
+      });
+
+      const tl = gsap.timeline({ paused: true });
+      window.__timelines = window.__timelines || {};
+      window.__timelines['tracking'] = tl;
+
+      // Start state: the first release is lit and counted.
+      tl.set('#count-0', { opacity: 1 }, 0);
+      tl.set(
+        '#tick-0',
+        { borderColor: '#ff7ac6', backgroundColor: '#ff7ac6' },
+        0,
+      );
+
+      // The ride: 6 s from 4 Nov to 12 Nov, at a steady pace by date.
+      const START = 0.8;
+      const RIDE = 6;
+      tl.to('#head', { x: ROAD, duration: RIDE, ease: 'none' }, START);
+      tl.to('#fill', { width: ROAD, duration: RIDE, ease: 'none' }, START);
+
+      // Each release lights up as the line reaches its day.
+      releases.forEach(([, d], i) => {
+        if (i === 0) return;
+        const when = START + at(d) * RIDE;
+        tl.set(`#count-${i - 1}`, { opacity: 0 }, when);
+        tl.set(`#count-${i}`, { opacity: 1 }, when);
+        tl.fromTo(
+          `#tick-${i}`,
+          { scale: 1 },
+          {
+            scale: 1.35,
+            borderColor: '#ff7ac6',
+            backgroundColor: '#ff7ac6',
+            duration: 0.15,
+            immediateRender: false,
+          },
+          when,
+        );
+        tl.to(`#tick-${i}`, { scale: 1, duration: 0.25 }, when + 0.15);
+      });
+
+      // Delivered.
+      tl.fromTo(
+        '#stamp',
+        { opacity: 0, scale: 1.4, rotation: -8 },
+        {
+          opacity: 1,
+          scale: 1,
+          rotation: -3,
+          duration: 0.3,
+          ease: 'power3.out',
+          immediateRender: false,
+        },
+        START + RIDE + 0.2,
+      );
+      tl.to('#counter', { opacity: 0, duration: 0.15 }, START + RIDE + 0.1);
+      tl.to(
+        '#dot',
+        {
+          opacity: 0.25,
+          duration: 0.5,
+          yoyo: true,
+          repeat: 19,
+          ease: 'sine.inOut',
+        },
+        0,
+      );
+
+      // Back to the start, so the loop has no seam.
+      const RESET = 9.2;
+      tl.to('#stamp', { opacity: 0, duration: 0.3 }, RESET);
+      tl.to('#counter', { opacity: 1, duration: 0.3 }, RESET + 0.3);
+      tl.to('#head', { x: 0, duration: 0.6, ease: 'power2.inOut' }, RESET);
+      tl.to('#fill', { width: 0, duration: 0.6, ease: 'power2.inOut' }, RESET);
+      releases.forEach((_, i) => {
+        if (i === 0) return;
+        tl.to(
+          `#tick-${i}`,
+          { borderColor: '#6c5fa0', backgroundColor: '#2b1b5e', duration: 0.3 },
+          RESET,
+        );
+      });
+      tl.set('#count-11', { opacity: 0 }, RESET + 0.3);
+      tl.set('#count-0', { opacity: 1 }, RESET + 0.3);
+      tl.set({}, {}, 10);
+    </script>
+  </body>
+</html>

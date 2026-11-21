@@ -1,485 +1,480 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-21T12:50:51+00:00",
+  "generatedAt": "2026-11-21T13:53:26+00:00",
   "title": "Design System: Charlito Jr Mecarez",
   "extensions": {
     "colorMeta": {
-      "night": {
+      "ground": {
         "role": "neutral",
-        "displayName": "Night",
-        "canonical": "#170e38",
-        "oklch": "oklch(20.6% 0.078 287)",
+        "displayName": "Courier Ground",
+        "canonical": "#eeeaf6",
+        "oklch": "oklch(94.4% 0.017 301)",
         "tonalRamp": [
-          "#0a081a",
-          "#24213b",
-          "#403d5f",
-          "#5f5b86",
-          "#7f7bae",
-          "#a29fcd",
-          "#c6c4ed",
-          "#edecfe"
+          "#0b0b0c",
+          "#252328",
+          "#413e47",
+          "#5f5c66",
+          "#7f7b86",
+          "#a09ca7",
+          "#c5c2cb",
+          "#efeef0"
+        ]
+      },
+      "card": {
+        "role": "neutral",
+        "displayName": "Card White",
+        "canonical": "#ffffff",
+        "oklch": "oklch(100.0% 0.000 90)",
+        "tonalRamp": [
+          "#0b0b0b",
+          "#242424",
+          "#404040",
+          "#5d5d5d",
+          "#7d7d7d",
+          "#9e9e9e",
+          "#c4c4c4",
+          "#eeeeee"
+        ]
+      },
+      "card-soft": {
+        "role": "neutral",
+        "displayName": "Soft Slip",
+        "canonical": "#faf8fd",
+        "oklch": "oklch(98.2% 0.007 304)",
+        "tonalRamp": [
+          "#0c0a0e",
+          "#252327",
+          "#403f43",
+          "#5e5d61",
+          "#7e7c81",
+          "#9f9da2",
+          "#c5c3c8",
+          "#efedf2"
+        ]
+      },
+      "hair": {
+        "role": "neutral",
+        "displayName": "Hairline",
+        "canonical": "#e3dcef",
+        "oklch": "oklch(90.6% 0.027 303)",
+        "tonalRamp": [
+          "#0c0b0d",
+          "#26222b",
+          "#423d4c",
+          "#605a6a",
+          "#807a8b",
+          "#a19bad",
+          "#c6c1cf",
+          "#efeef1"
+        ]
+      },
+      "dash": {
+        "role": "neutral",
+        "displayName": "Tear Line",
+        "canonical": "#d3c9e6",
+        "oklch": "oklch(85.3% 0.041 301)",
+        "tonalRamp": [
+          "#0c0a0e",
+          "#26212f",
+          "#433b52",
+          "#615872",
+          "#817892",
+          "#a399b5",
+          "#c7c0d5",
+          "#efedf3"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Label Ink",
+        "canonical": "#1d1438",
+        "oklch": "oklch(22.5% 0.067 292)",
+        "tonalRamp": [
+          "#0b0a10",
+          "#242037",
+          "#403960",
+          "#5e5781",
+          "#7d76a3",
+          "#9e97c6",
+          "#c4bfe2",
+          "#eeedf7"
         ]
       },
       "indigo": {
-        "role": "neutral",
-        "displayName": "Indigo",
+        "role": "primary",
+        "displayName": "Courier Indigo",
         "canonical": "#2b1b5e",
         "oklch": "oklch(28.8% 0.113 288)",
         "tonalRamp": [
-          "#0b0620",
-          "#241e44",
-          "#40396c",
-          "#5f5796",
-          "#8076c1",
-          "#a29bdf",
-          "#c6c1fc",
-          "#edecff"
+          "#0b0a14",
+          "#231c44",
+          "#3f3277",
+          "#5c5199",
+          "#7b71bc",
+          "#9b93e1",
+          "#c1bcf6",
+          "#edecfd"
         ]
       },
-      "dusk": {
+      "muted": {
         "role": "neutral",
-        "displayName": "Dusk",
-        "canonical": "#3d2a80",
-        "oklch": "oklch(36.2% 0.138 288)",
+        "displayName": "Faded Ink",
+        "canonical": "#5d5379",
+        "oklch": "oklch(46.7% 0.062 296)",
         "tonalRamp": [
-          "#0b0424",
-          "#241c4b",
-          "#403774",
-          "#5f54a1",
-          "#7f73cf",
-          "#a199eb",
-          "#c5c1fe",
-          "#edecfe"
+          "#0c0a10",
+          "#262035",
+          "#43395d",
+          "#60567d",
+          "#80769e",
+          "#a197c1",
+          "#c6bfde",
+          "#efedf6"
         ]
       },
-      "moon": {
-        "role": "neutral",
-        "displayName": "Moon",
-        "canonical": "#f4efff",
-        "oklch": "oklch(96.1% 0.022 300)",
-        "tonalRamp": [
-          "#0c0a0f",
-          "#26242b",
-          "#43404a",
-          "#635f6b",
-          "#84808e",
-          "#a7a3af",
-          "#cac7d2",
-          "#f0edf6"
-        ]
-      },
-      "lavender": {
-        "role": "neutral",
-        "displayName": "Lavender",
-        "canonical": "#d9cff7",
-        "oklch": "oklch(87.5% 0.056 297)",
-        "tonalRamp": [
-          "#0c0915",
-          "#272234",
-          "#443e56",
-          "#645c7a",
-          "#857ca0",
-          "#a89fc0",
-          "#cbc4e1",
-          "#f0ebfe"
-        ]
-      },
-      "mist": {
-        "role": "neutral",
-        "displayName": "Mist",
-        "canonical": "#b9addf",
-        "oklch": "oklch(77.5% 0.072 296)",
-        "tonalRamp": [
-          "#0c0818",
-          "#272038",
-          "#443c5b",
-          "#645a81",
-          "#867aa9",
-          "#a89ec8",
-          "#cbc3e8",
-          "#efebfe"
-        ]
-      },
-      "pink": {
-        "role": "secondary",
-        "displayName": "Sampaguita Pink",
-        "canonical": "#ff7ac6",
-        "oklch": "oklch(75.6% 0.182 347)",
-        "tonalRamp": [
-          "#1f0011",
-          "#47012f",
-          "#701850",
-          "#9d3072",
-          "#ca4b97",
-          "#e979b8",
-          "#ffabd7",
-          "#fee7f2"
-        ]
-      },
-      "yellow": {
+      "action": {
         "role": "primary",
-        "displayName": "Parol Yellow",
+        "displayName": "Trail Magenta",
+        "canonical": "#b0236e",
+        "oklch": "oklch(51.2% 0.186 354)",
+        "tonalRamp": [
+          "#17050c",
+          "#4a0028",
+          "#7f0046",
+          "#a51465",
+          "#cb4085",
+          "#f264a7",
+          "#ff9eca",
+          "#ffe5f0"
+        ]
+      },
+      "stamp": {
+        "role": "secondary",
+        "displayName": "Delivered Yellow",
         "canonical": "#ffe066",
         "oklch": "oklch(91.0% 0.144 95)",
         "tonalRamp": [
-          "#110a00",
-          "#2e2400",
-          "#4f4102",
-          "#736009",
-          "#99810f",
-          "#bda43d",
-          "#dec978",
-          "#ffefb3"
+          "#0f0b01",
+          "#322100",
+          "#583b00",
+          "#775a00",
+          "#987a00",
+          "#ba9c00",
+          "#d9c473",
+          "#f4efd9"
         ]
       },
-      "parol-core": {
-        "role": "primary",
-        "displayName": "Parol Core",
-        "canonical": "#fff6c4",
-        "oklch": "oklch(96.8% 0.065 99)",
+      "on-indigo": {
+        "role": "neutral",
+        "displayName": "On Indigo",
+        "canonical": "#ffffff",
+        "oklch": "oklch(100.0% 0.000 90)",
         "tonalRamp": [
-          "#0e0b00",
-          "#2a250d",
-          "#484223",
-          "#69623b",
-          "#8c8356",
-          "#ada67e",
-          "#d0caa8",
-          "#f5efd2"
+          "#0b0b0b",
+          "#242424",
+          "#404040",
+          "#5d5d5d",
+          "#7d7d7d",
+          "#9e9e9e",
+          "#c4c4c4",
+          "#eeeeee"
         ]
       },
-      "string": {
+      "on-indigo-soft": {
         "role": "neutral",
-        "displayName": "String",
-        "canonical": "#8d7cc7",
-        "oklch": "oklch(63.2% 0.112 293)",
+        "displayName": "Soft On Indigo",
+        "canonical": "#d9cff7",
+        "oklch": "oklch(87.5% 0.056 297)",
         "tonalRamp": [
-          "#0d051f",
-          "#271d43",
-          "#44386a",
-          "#645593",
-          "#8675be",
-          "#a79adc",
-          "#cbc0fa",
-          "#efecfe"
+          "#0c0a0f",
+          "#262033",
+          "#43395a",
+          "#61577a",
+          "#80779b",
+          "#a198be",
+          "#c6bfdc",
+          "#efedf5"
         ]
-      },
-      "capiz": {
-        "role": "neutral",
-        "displayName": "Capiz",
-        "canonical": "rgb(255 255 255 / 0.06)",
-        "note": "Translucent card fill; source variable --capiz."
-      },
-      "capiz-edge": {
-        "role": "primary",
-        "displayName": "Capiz Edge",
-        "canonical": "rgb(255 224 102 / 0.3)",
-        "note": "Card border at rest; --capiz-edge."
-      },
-      "capiz-edge-lit": {
-        "role": "primary",
-        "displayName": "Capiz Edge Lit",
-        "canonical": "rgb(255 224 102 / 0.75)",
-        "note": "Card border lit or hovered; --capiz-edge-lit."
-      },
-      "hairline": {
-        "role": "neutral",
-        "displayName": "Hairline",
-        "canonical": "rgb(255 255 255 / 0.12)",
-        "note": "Experience row rules."
       }
     },
     "typographyMeta": {
       "display": {
         "displayName": "Display",
-        "purpose": "The hero name in pink; the 404 title in the same voice."
+        "purpose": "The name in the first viewport, indigo."
       },
       "display-title": {
         "displayName": "Display Title",
-        "purpose": "Yellow case-study title with a soft glow; the Home project title in the same voice at clamp(3rem, 8vw, 5.5rem)."
-      },
-      "display-close": {
-        "displayName": "Display Close",
-        "purpose": "\"Say hi\" in pink under the biggest lantern."
+        "purpose": "Project name on its full tracking page; 404 headline."
       },
       "headline": {
         "displayName": "Headline",
-        "purpose": "Section headings in moon, led by a glowing spark."
+        "purpose": "Uppercase section headings."
       },
       "title": {
         "displayName": "Title",
-        "purpose": "Company names; case-study h2s."
+        "purpose": "Project name on a home parcel."
+      },
+      "tagline": {
+        "displayName": "Tagline",
+        "purpose": "\"Track what I ship.\" in magenta under the name."
+      },
+      "subhead": {
+        "displayName": "Subhead",
+        "purpose": "Company names in the experience route."
       },
       "lede": {
         "displayName": "Lede",
-        "purpose": "The About text, set large on the night."
+        "purpose": "The About statement."
       },
       "pitch": {
         "displayName": "Pitch",
-        "purpose": "One-line project pitches."
-      },
-      "card-title": {
-        "displayName": "Card Title",
-        "purpose": "Yellow titles on capiz cards; tool cards at 1.35rem."
-      },
-      "body-lg": {
-        "displayName": "Body Large",
-        "purpose": "Role line, job roles, secondary contact links."
+        "purpose": "A parcel's one-line pitch."
       },
       "body": {
         "displayName": "Body",
-        "purpose": "Reading text in lavender or moon."
+        "purpose": "Running copy and case-study prose."
+      },
+      "body-lg": {
+        "displayName": "Body Large",
+        "purpose": "Role line and job titles."
+      },
+      "status": {
+        "displayName": "Status",
+        "purpose": "The Delivered stamp."
+      },
+      "step": {
+        "displayName": "Step",
+        "purpose": "The four step pills."
       },
       "label": {
         "displayName": "Label",
-        "purpose": "Dates, stack lines, captions in mist. Never uppercase."
+        "purpose": "Mono field keys on labels and cards."
+      },
+      "data": {
+        "displayName": "Data",
+        "purpose": "Mono versions, dates, counts, tracking numbers."
       }
     },
     "shadows": [
       {
-        "name": "lantern-glow",
-        "value": "drop-shadow(0 0 14px rgb(255 224 102 / 0.55))",
-        "purpose": "Lanterns and heading sparks at rest (CSS filter, --glow)."
+        "name": "card-lift",
+        "value": "0 1px 2px rgb(29 20 56 / 0.06), 0 18px 40px -24px rgb(29 20 56 / 0.45)",
+        "purpose": "Every card and label, at rest; never changes with state."
       },
       {
-        "name": "lantern-flash",
-        "value": "drop-shadow(0 0 26px rgb(255 224 102 / 0.95))",
-        "purpose": "A tapped lantern, for 700ms."
-      },
-      {
-        "name": "lit-card-halo",
-        "value": "0 0 40px -12px rgb(255 224 102 / 0.45)",
-        "purpose": "The one lit hero card."
-      },
-      {
-        "name": "title-glow",
-        "value": "0 0 28px rgb(255 224 102 / 0.3)",
-        "purpose": "Text-shadow on yellow project and case titles; 0.35 alpha on the email; 36px on the case title."
-      },
-      {
-        "name": "spark-glow",
-        "value": "drop-shadow(0 0 4px rgb(255 224 102 / 0.9))",
-        "purpose": "Falling sparks shaken from a tapped lantern."
-      },
-      {
-        "name": "lantern-pool",
-        "value": "radial-gradient(closest-side, rgb(255 224 102 / 0.17), transparent)",
-        "purpose": "Light a section lantern casts on content below (36rem by 26rem)."
-      },
-      {
-        "name": "capiz-wash",
-        "value": "radial-gradient(120% 90% at 50% -30%, rgb(255 224 102 / 0.16), transparent 65%)",
-        "purpose": "Light from above inside every capiz card."
-      },
-      {
-        "name": "pointer-light",
-        "value": "radial-gradient(16rem circle at var(--mx) var(--my), rgb(255 224 102 / 0.14), transparent 70%)",
-        "purpose": "Warm spot that follows the pointer inside capiz cards when the script runs."
+        "name": "active-halo",
+        "value": "0 0 0 4px rgb(176 35 110 / 0.16)",
+        "purpose": "The latest or hovered release dot; 5px on the current job's route dot."
       }
     ],
-    "sky": {
-      "value": "radial-gradient(90rem 50rem at 75% -10rem, #3d2a80, #2b1b5e 45%, transparent 100%) over #170e38",
-      "purpose": "The page ground: night, lightest at the top right where the lanterns hang."
-    },
     "motion": [
       {
         "name": "ease-out",
         "value": "cubic-bezier(0.16, 1, 0.3, 1)",
-        "purpose": "The house ease for every transition and animation."
+        "purpose": "Shared easing for all state transitions and the view transition."
       },
       {
-        "name": "link",
+        "name": "state",
         "value": "200ms",
-        "purpose": "Link colour and underline transitions."
+        "purpose": "Color, fill and underline changes on links, buttons and rows."
       },
       {
-        "name": "card",
+        "name": "icon-nudge",
         "value": "300ms",
-        "purpose": "Capiz edge and fill on hover; pointer light fades in over 400ms."
+        "purpose": "Arrow icons slide 3 to 4px toward their direction on hover."
       },
       {
-        "name": "hang",
-        "value": "3.6s, staggered 0 to 520ms",
-        "purpose": "Lantern arrival: damped swing 9deg, -6, 3.5, -1.5, 0.5, 0."
+        "name": "drive",
+        "value": "2.4s cubic-bezier(0.45, 0, 0.2, 1)",
+        "purpose": "Rider and road fill travel from first to latest release when a parcel is 30% in view."
       },
       {
-        "name": "pendulum",
-        "value": "stiffness 38, damping 2.2, max 28deg, mass = width / 40",
-        "purpose": "Live lantern physics: scroll kick, pointer breeze within 160px, tap impulse 220."
+        "name": "step-stagger",
+        "value": "calc(var(--s) * 700ms + 200ms)",
+        "purpose": "Step pills light in order during the drive."
       },
       {
-        "name": "spark-fall",
-        "value": "1.1s",
-        "purpose": "Sparks falling from a tapped lantern."
+        "name": "stamp-delay",
+        "value": "2.5s",
+        "purpose": "The status stamps Delivered after the line arrives (350ms scale and rotate settle)."
+      },
+      {
+        "name": "scrub",
+        "value": "600ms ease-out",
+        "purpose": "Rider moves to a hovered or focused release."
       },
       {
         "name": "view-transition",
-        "value": "450ms",
-        "purpose": "Page navigation; the project cover morphs without a cross-fade."
+        "value": "450ms ease-out",
+        "purpose": "Cover and title morph between home and the case page; single-image cover, no cross-fade."
       },
       {
         "name": "reduced-motion",
-        "value": "all durations 0.01ms; script does not start",
-        "purpose": "Nothing moves; the page is complete."
+        "value": "delivered state",
+        "purpose": "Without script or with reduced motion, parcels render fully delivered and transitions collapse to 0.01ms."
       }
     ],
     "breakpoints": [
       {
-        "name": "narrow",
-        "value": "480px",
-        "purpose": "Headings, cards and prose may break long words."
+        "name": "steps-2x2",
+        "value": "480px"
       },
       {
-        "name": "nav-tight",
-        "value": "560px",
-        "purpose": "Header links tighten."
+        "name": "log-stack",
+        "value": "560px"
       },
       {
-        "name": "phone",
-        "value": "640px",
-        "purpose": "Hero lanterns drop under the header at 0.55 scale; section lanterns at 0.7."
+        "name": "proof-zoom",
+        "value": "600px"
       },
       {
-        "name": "rows",
-        "value": "760px",
-        "purpose": "Experience rows gain a 12rem date column."
+        "name": "route-stack",
+        "value": "640px"
       },
       {
-        "name": "project-split",
-        "value": "900px",
-        "purpose": "Project meta splits into two columns."
+        "name": "tools-columns",
+        "value": "760px"
+      },
+      {
+        "name": "hero-split",
+        "value": "960px"
       }
     ]
   },
   "components": [
     {
-      "name": "Capiz Card",
-      "kind": "card",
-      "refersTo": "capiz-card",
-      "description": "A lantern-lit card: translucent fill, faint yellow edge, yellow title over lavender text.",
-      "html": "<a class=\"ds-capiz\" href=\"#\"><strong>Experience</strong><span>Full-stack developer since 2023.</span></a>",
-      "css": ".ds-capiz { position: relative; border-radius: 22px; background: radial-gradient(120% 90% at 50% -30%, rgb(255 224 102 / 0.16), transparent 65%), var(--capiz, rgb(255 255 255 / 0.06)); border: 1px solid var(--capiz-edge, rgb(255 224 102 / 0.3)); transition: border-color 300ms cubic-bezier(0.16, 1, 0.3, 1), background-color 300ms cubic-bezier(0.16, 1, 0.3, 1); font-family: 'Baloo 2', ui-rounded, ui-sans-serif, system-ui, sans-serif; display: grid; gap: 0.3rem; max-width: 18rem; padding: 1rem 1.25rem 1.15rem; text-decoration: none; background-color: transparent; } .ds-capiz strong { font-size: 1.5rem; font-weight: 800; line-height: 1.1; color: var(--yellow, #ffe066); } .ds-capiz span { font-size: 1rem; line-height: 1.4; color: var(--lavender, #d9cff7); } .ds-capiz:hover, .ds-capiz:focus-visible { border-color: var(--capiz-edge-lit, rgb(255 224 102 / 0.75)); background-color: rgb(255 255 255 / 0.04); } .ds-capiz:focus-visible { outline: 2px solid var(--yellow, #ffe066); outline-offset: 4px; }"
+      "name": "Outlined Button",
+      "kind": "button",
+      "refersTo": "button",
+      "description": "The one button style: indigo outline pill that fills indigo on hover, with an arrow that nudges forward.",
+      "html": "<a href=\"#\" class=\"ds-button\">Full tracking details <svg viewBox=\"0 0 16 16\" aria-hidden=\"true\"><path d=\"M3 8h10M9 4l4 4-4 4\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg></a>",
+      "css": ".ds-button{display:inline-flex;align-items:center;gap:.5rem;min-height:2.75rem;padding:.55rem 1.1rem;border:1.5px solid var(--indigo,#2b1b5e);border-radius:999px;font-family:'Archivo',ui-sans-serif,system-ui,sans-serif;font-weight:700;color:var(--indigo,#2b1b5e);text-decoration:none;transition:background-color 200ms cubic-bezier(.16,1,.3,1),color 200ms cubic-bezier(.16,1,.3,1)}.ds-button svg{width:1rem;height:1rem;transition:transform 300ms cubic-bezier(.16,1,.3,1)}.ds-button:hover,.ds-button:focus-visible{background:var(--indigo,#2b1b5e);color:#fff}.ds-button:hover svg{transform:translateX(3px)}.ds-button:focus-visible{outline:2px solid var(--action,#b0236e);outline-offset:3px}"
     },
     {
-      "name": "Lit Capiz Card",
-      "kind": "card",
-      "refersTo": "capiz-card-lit",
-      "description": "The one card a lantern lights first: lit edge at rest plus a soft yellow halo.",
-      "html": "<a class=\"ds-capiz-lit\" href=\"#\"><strong>Habi</strong><span>A weaving journal for the loom.</span></a>",
-      "css": ".ds-capiz-lit { position: relative; border-radius: 22px; background: radial-gradient(120% 90% at 50% -30%, rgb(255 224 102 / 0.16), transparent 65%), var(--capiz, rgb(255 255 255 / 0.06)); border: 1px solid var(--capiz-edge, rgb(255 224 102 / 0.3)); transition: border-color 300ms cubic-bezier(0.16, 1, 0.3, 1), background-color 300ms cubic-bezier(0.16, 1, 0.3, 1); font-family: 'Baloo 2', ui-rounded, ui-sans-serif, system-ui, sans-serif; display: grid; gap: 0.3rem; max-width: 18rem; padding: 1rem 1.25rem 1.15rem; text-decoration: none; border-color: var(--capiz-edge-lit, rgb(255 224 102 / 0.75)); box-shadow: 0 0 40px -12px rgb(255 224 102 / 0.45); } .ds-capiz-lit strong { font-size: 1.5rem; font-weight: 800; line-height: 1.1; color: var(--yellow, #ffe066); } .ds-capiz-lit span { font-size: 1rem; line-height: 1.4; color: var(--lavender, #d9cff7); } .ds-capiz-lit:hover, .ds-capiz-lit:focus-visible { background-color: rgb(255 255 255 / 0.04); } .ds-capiz-lit:focus-visible { outline: 2px solid var(--yellow, #ffe066); outline-offset: 4px; }"
-    },
-    {
-      "name": "Inline Link",
+      "name": "Text Link",
       "kind": "custom",
       "refersTo": "link",
-      "description": "Text-coloured link with a pink underline that thickens and turns the text pink on hover.",
-      "html": "<p class=\"ds-text\">I ship my projects under <a class=\"ds-link\" href=\"#\">charliworks</a>.</p>",
-      "css": ".ds-text { font-family: 'Baloo 2', ui-rounded, ui-sans-serif, system-ui, sans-serif; font-size: 1.125rem; line-height: 1.6; color: var(--moon, #f4efff); } .ds-link { color: inherit; text-decoration-line: underline; text-decoration-thickness: 1.5px; text-decoration-color: var(--pink, #ff7ac6); text-underline-offset: 0.2em; transition: text-decoration-thickness 200ms cubic-bezier(0.16, 1, 0.3, 1), color 200ms cubic-bezier(0.16, 1, 0.3, 1); } .ds-link:hover, .ds-link:focus-visible { color: var(--pink, #ff7ac6); text-decoration-thickness: 2.5px; } .ds-link:focus-visible { outline: 2px solid var(--yellow, #ffe066); outline-offset: 4px; border-radius: 4px; }"
+      "description": "Inline links: inherited color, magenta underline that thickens and colors the text on hover.",
+      "html": "<p class=\"ds-p\">I ship my projects under <a href=\"#\" class=\"ds-link\">charliworks</a>.</p>",
+      "css": ".ds-p{font-family:'Archivo',ui-sans-serif,system-ui,sans-serif;color:#1d1438;font-size:1.0625rem}.ds-link{color:inherit;text-decoration-line:underline;text-decoration-thickness:1.5px;text-decoration-color:#b0236e;text-underline-offset:.2em;transition:color 200ms cubic-bezier(.16,1,.3,1)}.ds-link:hover,.ds-link:focus-visible{color:#b0236e;text-decoration-thickness:2.5px}.ds-link:focus-visible{outline:2px solid #b0236e;outline-offset:3px;border-radius:4px}"
     },
     {
-      "name": "Header Navigation",
+      "name": "Status Stamp",
+      "kind": "chip",
+      "refersTo": "status-stamp",
+      "description": "The Delivered stamp on the indigo header bar.",
+      "html": "<div class=\"ds-bar\"><span class=\"ds-stamp\">Delivered</span></div>",
+      "css": ".ds-bar{background:#2b1b5e;padding:1rem}.ds-stamp{display:inline-block;padding:.4rem 1rem;border:2px solid #ffe066;border-radius:999px;background:#ffe066;color:#1d1438;font-family:'Archivo',ui-sans-serif,system-ui,sans-serif;font-weight:900;font-stretch:112%;font-size:.95rem;letter-spacing:.04em;text-transform:uppercase}"
+    },
+    {
+      "name": "Step Pills",
+      "kind": "chip",
+      "refersTo": "step-pill",
+      "description": "The four delivery checkpoints; the last one filled indigo.",
+      "html": "<ol class=\"ds-steps\"><li>Built</li><li>Tested</li><li>Released</li><li>Delivered</li></ol>",
+      "css": ".ds-steps{display:flex;flex-wrap:wrap;gap:.5rem;margin:0;padding:0;list-style:none;font-family:'Archivo',ui-sans-serif,system-ui,sans-serif;font-weight:800;font-size:.78rem;letter-spacing:.05em;text-transform:uppercase;color:#2b1b5e}.ds-steps li{padding:.3rem .7rem;border:1.5px solid #2b1b5e;border-radius:999px}.ds-steps li:last-child{background:#2b1b5e;color:#fff}"
+    },
+    {
+      "name": "Tool Chip",
+      "kind": "chip",
+      "refersTo": "chip",
+      "description": "A tag in the packing list: near-square so it never reads as a status.",
+      "html": "<span class=\"ds-chip\">TypeScript</span> <span class=\"ds-chip\">Astro</span>",
+      "css": ".ds-chip{display:inline-block;padding:.3rem .7rem;border:1.5px solid #2b1b5e;border-radius:6px;background:#fff;font-family:'Archivo',ui-sans-serif,system-ui,sans-serif;font-size:.9rem;font-weight:700;color:#2b1b5e}"
+    },
+    {
+      "name": "Parcel Card",
+      "kind": "card",
+      "refersTo": "parcel-card",
+      "description": "A project as a parcel: indigo header with tracking number and stamp, body, dashed-off footer with a barcode.",
+      "html": "<article class=\"ds-parcel\"><header class=\"ds-parcel-top\"><span class=\"ds-parcel-id\"><span class=\"ds-key\">Tracking no.</span><span class=\"ds-num\">HABI-v1.12.0</span></span><span class=\"ds-stamp\">Delivered</span></header><div class=\"ds-parcel-body\"><h3 class=\"ds-title\">Habi</h3><p class=\"ds-pitch\">A one-line pitch for the project.</p></div><footer class=\"ds-parcel-foot\"><span>12 releases in 90 days</span><span class=\"ds-barcode\"></span></footer></article>",
+      "css": ".ds-parcel{background:#fff;border-radius:18px;box-shadow:0 1px 2px rgb(29 20 56/.06),0 18px 40px -24px rgb(29 20 56/.45);overflow:hidden;font-family:'Archivo',ui-sans-serif,system-ui,sans-serif;color:#1d1438;max-width:36rem}.ds-parcel-top{display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:1rem 1.5rem;background:#2b1b5e;color:#fff}.ds-parcel-id{display:grid}.ds-key{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:#d9cff7}.ds-num{font-family:'JetBrains Mono',ui-monospace,monospace;font-weight:700;font-size:1.1rem}.ds-stamp{padding:.4rem 1rem;border-radius:999px;background:#ffe066;color:#1d1438;font-weight:900;font-stretch:112%;font-size:.95rem;letter-spacing:.04em;text-transform:uppercase}.ds-parcel-body{padding:1.5rem}.ds-title{margin:0;font-weight:900;font-stretch:120%;font-size:3rem;line-height:.9;letter-spacing:-.03em}.ds-pitch{margin:1rem 0 0;font-weight:600;font-size:1.2rem;line-height:1.35}.ds-parcel-foot{display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:.9rem 1.5rem;border-top:1.5px dashed #d3c9e6;background:#faf8fd;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:.75rem;color:#5d5379}.ds-barcode{display:block;height:1.75rem;width:9rem;background:repeating-linear-gradient(90deg,#1d1438 0 2px,transparent 2px 4px,#1d1438 4px 7px,transparent 7px 9px,#1d1438 9px 10px,transparent 10px 13px)}"
+    },
+    {
+      "name": "Release Log",
+      "kind": "custom",
+      "refersTo": "log-row",
+      "description": "Dated release rows; hover or focus tints the row and lights its dot magenta.",
+      "html": "<ol class=\"ds-log\"><li class=\"ds-row ds-row--latest\" tabindex=\"0\"><span class=\"ds-date\">14 Nov 2026</span><span class=\"ds-dot\"></span><span><b class=\"ds-ver\">v1.12.0</b> Latest release note</span></li><li class=\"ds-row\" tabindex=\"0\"><span class=\"ds-date\">2 Nov 2026</span><span class=\"ds-dot\"></span><span><b class=\"ds-ver\">v1.11.0</b> Earlier release note</span></li></ol>",
+      "css": ".ds-log{display:grid;margin:0;padding:0;list-style:none;border-top:1px solid #e3dcef;font-family:'Archivo',ui-sans-serif,system-ui,sans-serif;color:#1d1438}.ds-row{display:grid;grid-template-columns:7rem 1.25rem minmax(0,1fr);gap:.75rem;align-items:start;padding:.55rem .5rem;border-radius:10px;font-size:.95rem;transition:background-color 200ms cubic-bezier(.16,1,.3,1)}.ds-row:hover,.ds-row:focus-visible{background:#faf8fd}.ds-row:focus-visible{outline:2px solid #b0236e;outline-offset:3px}.ds-date{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:.78rem;color:#5d5379;padding-top:.15rem}.ds-dot{justify-self:center;width:10px;height:10px;margin-top:.45rem;border-radius:50%;background:#d3c9e6}.ds-row--latest .ds-dot,.ds-row:hover .ds-dot,.ds-row:focus-visible .ds-dot{background:#b0236e;box-shadow:0 0 0 4px rgb(176 35 110/.16)}.ds-ver{font-family:'JetBrains Mono',ui-monospace,monospace;font-weight:700;color:#2b1b5e}"
+    },
+    {
+      "name": "Shipping Label",
+      "kind": "card",
+      "refersTo": "shipping-label",
+      "description": "Sender and send-to labels: ink-bordered sticker with mono keys over heavy values and the email as the biggest link.",
+      "html": "<div class=\"ds-label\"><div class=\"ds-label-row\"><span class=\"ds-lkey\">Send to</span><span class=\"ds-lname\">Charlito Jr Mecarez</span></div><div class=\"ds-label-row\"><a href=\"#\" class=\"ds-email\">hello@example.com</a></div><div class=\"ds-label-foot\">Philippine time, UTC+8</div></div>",
+      "css": ".ds-label{max-width:30rem;background:#fff;border:2px solid #1d1438;border-radius:14px;box-shadow:0 1px 2px rgb(29 20 56/.06),0 18px 40px -24px rgb(29 20 56/.45);overflow:hidden;font-family:'Archivo',ui-sans-serif,system-ui,sans-serif;color:#1d1438}.ds-label-row{display:grid;gap:.2rem;padding:1.1rem 1.5rem;border-bottom:2px solid #1d1438}.ds-lkey{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#5d5379}.ds-lname{font-weight:900;font-stretch:118%;font-size:1.6rem;line-height:1.05;text-transform:uppercase}.ds-email{font-weight:900;font-stretch:105%;font-size:1.8rem;line-height:1.1;letter-spacing:-.02em;color:#b0236e;text-decoration-thickness:2px;text-underline-offset:.16em}.ds-email:hover,.ds-email:focus-visible{color:#2b1b5e;text-decoration-color:#2b1b5e}.ds-label-foot{padding:.9rem 1.5rem;background:#faf8fd;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:.75rem;color:#5d5379}"
+    },
+    {
+      "name": "Site Navigation",
       "kind": "nav",
-      "refersTo": "nav-link",
-      "description": "Favicon home mark at left, section links at right with a pink underline on hover.",
-      "html": "<header class=\"ds-nav\"><a href=\"#\" class=\"ds-nav-mark\" aria-label=\"Home\"><svg viewBox=\"0 0 32 32\" width=\"32\" height=\"32\"><rect width=\"32\" height=\"32\" rx=\"8\" fill=\"#2b1b5e\"/><path d=\"M16 5 Q17 15 27 16 Q17 17 16 27 Q15 17 5 16 Q15 15 16 5Z\" fill=\"#ffe066\"/></svg></a><ul><li><a href=\"#\">Work</a></li><li><a href=\"#\">Experience</a></li><li><a href=\"#\">About</a></li><li><a href=\"#\">Contact</a></li></ul></header>",
-      "css": ".ds-nav { font-family: 'Baloo 2', ui-rounded, ui-sans-serif, system-ui, sans-serif; display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 1.25rem 1rem 0; } .ds-nav-mark svg { display: block; } .ds-nav ul { display: flex; flex-wrap: wrap; gap: 0.25rem 1.5rem; margin: 0; padding: 0; list-style: none; font-size: 1.05rem; font-weight: 600; } .ds-nav ul a { color: var(--moon, #f4efff); text-decoration: underline 1.5px transparent; text-underline-offset: 0.2em; transition: text-decoration-color 200ms cubic-bezier(0.16, 1, 0.3, 1), color 200ms cubic-bezier(0.16, 1, 0.3, 1); } .ds-nav ul a:hover, .ds-nav ul a:focus-visible { color: var(--pink, #ff7ac6); text-decoration-color: var(--pink, #ff7ac6); } .ds-nav a:focus-visible { outline: 2px solid var(--yellow, #ffe066); outline-offset: 4px; border-radius: 4px; }"
-    },
-    {
-      "name": "Section Heading",
-      "kind": "custom",
-      "refersTo": "",
-      "description": "Heavy moon heading led by the favicon spark in glowing yellow.",
-      "html": "<h2 class=\"ds-heading\"><svg viewBox=\"0 0 20 20\" aria-hidden=\"true\"><path d=\"M10 0 Q11 9 20 10 Q11 11 10 20 Q9 11 0 10 Q9 9 10 0Z\"/></svg>Work</h2>",
-      "css": ".ds-heading { font-family: 'Baloo 2', ui-rounded, ui-sans-serif, system-ui, sans-serif; display: flex; align-items: center; gap: 0.6rem; margin: 0; font-weight: 800; font-size: clamp(2rem, 5vw, 3.25rem); line-height: 1; letter-spacing: -0.015em; color: var(--moon, #f4efff); } .ds-heading svg { flex: none; width: 0.6em; height: 0.6em; fill: var(--yellow, #ffe066); filter: drop-shadow(0 0 14px rgb(255 224 102 / 0.55)); }"
-    },
-    {
-      "name": "Contact Email",
-      "kind": "custom",
-      "refersTo": "contact-email",
-      "description": "The brightest, largest link on the page, lit by the lantern above it.",
-      "html": "<a class=\"ds-email\" href=\"#\">hello@<wbr>charliworks.com</a>",
-      "css": ".ds-email { font-family: 'Baloo 2', ui-rounded, ui-sans-serif, system-ui, sans-serif; font-weight: 800; font-size: clamp(1.4rem, 4.6vw, 3.4rem); line-height: 1.1; letter-spacing: -0.01em; color: var(--yellow, #ffe066); text-shadow: 0 0 28px rgb(255 224 102 / 0.35); text-decoration: underline 2px rgb(255 224 102 / 0.45); text-underline-offset: 0.18em; overflow-wrap: anywhere; transition: text-decoration-color 200ms cubic-bezier(0.16, 1, 0.3, 1); } .ds-email:hover, .ds-email:focus-visible { text-decoration-color: var(--pink, #ff7ac6); text-decoration-thickness: 3px; } .ds-email:focus-visible { outline: 2px solid var(--yellow, #ffe066); outline-offset: 4px; border-radius: 4px; }"
-    },
-    {
-      "name": "Skip Link",
-      "kind": "button",
-      "refersTo": "skip-link",
-      "description": "Yellow pill with night text, revealed on focus.",
-      "html": "<a class=\"ds-skip\" href=\"#\">Skip to content</a>",
-      "css": ".ds-skip { font-family: 'Baloo 2', ui-rounded, ui-sans-serif, system-ui, sans-serif; display: inline-block; padding: 0.5rem 0.9rem; border-radius: 10px; background: var(--yellow, #ffe066); color: var(--night, #170e38); font-weight: 700; text-decoration: none; } .ds-skip:focus-visible { outline: 2px solid var(--yellow, #ffe066); outline-offset: 4px; }"
-    },
-    {
-      "name": "Experience Row",
-      "kind": "custom",
-      "refersTo": "",
-      "description": "An unlit row on the night: mist dates, moon company, yellow role, lavender summary, hairline rules.",
-      "html": "<div class=\"ds-job\"><p class=\"ds-job-dates\">Mar 2023–present</p><div><p class=\"ds-job-co\">Acme Studio</p><p class=\"ds-job-role\">Full-stack developer</p><p class=\"ds-job-sum\">Builds and ships the web and mobile products end to end.</p></div></div>",
-      "css": ".ds-job { font-family: 'Baloo 2', ui-rounded, ui-sans-serif, system-ui, sans-serif; display: grid; grid-template-columns: 12rem 1fr; gap: 0.5rem 2rem; align-items: baseline; padding: 1.75rem 0; border-block: 1px solid rgb(255 255 255 / 0.12); } .ds-job p { margin: 0; } .ds-job-dates { font-size: 0.9rem; font-weight: 600; color: var(--mist, #b9addf); } .ds-job-co { font-weight: 800; font-size: clamp(1.6rem, 4vw, 2.5rem); line-height: 1.05; color: var(--moon, #f4efff); } .ds-job-role { margin-top: 0.6rem !important; font-weight: 700; font-size: 1.3rem; color: var(--yellow, #ffe066); } .ds-job-sum { max-width: 38rem; font-size: 1.125rem; line-height: 1.6; color: var(--lavender, #d9cff7); }"
-    },
-    {
-      "name": "Parol Lantern",
-      "kind": "custom",
-      "refersTo": "",
-      "description": "The signature: the favicon sparkle hung on a fading string, with pink tails and a yellow glow; swings once on arrival, then rests.",
-      "html": "<span class=\"ds-parol\" aria-hidden=\"true\"><span class=\"ds-parol-string\"></span><svg viewBox=\"0 0 40 56\" class=\"ds-parol-star\"><path d=\"M17 36 Q15 46 12 55 M23 36 Q25 46 28 55\" fill=\"none\" stroke=\"#ff7ac6\" stroke-width=\"1.6\" stroke-linecap=\"round\"/><path d=\"M20 0 Q22 18 40 20 Q22 22 20 40 Q18 22 0 20 Q18 18 20 0Z\" fill=\"#ffe066\"/><path d=\"M20 9 Q21 19 31 20 Q21 21 20 31 Q19 21 9 20 Q19 19 20 9Z\" fill=\"#fff6c4\"/></svg></span>",
-      "css": ".ds-parol { display: inline-flex; flex-direction: column; align-items: center; width: 4rem; transform-origin: top center; animation: ds-hang 3.6s cubic-bezier(0.16, 1, 0.3, 1) both; } .ds-parol-string { width: 1px; height: 3rem; background: linear-gradient(to bottom, transparent, var(--string, #8d7cc7) 45%); } .ds-parol-star { width: 100%; height: auto; margin-top: -1px; overflow: visible; filter: drop-shadow(0 0 14px rgb(255 224 102 / 0.55)); transition: filter 500ms cubic-bezier(0.16, 1, 0.3, 1); } .ds-parol:hover .ds-parol-star { filter: drop-shadow(0 0 26px rgb(255 224 102 / 0.95)); transition-duration: 120ms; } @keyframes ds-hang { 0% { transform: rotate(9deg); } 22% { transform: rotate(-6deg); } 44% { transform: rotate(3.5deg); } 66% { transform: rotate(-1.5deg); } 84% { transform: rotate(0.5deg); } 100% { transform: rotate(0deg); } } @media (prefers-reduced-motion: reduce) { .ds-parol { animation: none; } }"
+      "refersTo": "nav",
+      "description": "Favicon mark and section links; underline appears in magenta on hover.",
+      "html": "<header class=\"ds-nav\"><span class=\"ds-mark\"></span><ul><li><a href=\"#\">Work</a></li><li><a href=\"#\">Experience</a></li><li><a href=\"#\">About</a></li><li><a href=\"#\">Contact</a></li></ul></header>",
+      "css": ".ds-nav{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:1.25rem;background:#eeeaf6;font-family:'Archivo',ui-sans-serif,system-ui,sans-serif}.ds-mark{width:32px;height:32px;border-radius:8px;background:#2b1b5e}.ds-nav ul{display:flex;flex-wrap:wrap;gap:.25rem 1.5rem;margin:0;padding:0;list-style:none;font-weight:700;font-size:.95rem}.ds-nav a{color:#1d1438;text-decoration-line:underline;text-decoration-thickness:1.5px;text-underline-offset:.2em;text-decoration-color:transparent;transition:color 200ms cubic-bezier(.16,1,.3,1)}.ds-nav a:hover,.ds-nav a:focus-visible{color:#b0236e;text-decoration-color:#b0236e}"
     }
   ],
   "narrative": {
-    "northStar": "Parol Night",
-    "overview": "The site is a Philippine night sky in December. The favicon's four-point sparkle becomes parol lanterns hung on thin strings from the top of the page, and the content sits in their warm light. The ground is deep indigo, lightest at the top where the lanterns hang. One rounded, heavy face, Baloo 2, speaks for everything, so the page reads friendly and confident instead of technical.\n\nColour has two jobs and they never swap. Pink is the name, the close and the links you act on. Yellow is light: the lanterns, their glow, card titles, case titles and the email at the close. Moon, lavender and mist are the text under that light, in falling order of emphasis. Surfaces that a lantern lights are capiz cards: soft rounded panels with a barely-there white fill, a faint yellow edge and a wash of yellow from above, like light coming through a thin shell. Sections that are not lit (Experience, About) set type straight onto the night.\n\nMotion belongs to the lanterns. They swing as if just hung, then settle; after that they are damped pendulums pushed by scroll, a passing pointer and a tap. The page reads the same without the script and with reduced motion nothing moves. The world rejects the dark-neon developer template and the plain text column.",
+    "northStar": "The Courier Tracking Page",
+    "overview": "**Creative North Star: \"The Courier Tracking Page\"**\n\nThe site reads like the tracking page of a Philippine courier: a pale lavender-grey ground, white tracking cards with an indigo header bar, tracking numbers in mono, a yellow Delivered stamp, barcodes and dashed tear lines. Each project is a parcel. Its record is the real release history, laid out as a dated tracking log under a delivery line that fills from the first release to the latest, led by a glowing marker. The world proves shipping with receipts rather than claims.\n\nThe voice is loud and practical: names and headings are set heavy, wide and tight in Archivo, the way a depot sign or a waybill header is. Everything factual (versions, dates, counts, field keys) drops into JetBrains Mono, so the eye can tell a claim from a record at a glance. Density is generous between sections and tight inside cards, where rows, keys and values sit close like a printed label.\n\nMotion exists only to tell the shipping story: the line fills, the steps light in order, the status stamps Delivered. Without JavaScript or with reduced motion, every parcel simply shows its delivered state. The site is light-only (`color-scheme: light`).",
     "keyCharacteristics": [
-      "Deep indigo night with a radial lift at the top right, never a flat black.",
-      "Parol lanterns (yellow four-point star, pale core, two pink tails, soft glow) hung from the page's top edge.",
-      "One rounded heavy face, Baloo 2, from 400 to 800, for every role.",
-      "Pink acts, yellow lights; text steps moon, lavender, mist.",
-      "Capiz cards with 22px corners, a translucent fill and a faint yellow edge.",
-      "Glow is the only depth: drop-shadow and text-shadow in yellow, no offset shadows."
+      "Lavender-grey ground, white cards, indigo header bars, one soft card shadow.",
+      "Archivo at weight 900 and widened (112 to 122% width) for every name and heading.",
+      "JetBrains Mono strictly for tracking numbers, versions, dates, field keys and counts.",
+      "Yellow appears as the Delivered stamp, nowhere as a field.",
+      "Magenta marks the trail: link underlines, focus rings, the road fill, the latest release, the current job, the email.",
+      "Courier devices are native: barcodes, dashed tear lines, sender and send-to labels, a packing list, checkbox bullets."
     ],
     "rules": [
       {
-        "name": "The Pink Acts, Yellow Lights Rule",
-        "body": "Pink marks the name, the close and what you can click. Yellow marks light and what the light falls on. A yellow link is allowed only where a lantern lights it (card titles, the email); pink is never used as a glow.",
+        "name": "The Earned Stamp Rule",
+        "body": "Yellow means delivered. It is the status stamp and the selection highlight, never a background panel, a text color or decoration.",
         "section": "colors"
       },
       {
-        "name": "The Three-Step Text Rule",
-        "body": "Text is moon, lavender or mist, chosen by emphasis. No grey, no white, no fourth step.",
+        "name": "The Magenta Trail Rule",
+        "body": "Magenta marks where to go and how far the work has come: links, focus, the road fill, the latest release, the current job. It is never a surface fill and never the button color; buttons are indigo.",
         "section": "colors"
       },
       {
-        "name": "The One Face Rule",
-        "body": "Baloo 2 is the only typeface. Hierarchy is weight (400, 600, 700, 800) and size; there is no second display or label face.",
+        "name": "The Receipts Are Mono Rule",
+        "body": "JetBrains Mono is for records only: tracking numbers, versions, dates, field keys, quantities. Prose, headings and buttons are never mono.",
         "section": "typography"
       },
       {
-        "name": "The Tight Heavy Rule",
-        "body": "Anything at 800 and above 2rem tracks negative (-0.015em to -0.035em) and sets its line height at or under 1.",
+        "name": "The Wide Heavy Rule",
+        "body": "Every name and heading is Archivo 900, widened 112 to 122%, with tight negative tracking. Hierarchy comes from width and size, not from switching faces.",
         "section": "typography"
       },
       {
-        "name": "The Light Not Shadow Rule",
-        "body": "Every depth cue is yellow light with zero offset. If something needs to lift, it glows.",
+        "name": "The Tracking Log Rule",
+        "body": "Anything dated is a log: a mono date column, a dot on a line, then the entry. Release history and job history share this form.",
+        "section": "layout"
+      },
+      {
+        "name": "The One Lift Rule",
+        "body": "Cards have one shadow and it never changes with state. Interaction changes color and fill, never elevation.",
         "section": "elevation"
       }
     ],
     "dos": [
-      "**Do** keep the ground the indigo sky: night base with the dusk-to-indigo radial lift at the top right.",
-      "**Do** hang lanterns from the top edge on visible strings, and let a section lantern pool its light on the cards below it.",
-      "**Do** use capiz cards (22px, translucent fill, faint yellow edge) for things a lantern lights; set unlit sections straight onto the night.",
-      "**Do** keep pink for the name, the close and actionable links, and yellow for light and what it falls on.",
-      "**Do** set every role in Baloo 2 and build hierarchy with weight 400 to 800 and size.",
-      "**Do** express depth as zero-offset yellow glow.",
-      "**Do** make every lantern movement damped and settling, and render the page complete with reduced motion or without the script.",
-      "**Do** use the favicon's curved four-point sparkle wherever a mark or bullet is needed."
+      "Do put every project in a parcel card: indigo header with the mono tracking number, the status stamp, the road and steps, the release log, proof of delivery, a dashed-off footer with a barcode.",
+      "Do set names and headings in Archivo 900 widened 112 to 122% with negative tracking, and section headings uppercase.",
+      "Do use JetBrains Mono with tabular figures for versions, dates, counts, tracking numbers and field keys.",
+      "Do use the one card lift (`0 1px 2px rgb(29 20 56 / 0.06), 0 18px 40px -24px rgb(29 20 56 / 0.45)`) for every card and label.",
+      "Do draw anything dated as a log: mono date column, dot on a line, entry.",
+      "Do use courier devices where they carry meaning: barcodes, dashed tear lines, sender and send-to labels, packing-list checkboxes.",
+      "Do let motion only tell the shipping record, on the shared ease-out (`cubic-bezier(0.16, 1, 0.3, 1)`), and show the finished, delivered state without script or with reduced motion."
     ],
     "donts": [
-      "**Don't** add a second typeface for display or labels.",
-      "**Don't** use offset or dark drop shadows; glows only.",
-      "**Don't** use pure white, pure black or grey text; step moon, lavender, mist.",
-      "**Don't** wrap every section in a card; Experience and About stay on the night.",
-      "**Don't** add looping or idle animation; lanterns move only on arrival or when pushed, then come to rest.",
-      "**Don't** let lanterns or long words cause horizontal scroll."
+      "Don't use the yellow stamp color for text, panels or decoration; it means delivered.",
+      "Don't fill buttons or surfaces with magenta; buttons are indigo outlines that fill indigo on hover.",
+      "Don't set prose, headings or buttons in mono.",
+      "Don't add a second shadow, a hover lift or stacked depth.",
+      "Don't make a status look like a tag or a tag look like a status: pills for status and actions, 6px corners for tags.",
+      "Don't animate anything that is not part of a parcel's delivery or a page transition.",
+      "Don't show a parcel as delivered without real release data; with none, it reads \"In transit\"."
     ]
   }
 }

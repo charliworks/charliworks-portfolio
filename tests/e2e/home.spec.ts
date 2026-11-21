@@ -22,11 +22,37 @@ test.describe('home', () => {
     await expect(page.getByText(site.openTo)).toHaveCount(0);
   });
 
-  test('shows a cover image in each work row', async ({ page }) => {
+  for (const [width, cut] of [
+    [1280, 'wide'],
+    [390, 'phone'],
+  ] as const) {
+    test(`shows one labelled cover or clip per work row at ${width}px (${cut})`, async ({
+      page,
+    }) => {
+      await page.setViewportSize({ width, height: 900 });
+      await page.goto('/');
+      const media = page.locator(
+        'section[aria-labelledby="work-h"] li :is(.proof img, .proof video):visible',
+      );
+      await expect(media).toHaveCount(1);
+      const label =
+        (await media.getAttribute('alt')) ??
+        (await media.getAttribute('aria-label'));
+      expect(label?.trim()).toBeTruthy();
+    });
+  }
+
+  test('the clip has a working pause button', async ({ page }) => {
     await page.goto('/');
-    const img = page.locator('section[aria-labelledby="work-h"] li img');
-    await expect(img).toHaveCount(1);
-    await expect(img).toHaveAttribute('alt', /.+/);
+    const toggle = page.locator('.proof [data-clip-toggle]');
+    await toggle.scrollIntoViewIfNeeded();
+    await expect(toggle).toHaveText('Pause video');
+    await toggle.click();
+    await expect(toggle).toHaveText('Play video');
+    const paused = await page
+      .locator('.proof [data-clip]')
+      .evaluateAll((vs) => vs.every((v) => (v as HTMLVideoElement).paused));
+    expect(paused).toBe(true);
   });
 
   test('links to the Habi case study', async ({ page }) => {

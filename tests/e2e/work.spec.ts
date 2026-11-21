@@ -33,15 +33,20 @@ test.describe('work/habi', () => {
 
   test('banner caption says the screens show sample data', async ({ page }) => {
     await page.goto('/work/habi/');
-    await expect(page.getByText('Screens show sample data.')).toBeVisible();
+    await expect(
+      page.getByText('Screens show sample data.').first(),
+    ).toBeVisible();
   });
 
-  test('cover image has alt text and dimensions', async ({ page }) => {
+  test('cover clip has a label, a poster and dimensions', async ({ page }) => {
     await page.goto('/work/habi/');
-    const img = page.locator('main img').first();
-    expect((await img.getAttribute('alt'))?.trim()).toBeTruthy();
-    expect(await img.getAttribute('width')).toBeTruthy();
-    expect(await img.getAttribute('height')).toBeTruthy();
+    const media = page.locator('main .proof :is(img, video)').first();
+    const label =
+      (await media.getAttribute('alt')) ??
+      (await media.getAttribute('aria-label'));
+    expect(label?.trim()).toBeTruthy();
+    expect(await media.getAttribute('width')).toBeTruthy();
+    expect(await media.getAttribute('height')).toBeTruthy();
   });
 
   test('unknown work URL shows 404', async ({ page }) => {

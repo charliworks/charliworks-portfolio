@@ -7,3 +7,6 @@ test-results/
 .superpowers/
 *.md
 .impeccable/
+video/.hyperframes/
+video/renders/
+video/shared/
