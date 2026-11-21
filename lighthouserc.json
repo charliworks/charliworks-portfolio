@@ -19,6 +19,12 @@
             "minScore": 0.95
           }
         ],
+        "categories:seo": [
+          "error",
+          {
+            "minScore": 1
+          }
+        ],
         "largest-contentful-paint": [
           "error",
           {
