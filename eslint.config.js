@@ -10,6 +10,10 @@ export default [
       'playwright-report/',
       'test-results/',
       '.lighthouseci/',
+      // Vendored GSAP for the HyperFrames clips.
+      'video/shared/',
+      'video/renders/',
+      'video/.hyperframes/',
     ],
   },
   ...tseslint.configs.recommended,

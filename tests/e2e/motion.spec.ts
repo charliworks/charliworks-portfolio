@@ -5,7 +5,10 @@ const toSeconds = (value: string) =>
     ...value
       .split(',')
       .map((v) => v.trim())
+      // Elements that never render (like <source>) report no value.
+      .filter(Boolean)
       .map((v) => (v.endsWith('ms') ? parseFloat(v) / 1000 : parseFloat(v))),
+    0,
   );
 
 for (const path of ['/', '/work/habi/']) {

@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <!--
+  The phone cut of the Habi proof-of-delivery clip, for screens under 600px.
+  The landscape clip (proof.html) shrinks its text out of reach on a phone,
+  so this shows only the Home phone, large, on Habi's indigo. 30 s, the same
+  loop as proof.html (the 15 s Home clip twice).
+  Render: ./render.sh proof-phone
+-->
+    <style>
+      html,
+      body {
+        margin: 0;
+        background: #23205c;
+      }
+      #root {
+        position: relative;
+        width: 720px;
+        height: 900px;
+        overflow: hidden;
+        background:
+          radial-gradient(
+            70% 60% at 40% 20%,
+            rgb(255 255 255 / 0.07),
+            transparent 70%
+          ),
+          #23205c;
+      }
+      .phone {
+        position: absolute;
+        left: 160px;
+        top: 50px;
+        width: 400px;
+        height: 800px;
+        padding: 14px;
+        border-radius: 54px;
+        background: #14123a;
+        box-shadow:
+          0 40px 80px -30px rgb(0 0 0 / 0.6),
+          inset 0 0 0 2px rgb(255 255 255 / 0.08);
+        box-sizing: border-box;
+      }
+      .glass {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        border-radius: 42px;
+        overflow: hidden;
+        background: #f4ecd6;
+      }
+      .glass video {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="root"
+      data-composition-id="habi-proof-phone"
+      data-no-timeline
+      data-start="0"
+      data-duration="30"
+      data-width="720"
+      data-height="900"
+    >
+      <div class="phone">
+        <div class="glass">
+          <video
+            id="home-1"
+            class="clip"
+            src="../media/home-screen.mp4"
+            muted
+            data-start="0"
+            data-duration="15"
+          ></video>
+          <video
+            id="home-2"
+            class="clip"
+            src="../media/home-screen.mp4"
+            muted
+            data-start="15"
+            data-duration="15"
+          ></video>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

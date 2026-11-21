@@ -9,6 +9,7 @@ import { site } from '../site';
   notFound
 >
   <section class="lost">
+    <p class="lost-key mono">Tracking number not found</p>
     <h1 class="lost-title">This page does not exist.</h1>
     <p class="lost-copy">
       The link may be old or mistyped. <a href="/">Go to the home page</a>.
@@ -22,24 +23,32 @@ import { site } from '../site';
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: 1.25rem;
+    gap: 1rem;
     width: 100%;
-    max-width: 80rem;
+    max-width: 76rem;
     margin-inline: auto;
-    padding: 4rem clamp(1rem, 5vw, 4rem) 0;
+    padding: 4rem clamp(1rem, 5vw, 3rem) 0;
+  }
+
+  .lost-key {
+    order: 2;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--action);
   }
 
   .lost-title {
     max-width: 14ch;
-    font-weight: 800;
+    font-weight: 900;
+    font-stretch: 118%;
     font-size: clamp(2.5rem, 8vw, 5.5rem);
-    line-height: 0.95;
-    letter-spacing: -0.025em;
-    color: var(--pink);
+    line-height: 0.92;
+    letter-spacing: -0.03em;
+    color: var(--indigo);
   }
 
   .lost-copy {
-    font-size: 1.25rem;
-    color: var(--lavender);
+    order: 3;
+    font-size: 1.2rem;
   }
 </style>
