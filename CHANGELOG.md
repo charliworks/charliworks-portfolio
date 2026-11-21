@@ -22,4 +22,6 @@ All notable changes to this project are listed here. The format follows [Keep a 
 
 ### Removed
 
+- Less text: the Habi case study drops "The rules it follows" and keeps the first sentence of each build note and the one-line release fact; the "Read the case study" and "Scroll" labels are gone.
+
 - The hand-painted SVG hero (`HeroArt.astro`).

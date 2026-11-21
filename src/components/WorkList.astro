@@ -42,19 +42,6 @@ const { entries } = Astro.props;
         <div class="project-copy">
           <p class="project-pitch">{entry.data.pitch}</p>
           <p class="project-stack">{entry.data.stack.join(' · ')}</p>
-          <span class="project-cta" aria-hidden="true">
-            Read the case study
-            <svg viewBox="0 0 24 24">
-              <path
-                d="M5 12h14M13 6l6 6-6 6"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-            </svg>
-          </span>
         </div>
       </div>
     </li>
@@ -148,25 +135,6 @@ const { entries } = Astro.props;
     font-weight: 600;
     letter-spacing: 0.01em;
     color: var(--haze);
-  }
-
-  .project-cta {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.6rem;
-    margin-top: 1.75rem;
-    font-weight: 600;
-    color: var(--spark);
-  }
-
-  .project-cta svg {
-    width: 1.25rem;
-    transition: transform 500ms var(--ease-out);
-  }
-
-  .project:hover .project-cta svg,
-  .project:focus-within .project-cta svg {
-    transform: translateX(6px);
   }
 
   .project:hover .project-title,
