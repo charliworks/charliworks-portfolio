@@ -37,8 +37,7 @@ export const site: Site = {
   email: 'charlitomecarezjr@gmail.com',
   github: 'charlitomecarez',
   linkedin: 'https://www.linkedin.com/in/charlito-mecarez-jr-5565431b4/',
-  // TODO(charlito): set to '/charlito-mecarez-resume.pdf' once the updated PDF is in public/.
-  resume: undefined,
+  resume: '/charlito-mecarez-resume.pdf',
   experience: [
     {
       role: 'Frontend Developer',

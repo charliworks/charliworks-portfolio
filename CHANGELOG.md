@@ -12,6 +12,7 @@ All notable changes to this project are listed here. The format follows [Keep a 
 - Home page and Habi case study in a simple, text-first design, with a 404 page.
 - Reduced-motion and Lighthouse budget checks in CI.
 - ADR 0002: hosting on Cloudflare Pages.
+- A "Résumé" link in the footer, next to GitHub and LinkedIn, to a one-page PDF without a phone number.
 
 ### Changed
 
