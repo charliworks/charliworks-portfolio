@@ -8,7 +8,7 @@ web
 
 ## Stack
 
-Astro 7, Tailwind CSS v4, TypeScript. Static output; the page reads fully without JavaScript, and one small script adds the interactive lanterns on top. Hosted on Cloudflare Pages (free tier). See `docs/adr/0001-stack-choice.md`.
+Astro 7, Tailwind CSS v4, TypeScript. Static output; the page reads fully without JavaScript, and one small script adds the parcel drive on top. Hosted on Cloudflare Pages (free tier). See `docs/adr/0001-stack-choice.md`.
 
 ## Users
 
@@ -51,7 +51,7 @@ The work is built for one real life in the Philippines, not for a demo. Habi joi
 - Voice follows charliworks `design/brand-voice.md`: clear before clever, warm not cute, confident not hype, short.
 - Charlito writes the personal copy: the intro line, About and "What I learned". Nobody invents opinions, feelings or history for Charlito.
 - Anti-goal: the site must not look like a common UI design system or template.
-- Visual world (chosen 2026-11-21, replacing the golden-hour ride): Parol Night. A deep indigo night sky with parol lanterns made from the favicon's sparkle, all in the favicon's indigo, pink and yellow. The lanterns react to scroll, pointer and tap. The site is dark only.
+- Visual world (chosen 2026-11-21, replacing Parol Night before it shipped): Shipping Tracker. Each project is a parcel with a courier tracking page; the tracking log is the project's real release history. Built from the favicon's indigo, pink and yellow on a light lavender ground. The statement: Charlito builds real things that ship.
 - charliworks is Charlito's maker label, not the subject of the site. The site stays personal and speaks as "I". The label appears once on Home and once on each case study.
 
 ## Evidence on Hand
