@@ -100,7 +100,6 @@ const nav = [
     <header class="site-header">
       <a href="/" class="site-mark">
         <img src="/favicon.png" alt="" width="28" height="28" />
-        <span class="display">CJM</span>
         <span class="sr-only">{site.name}, home</span>
       </a>
       <nav aria-label="Sections">
@@ -240,12 +239,8 @@ const nav = [
     text-decoration-color: var(--accent);
   }
 
-  /* Phones keep every section link: the wordmark steps back to the logo. */
+  /* Phones keep every section link. */
   @media (max-width: 560px) {
-    .site-mark .display {
-      display: none;
-    }
-
     .site-header {
       padding-inline: 1rem;
     }

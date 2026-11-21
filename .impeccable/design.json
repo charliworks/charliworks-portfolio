@@ -455,8 +455,8 @@
       "name": "Header Nav",
       "kind": "nav",
       "refersTo": "link",
-      "description": "Fixed transparent header: logo and CJM wordmark in wide display, section links with a pink underline on hover. At 560px and below every link stays and the wordmark hides. Leaves in 300ms, returns in 600ms.",
-      "html": "<header class=\"ds-header\"><a class=\"ds-mark\" href=\"#\">CJM</a><nav><a href=\"#\">Work</a><a href=\"#\">Experience</a><a href=\"#\">About</a><a href=\"#\">Contact</a></nav></header>",
+      "description": "Fixed transparent header: the logo alone (its accessible name is the site name), section links with a pink underline on hover. At 560px and below every link stays. Leaves in 300ms, returns in 600ms.",
+      "html": "<header class=\"ds-header\"><a class=\"ds-mark\" href=\"#\"><img src=\"/favicon.png\" alt=\"\" width=\"28\" height=\"28\"><span class=\"sr-only\">Charlito Jr Mecarez, home</span></a><nav><a href=\"#\">Work</a><a href=\"#\">Experience</a><a href=\"#\">About</a><a href=\"#\">Contact</a></nav></header>",
       "css": ".ds-header{display:flex;justify-content:space-between;align-items:center;padding:16px 32px;background:linear-gradient(#e47a58,#f2a768);color:#24130b;} .ds-mark{font-family: Anybody, ui-sans-serif, system-ui, sans-serif;font-weight:800;font-stretch:130%;font-size:1.05rem;color:inherit;text-decoration:none;} .ds-header nav{display:flex;gap:1.4rem;font-size:0.95rem;font-weight:500;} .ds-header nav a{color:inherit;text-decoration:underline;text-decoration-color:transparent;text-underline-offset:0.24em;transition:text-decoration-color 200ms;} .ds-header nav a:hover,.ds-header nav a:focus-visible{text-decoration-color:#ff7ac6;text-decoration-thickness:2px;} .ds-header a:focus-visible{outline:2px solid #24130b;outline-offset:4px;border-radius:3px;} @media (max-width:560px){.ds-header{padding-inline:16px;} .ds-header nav{gap:0.9rem;font-size:0.875rem;}}"
     },
     {

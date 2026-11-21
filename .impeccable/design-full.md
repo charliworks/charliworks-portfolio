@@ -199,7 +199,7 @@ Every page is a single vertical ride. Content sits in an 80rem container with a 
 
 The hero is top left: name, then a 34rem column of role, intro and the charliworks line. The close is centred. Lists use a two-column rail from 760px up: a 12rem label column (dates, tool group) and a flexible content column, aligned on the baseline and separated by hairline rules. Project meta splits into two columns from 900px. Case studies read in a 42rem column centred under a full-width cover.
 
-On narrow screens the rail collapses to one column. At 560px and below the header keeps every section link and drops the CJM wordmark, leaving the logo. Below 1024px the odometer shows kilometres only, without the stop name and track. Text stays readable at 200 percent zoom on a 320px screen; display words may break mid-word only in that case.
+On narrow screens the rail collapses to one column. At 560px and below the header keeps every section link. Below 1024px the odometer shows kilometres only, without the stop name and track. Text stays readable at 200 percent zoom on a 320px screen; display words may break mid-word only in that case.
 
 ## Elevation & Depth
 
@@ -242,7 +242,7 @@ A centred close at night: the Contact title in the widest display, the email in 
 Fixed to the bottom corners, above the content. The odometer reads kilometres (pink, tabular), the current stop in uppercase HUD type, and a 7rem progress track that fills in yellow. Below 1024px the odometer shows kilometres only. The pause control is a text button with drawn pause bars, at least 2.75rem tall, underlined like a link; pausing stops the scene and every CSS animation. It comes early in tab order, right after the header, and fades in with the first-paint copy. When paused its icon swaps to a drawn play triangle and the label reads "Play motion"; the label keeps a fixed width so the control never shifts. Both follow the day and night tone and carry the HUD halo.
 
 ### Header
-Fixed, transparent, no background. The CJM mark (favicon plus wide display initials) on the left, section links on the right. It slides away while you ride down past 240px and returns when you scroll up or tab into it; it leaves faster than it returns (300ms out, 600ms back). On phones (560px and below) it keeps every section link and shows the logo without the wordmark.
+Fixed, transparent, no background. The logo alone on the left (no wordmark; its accessible name is the site name), section links on the right. It slides away while you ride down past 240px and returns when you scroll up or tab into it; it leaves faster than it returns (300ms out, 600ms back). On phones (560px and below) it keeps every section link.
 
 ### Motion
 Scroll is smoothed (lenis, lerp 0.09) and drives the camera, sky phase (tweened 1.4s) and odometer through GSAP ScrollTrigger. Entrances use one curve, `cubic-bezier(0.16, 1, 0.3, 1)` in CSS and `expo.out` in GSAP. Only the hero name rises on first paint (CSS); section headings rise as they scroll in (GSAP), moving the text inside each line while the line itself stays still as the mask. Copy fades up 16px, rows and contact links arrive in staggers of 80 to 120ms. The About statement lights from 40 percent to full opacity word by word as you read. Velocity effects (the name's wind, the Tools push) smooth over elapsed time, not frames, so a slow phone settles as fast as a fast screen, and they snap to rest at zero. Between Work and a case study, a 450ms view transition morphs the cover and title.
