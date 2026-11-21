@@ -7,26 +7,26 @@ related_targets: ["src/pages/work"]
 
 # Surface brief: Home and case study pages
 
-Scope: `/` and `/work/<slug>`, plus 404. Mode: Experience. The ride leads; the content rides with it.
+Scope: `/` and `/work/<slug>`, plus 404. Mode: Experience. The stickers lead; the content is printed on them or etched beside them.
 
 Audience: recruiters, collaborators and clients who skim first. Job: make them stay, want to know more about Charlito, then make contact (user, 2026-11-21).
 
-Chosen direction: Golden Hour Ride (user pick, 2026-11-21), replacing the text-first column. User kept the Philippines scene idea and the pink and yellow accents; allowed three, lenis, gsap.
+Chosen direction: Parol Night (user pick "Direction A" on the favicon-directions page, 2026-11-21), replacing the Golden Hour Ride. Built from the favicon: indigo ground, pink C, yellow sparkle. A Laptop Lid build was made by mistake first and discarded. User approved removing three, gsap and lenis.
 
 ## Direction contract
 
-THESIS: Scrolling the portfolio is one motorbike ride through the Philippines, from golden hour into night; each section is a stop on the road. It refuses the dark-neon dev template and the plain text column.
+THESIS: The site is a Philippine night sky in December: the favicon's sparkle becomes parol lanterns hung over the page, and the content sits in their warm light. It refuses the dark-neon dev template and the plain text column.
 
-OWN-WORLD: A live three.js scene fixed behind the page: stepped rice terraces, Mayon's cone, palms, a road with the rider. Sky moves coral and amber, then rose and violet dusk, then navy night with stars and a yellow headlight. Display type is Anybody (variable width), stretched wide; body is the system sans. Pink marks links, selection and the odometer; yellow is light: the sun, the headlight, the name's highlighter, and what the headlight falls on at the close (the email address). No cards, glass or gradient text.
+OWN-WORLD: Deep indigo night, lighter at the top where the lanterns hang. Parol lanterns are the favicon's four-point sparkle in yellow, with two short pink tails like a parol's, on thin strings that start at the page's top edge, with a soft yellow glow. Smaller lanterns hang over Work and Tools and pool warm light on the cards below them. One rounded heavy face, Baloo 2, for everything. Pink is the name and links you act on; yellow is light: lantern, card titles, the email. Soft rounded cards with a translucent fill and a faint yellow edge, like light through capiz.
 
-STORY: The visitor meets Charlito at sunset, rides to Habi, through experience, about and tools, and arrives at night at a large contact close centred in the headlight: the email address is the biggest link on the page. Heading scale varies by stop: where the content is the headline (Habi, About), the heading steps back.
+STORY: The visitor meets Charlito under the lanterns, reads Habi as the first lit card, then experience, about and tools, and ends under the biggest lantern, where the email is the brightest, largest link.
 
-FIRST VIEWPORT: Full-bleed scene. The name in huge wide display over the bright sky, top left, dark ink; role and intro under it; charliworks line; a fixed odometer bottom left reading km and stop (it reads first, like a dashboard), the pause control bottom right within thumb reach. Kilometre posts on the road shoulder echo the odometer in the world.
+FIRST VIEWPORT: Header with the favicon and section links. Three lanterns hang from the top right on strings of different lengths. The name in large pink Baloo 2 top left, the role and intro under it, the charliworks line, then three cards: Habi, Experience, Say hi.
 
-FORM: Golden Hour Ride, my top grounded candidate (pick card). seed:b95e071113c2183d
+FORM: Parol Night, chosen whole by the user from the favicon-directions mock. seed: none (pinned) "it's this one right here … Direction A".
 
 FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance
 
 ## Signature interaction
 
-Scroll drives the camera along the road and the time of day together (lenis + GSAP ScrollTrigger). The display name widens with scroll speed like wind. Habi's cover tilts toward the pointer. About words light up as you read. Tools drift in rows with scroll velocity. Pause stops the scene (WCAG 2.2.2); reduced motion shows one still frame and plain reveals.
+On first paint the lanterns swing as if just hung and settle within four seconds. After that they are damped pendulums: scrolling makes them lag and sway, a passing mouse is a breeze, and a tap swings one hard, flashes it and shakes loose a few falling sparks; each settles back to still. A warm spot follows the pointer inside capiz cards. One small script (src/scripts/lanterns.ts); the page reads the same without it. Reduced motion: nothing moves. The Habi cover morphs into the case page with a view transition.
