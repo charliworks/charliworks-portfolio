@@ -21,6 +21,8 @@ export type Site = {
   email: string;
   github: string;
   linkedin: string | undefined;
+  /** Path under public/ to the résumé PDF. Unset hides the link. */
+  resume: string | undefined;
   experience: readonly Job[];
   tools: readonly ToolGroup[];
 };
@@ -35,6 +37,8 @@ export const site: Site = {
   email: 'charlitomecarezjr@gmail.com',
   github: 'charlitomecarez',
   linkedin: 'https://www.linkedin.com/in/charlito-mecarez-jr-5565431b4/',
+  // TODO(charlito): set to '/charlito-mecarez-resume.pdf' once the updated PDF is in public/.
+  resume: undefined,
   experience: [
     {
       role: 'Frontend Developer',

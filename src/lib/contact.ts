@@ -8,5 +8,6 @@ export function contactLinks(s: Site): ContactLink[] {
     { label: 'GitHub', href: `https://github.com/${s.github}` },
   ];
   if (s.linkedin) links.push({ label: 'LinkedIn', href: s.linkedin });
+  if (s.resume) links.push({ label: 'Résumé', href: s.resume });
   return links;
 }
