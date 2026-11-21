@@ -9,36 +9,163 @@ interface Props {
 const { entries } = Astro.props;
 ---
 
-<ul class="space-y-6">
+<ul class="work">
   {entries.map((entry) => (
-    <li class="reveal group relative flex flex-col gap-3 sm:flex-row sm:items-start sm:gap-4">
-      <Image
-        src={entry.data.cover}
-        alt={entry.data.coverAlt}
-        widths={[128, 256]}
-        sizes="8rem"
-        class="h-auto w-32 shrink-0 rounded-sm sm:mt-1"
+    <li class="project" data-tilt>
+      <div
+        class="cover"
+        data-cover
         style={`view-transition-name: cover-${entry.id}`}
-      />
-      <div class="min-w-0 flex-1">
-        <div class="flex items-baseline justify-between gap-4">
+      >
+        <Image
+          src={entry.data.cover}
+          alt={entry.data.coverAlt}
+          widths={[640, 1024, 1600]}
+          sizes="(min-width: 80rem) 72rem, 92vw"
+          class="cover-img"
+        />
+      </div>
+      <div class="project-meta">
+        <div class="project-head">
           <a
             href={`/work/${entry.id}/`}
-            class="font-medium group-hover:decoration-accent group-hover:decoration-2 after:absolute after:inset-0 after:content-['']"
+            class="project-title display"
             style={`view-transition-name: title-${entry.id}`}
           >
             {entry.data.title}
           </a>
-          <time
-            class="text-sm text-text-muted"
-            datetime={String(entry.data.year)}
-          >
-            {entry.data.year}
-          </time>
+          <time datetime={String(entry.data.year)}>{entry.data.year}</time>
         </div>
-        <p class="text-text-muted">{entry.data.pitch}</p>
-        <p class="text-sm text-text-muted">{entry.data.stack.join(' · ')}</p>
+        <div class="project-copy">
+          <p class="project-pitch">{entry.data.pitch}</p>
+          <p class="project-stack">{entry.data.stack.join(' · ')}</p>
+          <span class="project-cta" aria-hidden="true">
+            Read the case study
+            <svg viewBox="0 0 24 24">
+              <path
+                d="M5 12h14M13 6l6 6-6 6"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </span>
+        </div>
       </div>
     </li>
   ))}
 </ul>
+
+<style>
+  .work {
+    display: grid;
+    gap: clamp(4rem, 10vh, 7rem);
+  }
+
+  .project {
+    position: relative;
+  }
+
+  .cover {
+    overflow: hidden;
+    border-radius: 20px;
+    will-change: clip-path, transform;
+    box-shadow: 0 40px 80px -30px rgb(10 6 30 / 0.65);
+    background: #2a1c3c;
+  }
+
+  .cover-img {
+    display: block;
+    width: 100%;
+    height: auto;
+    transform-origin: center;
+  }
+
+  .project-meta {
+    display: grid;
+    gap: 1.25rem 3rem;
+    margin-top: 2rem;
+  }
+
+  @media (min-width: 900px) {
+    .project-meta {
+      grid-template-columns: 1fr 1fr;
+      align-items: start;
+    }
+  }
+
+  .project-head {
+    display: flex;
+    align-items: baseline;
+    gap: 1.25rem;
+  }
+
+  .project-title {
+    font-size: clamp(3rem, 9vw, 6.5rem);
+    font-stretch: 150%;
+    line-height: 0.9;
+    text-decoration: none;
+  }
+
+  /* The whole row is the click target. */
+  .project-title::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 20px;
+  }
+
+  .project-head time {
+    font-weight: 600;
+    color: var(--haze);
+  }
+
+  .project-pitch {
+    font-size: clamp(1.25rem, 2.2vw, 1.6rem);
+    line-height: 1.35;
+    font-weight: 500;
+  }
+
+  .project-stack {
+    margin-top: 1rem;
+    font-size: var(--text-sm);
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    color: var(--haze);
+  }
+
+  .project-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-top: 1.75rem;
+    font-weight: 600;
+    color: var(--spark);
+  }
+
+  .project-cta svg {
+    width: 1.25rem;
+    transition: transform 500ms var(--ease-out);
+  }
+
+  .project:hover .project-cta svg,
+  .project:focus-within .project-cta svg {
+    transform: translateX(6px);
+  }
+
+  .project:hover .project-title,
+  .project:focus-within .project-title {
+    color: var(--accent);
+  }
+
+  .project:focus-within .project-title::after {
+    outline: 2px solid var(--spark);
+    outline-offset: 8px;
+  }
+
+  .project-title:focus-visible {
+    outline: none;
+  }
+</style>

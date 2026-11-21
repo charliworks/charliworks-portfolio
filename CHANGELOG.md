@@ -12,3 +12,13 @@ All notable changes to this project are listed here. The format follows [Keep a 
 - Home page and Habi case study in a simple, text-first design, with a 404 page.
 - Reduced-motion and Lighthouse budget checks in CI.
 - ADR 0002: hosting on Cloudflare Pages.
+
+### Changed
+
+- Redesigned Home, the case study and the 404 page as one motorbike ride through the Philippines: a three.js scene behind the page moves from golden hour to night as you scroll, with smooth scroll (lenis) and scroll-linked motion (GSAP). Content is unchanged.
+- New display face: Anybody (variable width), self-hosted.
+- New link preview image from the redesigned first screen.
+
+### Removed
+
+- The hand-painted SVG hero (`HeroArt.astro`).

@@ -1,64 +1,95 @@
 @import 'tailwindcss';
 
+@font-face {
+  font-family: 'Anybody';
+  font-style: normal;
+  font-weight: 100 900;
+  font-stretch: 50% 150%;
+  font-display: swap;
+  src: url('/fonts/anybody-latin.woff2') format('woff2');
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
+    U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212,
+    U+2215, U+FEFF, U+FFFD;
+}
+
 @theme {
   --font-body:
     ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto,
     'Helvetica Neue', Arial, sans-serif;
+  --font-display: 'Anybody', var(--font-body);
   --text-sm: 0.875rem;
   --text-sm--line-height: 1.5;
-  --text-base: 1rem;
+  --text-base: 1.0625rem;
   --text-base--line-height: 1.65;
-  --text-lg: 1.125rem;
-  --text-lg--line-height: 1.45;
-  --color-surface: var(--surface);
-  --color-text: var(--text);
-  --color-text-muted: var(--text-muted);
-  --color-focus: var(--focus);
+  --text-lg: 1.25rem;
+  --text-lg--line-height: 1.5;
+  --color-ink: var(--ink);
+  --color-cream: var(--cream);
+  --color-haze: var(--haze);
+  --color-dusk-ink: var(--dusk-ink);
   --color-accent: var(--accent);
   --color-spark: var(--spark);
 }
 
 :root {
-  --surface: #fbfbfa;
-  --text: #1c1c1a;
-  --text-muted: #63635e;
-  --focus: #1c1c1a;
+  /* Day: ink on the golden sky. Night: cream on the dark sky. */
+  --ink: #24130b;
+  --dusk-ink: #5a2f1c;
+  --cream: #fff4e6;
+  --haze: #e6cfe0;
   --accent: #ff7ac6;
   --spark: #ffe066;
-  --measure: 36rem;
-  color-scheme: light;
+  --night: #0a0f2a;
+  --sky-top: #e47a58;
+  --sky-mid: #f2a768;
+  --sky-horizon: #fde1a8;
+  --wind: 0;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  color-scheme: dark;
 }
 
 @layer base {
   html {
-    background: var(--surface);
-    color: var(--text);
+    background: var(--night);
+    color: var(--cream);
     font-family: var(--font-body);
     font-size: 100%;
     -webkit-text-size-adjust: 100%;
+    scrollbar-color: var(--accent) var(--night);
+  }
+
+  html.lenis,
+  html.lenis body {
+    height: auto;
+  }
+
+  .lenis.lenis-smooth {
+    scroll-behavior: auto !important;
   }
 
   body {
     margin: 0;
     font-size: var(--text-base);
     line-height: var(--text-base--line-height);
-    caret-color: var(--text);
+    caret-color: var(--accent);
   }
 
   ::selection {
     background: var(--accent);
-    color: var(--text);
+    color: #1a0a12;
   }
 
   a {
     color: inherit;
     text-decoration-line: underline;
     text-decoration-thickness: 1px;
-    text-decoration-color: var(--text-muted);
-    text-underline-offset: 0.22em;
+    text-decoration-color: color-mix(in srgb, currentColor 45%, transparent);
+    text-underline-offset: 0.24em;
     transition:
-      text-decoration-thickness 150ms ease-out,
-      text-decoration-color 150ms ease-out;
+      text-decoration-thickness 200ms var(--ease-out),
+      text-decoration-color 200ms var(--ease-out),
+      color 200ms var(--ease-out);
   }
 
   a:hover,
@@ -68,23 +99,137 @@
   }
 
   :focus-visible {
-    outline: 2px solid var(--focus);
-    outline-offset: 3px;
-    border-radius: 2px;
+    outline: 2px solid var(--spark);
+    outline-offset: 4px;
+    border-radius: 3px;
+  }
+
+  [data-tone='day'] :focus-visible,
+  .tone-day :focus-visible {
+    outline-color: var(--ink);
   }
 
   p,
-  li {
+  li,
+  dd {
     text-wrap: pretty;
   }
 
   h1,
-  h2 {
+  h2,
+  h3 {
     text-wrap: balance;
   }
 
   time {
     font-variant-numeric: tabular-nums;
+  }
+}
+
+@layer components {
+  /* The display voice: Anybody, stretched wide. */
+  .display {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-stretch: 130%;
+    line-height: 0.92;
+    letter-spacing: -0.02em;
+    /* Only breaks a word when it cannot fit at all (200% text on 320px). */
+    overflow-wrap: break-word;
+    hyphens: auto;
+  }
+
+  /* The fixed world behind every page: CSS sky first, the 3D ride over it. */
+  .world {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    background: linear-gradient(
+      to bottom,
+      var(--sky-top) 0%,
+      var(--sky-mid) 48%,
+      var(--sky-horizon) 72%,
+      color-mix(in srgb, var(--sky-horizon) 40%, #3e5a2c) 100%
+    );
+  }
+
+  .world canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 1.4s var(--ease-out);
+  }
+
+  .world canvas[data-ready] {
+    opacity: 1;
+  }
+
+  /* Keeps text readable where the valley meets the copy. */
+  .world::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(
+        120% 80% at 50% 40%,
+        transparent 45%,
+        rgb(8 10 30 / 0.25) 100%
+      ),
+      linear-gradient(to bottom, transparent 55%, rgb(8 10 30 / 0.25));
+    opacity: var(--veil, 0);
+    transition: opacity 1.2s var(--ease-out);
+  }
+
+  [data-tone='night'] .world::after {
+    --veil: 1;
+  }
+
+  main,
+  body > footer {
+    position: relative;
+    z-index: 1;
+  }
+
+  .word {
+    display: inline;
+  }
+
+  /* Lines that rise out of a clip on first paint. */
+  .line {
+    display: block;
+    overflow: clip;
+    padding-bottom: 0.06em;
+  }
+
+  .line > span {
+    display: block;
+    animation: rise 1.3s var(--ease-out) both;
+    animation-delay: calc(var(--i, 0) * 110ms + 150ms);
+  }
+
+  .fade-up {
+    animation: fade-up 1.2s var(--ease-out) both;
+    animation-delay: calc(var(--i, 0) * 90ms + 500ms);
+  }
+
+  .is-paused .line > span,
+  .is-paused .fade-up {
+    animation-play-state: paused;
+  }
+}
+
+@keyframes rise {
+  from {
+    transform: translateY(105%);
+  }
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
   }
 }
 
@@ -94,24 +239,8 @@
   }
 
   ::view-transition-group(*) {
-    animation-duration: 250ms;
-    animation-timing-function: ease-out;
-  }
-
-  @supports (animation-timeline: view()) {
-    .reveal,
-    .case > * {
-      animation: reveal linear both;
-      animation-timeline: view();
-      animation-range: entry 0% entry 60%;
-    }
-  }
-}
-
-@keyframes reveal {
-  from {
-    opacity: 0;
-    translate: 0 12px;
+    animation-duration: 450ms;
+    animation-timing-function: var(--ease-out);
   }
 }
 
@@ -122,5 +251,16 @@
     transition-duration: 0.01ms !important;
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
+    animation-delay: 0ms !important;
+  }
+}
+
+/* At 200% text on a narrow phone, a display word may break rather than
+   push the page sideways. At normal sizes every title fits whole. */
+@media (max-width: 480px) {
+  .display,
+  .about,
+  .case {
+    overflow-wrap: anywhere;
   }
 }
