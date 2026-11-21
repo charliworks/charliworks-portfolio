@@ -8,16 +8,21 @@ import { Content as About } from '../content/about.md';
 import { site } from '../site';
 import { sortWork } from '../lib/work';
 import { jobDates } from '../lib/experience';
+import {
+  homeDescription,
+  homeJsonLd,
+  homeTitle,
+  jsonLdScript,
+} from '../lib/seo';
 
 const work = sortWork(await getCollection('work'));
 const lead = work[0];
 const now = site.experience[0];
+const jsonLd = jsonLdScript(homeJsonLd(site, Astro.site!));
 ---
 
-<Base
-  title={site.name}
-  description={`${site.name}, full-stack developer. ${site.openTo}`}
->
+<Base title={homeTitle(site)} description={homeDescription(site)}>
+  <script slot="head" is:inline type="application/ld+json" set:html={jsonLd} />
   <section class="hero" aria-labelledby="name">
     <div class="lanterns">
       <Parol size={5} drop={3} delay={0} />

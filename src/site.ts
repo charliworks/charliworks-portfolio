@@ -14,6 +14,10 @@ export type Job = {
 
 export type Site = {
   name: string;
+  /** Other forms of the name people search for. */
+  alternateNames: readonly string[];
+  /** Short job title for search engines. */
+  jobTitle: string;
   brand: { name: string; url: string };
   role: string;
   openTo: string;
@@ -29,6 +33,8 @@ export type Site = {
 
 export const site: Site = {
   name: 'Charlito Jr Mecarez',
+  alternateNames: ['Charlito Mecarez', 'Charlito Mecarez Jr'],
+  jobTitle: 'Full-stack developer',
   brand: { name: 'charliworks', url: 'https://github.com/charliworks' },
   role: 'Full-stack developer in the Philippines, with 4 years of experience.',
   openTo: 'Open to full-time roles, collaborations and freelance work.',

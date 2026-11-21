@@ -13,6 +13,7 @@ All notable changes to this project are listed here. The format follows [Keep a 
 - Reduced-motion and Lighthouse budget checks in CI.
 - ADR 0002: hosting on Cloudflare Pages.
 - A "Résumé" link in the footer, next to GitHub and LinkedIn, to a one-page PDF without a phone number.
+- Search basics: `/sitemap.xml`, `/robots.txt`, Person and WebSite structured data on Home, a Home title and description with "charliworks", and a Lighthouse CI check that fails below an SEO score of 100.
 
 ### Changed
 
