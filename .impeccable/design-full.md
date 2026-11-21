@@ -1,272 +1,288 @@
 ---
 name: Charlito Jr Mecarez
-description: A portfolio you ride. One motorbike trip through the Philippines, from golden hour into night, with each section a stop on the road.
+description: A Philippine night sky in December. Parol lanterns hang over the page, and the work sits in their warm light.
 colors:
-  ink: "#24130b"
-  cream: "#fff4e6"
-  haze: "#e6cfe0"
-  accent: "#ff7ac6"
-  accent-day: "#b0236e"
-  spark: "#ffe066"
-  night: "#0a0f2a"
-  sky-golden-top: "#e47a58"
-  sky-golden-mid: "#f2a768"
-  sky-golden-horizon: "#fde1a8"
-  sky-sunset-top: "#6e2c52"
-  sky-dusk-top: "#2c1d4c"
-  sky-night-top: "#0e1540"
-  frame-fill: "#2a1c3c"
-  selection-ink: "#1a0a12"
+  night: "#170e38"
+  indigo: "#2b1b5e"
+  dusk: "#3d2a80"
+  moon: "#f4efff"
+  lavender: "#d9cff7"
+  mist: "#b9addf"
+  pink: "#ff7ac6"
+  yellow: "#ffe066"
+  parol-core: "#fff6c4"
+  string: "#8d7cc7"
+  capiz: "rgb(255 255 255 / 0.06)"
+  capiz-edge: "rgb(255 224 102 / 0.3)"
+  capiz-edge-lit: "rgb(255 224 102 / 0.75)"
+  hairline: "rgb(255 255 255 / 0.12)"
 typography:
   display:
-    fontFamily: "Anybody, ui-sans-serif, system-ui, sans-serif"
-    fontSize: "clamp(3rem, 11.5vw, 9.5rem)"
-    fontWeight: 850
-    lineHeight: 0.86
+    fontFamily: "'Baloo 2', ui-rounded, ui-sans-serif, system-ui, sans-serif"
+    fontSize: "clamp(3rem, 9vw, 6rem)"
+    fontWeight: 800
+    lineHeight: 0.92
+    letterSpacing: "-0.025em"
+  display-title:
+    fontFamily: "'Baloo 2', ui-rounded, ui-sans-serif, system-ui, sans-serif"
+    fontSize: "clamp(4rem, 14vw, 8rem)"
+    fontWeight: 800
+    lineHeight: 0.88
     letterSpacing: "-0.035em"
-    fontVariation: "'wdth' 118"
+  display-close:
+    fontFamily: "'Baloo 2', ui-rounded, ui-sans-serif, system-ui, sans-serif"
+    fontSize: "clamp(2.75rem, 9vw, 6rem)"
+    fontWeight: 800
+    lineHeight: 0.95
+    letterSpacing: "-0.02em"
   headline:
-    fontFamily: "Anybody, ui-sans-serif, system-ui, sans-serif"
-    fontSize: "clamp(2rem, 11vw, 8rem)"
-    fontWeight: 800
-    lineHeight: 0.92
-    letterSpacing: "-0.04em"
-    fontVariation: "'wdth' 125"
-  headline-quiet:
-    fontFamily: "Anybody, ui-sans-serif, system-ui, sans-serif"
-    fontSize: "clamp(1.5rem, 2.6vw, 2.25rem)"
-    fontWeight: 800
-    lineHeight: 0.92
-    letterSpacing: "-0.01em"
-    fontVariation: "'wdth' 112"
-  title:
-    fontFamily: "Anybody, ui-sans-serif, system-ui, sans-serif"
-    fontSize: "clamp(1.75rem, 4.6vw, 3.25rem)"
+    fontFamily: "'Baloo 2', ui-rounded, ui-sans-serif, system-ui, sans-serif"
+    fontSize: "clamp(2rem, 5vw, 3.25rem)"
     fontWeight: 800
     lineHeight: 1
-    letterSpacing: "-0.02em"
-    fontVariation: "'wdth' 120"
-  statement:
-    fontFamily: "Anybody, ui-sans-serif, system-ui, sans-serif"
-    fontSize: "clamp(1.75rem, 4.4vw, 3.5rem)"
+    letterSpacing: "-0.015em"
+  title:
+    fontFamily: "'Baloo 2', ui-rounded, ui-sans-serif, system-ui, sans-serif"
+    fontSize: "clamp(1.6rem, 4vw, 2.5rem)"
+    fontWeight: 800
+    lineHeight: 1.05
+  lede:
+    fontFamily: "'Baloo 2', ui-rounded, ui-sans-serif, system-ui, sans-serif"
+    fontSize: "clamp(1.6rem, 3.6vw, 2.75rem)"
     fontWeight: 600
-    lineHeight: 1.12
-    letterSpacing: "-0.02em"
-    fontVariation: "'wdth' 100"
-  lead:
-    fontFamily: "ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif"
-    fontSize: "clamp(1.25rem, 2.2vw, 1.6rem)"
-    fontWeight: 500
-    lineHeight: 1.35
+    lineHeight: 1.2
+    letterSpacing: "-0.01em"
+  pitch:
+    fontFamily: "'Baloo 2', ui-rounded, ui-sans-serif, system-ui, sans-serif"
+    fontSize: "clamp(1.3rem, 2.2vw, 1.65rem)"
+    fontWeight: 700
+    lineHeight: 1.3
+  card-title:
+    fontFamily: "'Baloo 2', ui-rounded, ui-sans-serif, system-ui, sans-serif"
+    fontSize: "1.5rem"
+    fontWeight: 800
+    lineHeight: 1.1
+  body-lg:
+    fontFamily: "'Baloo 2', ui-rounded, ui-sans-serif, system-ui, sans-serif"
+    fontSize: "1.3rem"
+    fontWeight: 700
+    lineHeight: 1.45
   body:
-    fontFamily: "ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif"
-    fontSize: "1.0625rem"
+    fontFamily: "'Baloo 2', ui-rounded, ui-sans-serif, system-ui, sans-serif"
+    fontSize: "1.125rem"
     fontWeight: 400
-    lineHeight: 1.65
+    lineHeight: 1.6
   label:
-    fontFamily: "ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif"
-    fontSize: "0.875rem"
+    fontFamily: "'Baloo 2', ui-rounded, ui-sans-serif, system-ui, sans-serif"
+    fontSize: "0.9rem"
     fontWeight: 600
     lineHeight: 1.5
-  hud:
-    fontFamily: "Anybody, ui-sans-serif, system-ui, sans-serif"
-    fontSize: "0.8rem"
-    fontWeight: 600
-    letterSpacing: "0.04em"
-    fontVariation: "'wdth' 85"
-    fontFeature: "'tnum'"
 rounded:
-  focus: "3px"
-  mark: "6px"
-  logo: "8px"
-  frame: "20px"
+  focus: "4px"
+  chip: "6px"
+  mark: "8px"
+  logo: "10px"
+  inset: "16px"
+  card: "22px"
 spacing:
-  gutter: "clamp(1.25rem, 5vw, 4rem)"
-  stop: "clamp(6rem, 16vh, 11rem)"
-  title-gap: "clamp(2.5rem, 6vh, 4.5rem)"
-  row: "2.25rem"
-  rail: "12rem"
+  gutter: "clamp(1rem, 5vw, 4rem)"
   container: "80rem"
-  read: "42rem"
+  section-top: "clamp(4.5rem, 12vh, 8rem)"
+  section-gap: "clamp(2rem, 5vh, 3rem)"
+  card-gap: "1rem"
+  list-gap: "2rem"
+  card-pad: "1rem 1.25rem 1.15rem"
 components:
+  capiz-card:
+    backgroundColor: "{colors.capiz}"
+    textColor: "{colors.lavender}"
+    rounded: "{rounded.card}"
+    padding: "{spacing.card-pad}"
+  capiz-card-lit:
+    backgroundColor: "{colors.capiz}"
+    textColor: "{colors.lavender}"
+    rounded: "{rounded.card}"
+    padding: "{spacing.card-pad}"
+  card-title:
+    textColor: "{colors.yellow}"
+    typography: "{typography.card-title}"
   link:
-    textColor: "inherit"
-    typography: "{typography.body}"
-  project-title:
-    textColor: "{colors.cream}"
-    typography: "{typography.headline}"
-  project-title-hover:
-    textColor: "{colors.accent}"
-  project-cover:
-    backgroundColor: "{colors.frame-fill}"
-    rounded: "{rounded.frame}"
+    textColor: "{colors.moon}"
+  link-hover:
+    textColor: "{colors.pink}"
+  nav-link:
+    textColor: "{colors.moon}"
   contact-email:
-    textColor: "{colors.spark}"
-    typography: "{typography.title}"
-  contact-email-hover:
-    textColor: "{colors.cream}"
-  odometer-km:
-    textColor: "{colors.accent}"
-    typography: "{typography.hud}"
-  odometer-km-day:
-    textColor: "{colors.accent-day}"
-  pause-control:
-    textColor: "{colors.cream}"
-    typography: "{typography.label}"
-    height: "2.75rem"
+    textColor: "{colors.yellow}"
   skip-link:
-    backgroundColor: "{colors.cream}"
-    textColor: "{colors.ink}"
-    padding: "8px 12px"
+    backgroundColor: "{colors.yellow}"
+    textColor: "{colors.night}"
+    rounded: "{rounded.logo}"
+    padding: "0.5rem 0.9rem"
+  job-logo:
+    backgroundColor: "{colors.moon}"
+    rounded: "{rounded.logo}"
+    padding: "3px"
 ---
 
 # Design System: Charlito Jr Mecarez
 
 ## Overview
 
-**Creative North Star: "The Golden Hour Ride"**
+**Creative North Star: "Parol Night"**
 
-The page is a road. A live three.js scene is fixed behind every page: terraced hills banded with paddies whose flooded levels take on the sky's colour at every time of day, Mayon's cone with smoke, palms, a nipa hut, kilometre posts on the shoulder and a rider on a motorbike. Scrolling drives the camera down the road and moves the time of day with it, from coral and amber golden hour, through rose and violet dusk, to navy night with stars, fireflies and a yellow headlight. Content does not sit in boxes on top of this world; it rides through it as large type set straight onto the sky.
+The site is a Philippine night sky in December. The favicon's four-point sparkle becomes parol lanterns hung on thin strings from the top of the page, and the content sits in their warm light. The ground is deep indigo, lightest at the top where the lanterns hang. One rounded, heavy face, Baloo 2, speaks for everything, so the page reads friendly and confident instead of technical.
 
-Two voices carry everything. Anybody, a variable-width face pushed wide (112 to 150 percent), speaks for names, stops, titles and lists that should read as signage. The system sans carries reading text. Colour has strict jobs: pink marks what you can act on (links, selection, the odometer), and yellow is light (the sun, the headlight, the highlighter under the name, and the email address at the close). Text tone flips with the sky: dark ink while the sky is bright, cream once it darkens.
+Colour has two jobs and they never swap. Pink is the name, the close and the links you act on. Yellow is light: the lanterns, their glow, card titles, case titles and the email at the close. Moon, lavender and mist are the text under that light, in falling order of emphasis. Surfaces that a lantern lights are capiz cards: soft rounded panels with a barely-there white fill, a faint yellow edge and a wash of yellow from above, like light coming through a thin shell. Sections that are not lit (Experience, About) set type straight onto the night.
 
-The world rejects the dark-neon developer template and the plain text column it replaced. There are no cards, no glass and no gradient text. Depth comes from the 3D scene and from soft veils of night, not from stacked surfaces.
+Motion belongs to the lanterns. They swing as if just hung, then settle; after that they are damped pendulums pushed by scroll, a passing pointer and a tap. The page reads the same without the script and with reduced motion nothing moves. The world rejects the dark-neon developer template and the plain text column.
 
 **Key Characteristics:**
-- A fixed 3D world behind every page, with a CSS sky gradient standing in until it is ready.
-- Time of day as the page's colour system: five sky phases, keyed to sections through `data-sky`.
-- Wide variable display type set directly on the scene, scaled per stop.
-- Pink for action, yellow for light, and nothing else saturated in the type layer.
-- A dashboard HUD: odometer bottom left, pause control bottom right.
-- Static and fully readable without JavaScript; motion is layered on top and can be paused.
+- Deep indigo night with a radial lift at the top right, never a flat black.
+- Parol lanterns (yellow four-point star, pale core, two pink tails, soft glow) hung from the page's top edge.
+- One rounded heavy face, Baloo 2, from 400 to 800, for every role.
+- Pink acts, yellow lights; text steps moon, lavender, mist.
+- Capiz cards with 22px corners, a translucent fill and a faint yellow edge.
+- Glow is the only depth: drop-shadow and text-shadow in yellow, no offset shadows.
 
 ## Colors
 
-A sunset that turns into night: warm brown ink and cream text over a sky that moves through five phases, with grape-soda pink and yellow as the only accents.
+A night palette taken straight from the favicon: indigo ground, pink C, yellow sparkle.
 
 ### Primary
-- **Grape Soda Pink** (`accent`): links on hover and focus, the hovered project title, the text selection fill, list markers in case studies, the scrollbar thumb and the odometer's kilometre reading. It always means "this responds to you".
-- **Deep Grape** (`accent-day`): the odometer's kilometre reading while the tone is day. Light pink fails on the bright golden sky, so the reading darkens there. Day-tone pink text uses this value only.
+- **Parol Yellow** (`yellow`): light. Lantern bodies, the spark beside every section heading, card titles, project and case titles, the role line under the name, job roles, strong text in case studies, the email at the close, focus rings, the skip link and the scrollbar thumb.
+- **Parol Core** (`parol-core`): the pale inner star of a lantern only.
 
 ### Secondary
-- **Headlight Yellow** (`spark`): light in the world. The highlighter band under the second line of the name, the odometer progress bar, the "Read the case study" cue, bold text in case studies, the focus outline on night tone, and the contact email, which is the largest link on the page.
-
-### Tertiary (the sky)
-- **Golden Hour** (`sky-golden-top`, `sky-golden-mid`, `sky-golden-horizon`): the opening sky and the CSS fallback gradient.
-- **Sunset Rose** (`sky-sunset-top`), **Dusk Violet** (`sky-dusk-top`), **Night Navy** (`sky-night-top`): the zeniths of phases 1, 3 and 4. Each phase also has a mid, horizon, sun and hemisphere colour; the full table lives in `src/scripts/phases.ts`, which is the single source shared by the scene, the CSS sky and the browser theme colour. Sections between phases interpolate (Tools sits at 3.5).
+- **Sampaguita Pink** (`pink`): action and voice. The hero name, the "Say hi" close, the 404 title, link underlines and link hover colour, lantern tails, selection and the caret.
 
 ### Neutral
-- **Ember Ink** (`ink`): text and focus outlines while the tone is day (the hero and the header over the bright sky).
-- **Cream** (`cream`): text on night tone; every stop after the hero, the case study and the close. Also rules at 22 to 28 percent through `color-mix`.
-- **Twilight Haze** (`haze`): secondary text on night tone. Dates, tool group labels, the year, stack lines, captions, the footer name.
-- **Deep Night** (`night`): the page background under the world and the scrollbar track.
-- **Frame Plum** (`frame-fill`): the fill behind an image frame while the image loads.
-- **Selection Ink** (`selection-ink`): the text colour on a pink selection, a near-black plum that holds contrast on the pink in either tone.
+- **Night** (`night`): the page ground and selection ink.
+- **Indigo** (`indigo`): the middle of the sky gradient, image placeholders behind covers, and the browser theme colour.
+- **Dusk** (`dusk`): the bright top of the sky, at the radial gradient's centre only.
+- **Moon** (`moon`): primary text, section headings, company names, the about lede, and the plate behind job logos.
+- **Lavender** (`lavender`): reading text: intro, card body, job summaries, case-study prose.
+- **Mist** (`mist`): quiet labels: dates, stack lines, figcaptions, the brand line, the footer name.
+- **String** (`string`): lantern strings only, faded in from transparent.
+- **Capiz, Capiz Edge, Capiz Edge Lit** (`capiz`, `capiz-edge`, `capiz-edge-lit`): card fill, card edge at rest, card edge when lit or hovered.
+- **Hairline** (`hairline`): the rules between Experience rows.
 
 ### Named Rules
-**The Pink Acts, Yellow Shines Rule.** Pink is only for things you can act on or that report your position. Yellow is only for light: something lit, highlighted or glowing. Never swap them, and never add a third accent.
+**The Pink Acts, Yellow Lights Rule.** Pink marks the name, the close and what you can click. Yellow marks light and what the light falls on. A yellow link is allowed only where a lantern lights it (card titles, the email); pink is never used as a glow.
 
-**The Sky Sets The Tone Rule.** A section's text colour follows its sky phase, not its own choice: phase below 0.5 is day (ink), anything later is night (cream and haze). New sections declare `data-sky` and `data-stop` and inherit the tone.
-
-**The One Phase Table Rule.** Sky colours come from the phase table only. Do not hand-pick a background colour for a section.
+**The Three-Step Text Rule.** Text is moon, lavender or mist, chosen by emphasis. No grey, no white, no fourth step.
 
 ## Typography
 
-**Display Font:** Anybody, self-hosted variable woff2 with width 50 to 150 percent and weight 100 to 900 (falls back to the system sans)
-**Body Font:** the system sans stack (ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Arial)
+**Display Font:** Baloo 2 (with ui-rounded, ui-sans-serif, system-ui)
+**Body Font:** Baloo 2, the same file (variable 400 to 800, self-hosted, preloaded)
+**Label/Mono Font:** none for the interface; inline code in case studies uses the system monospace stack.
 
-**Character:** Anybody stretched wide reads like painted road signage and roadside lettering; the system sans keeps long reading plain and fast. The pairing is loud where it names things and quiet where it explains them.
+**Character:** One rounded, heavy face carries every role, so hierarchy comes from weight and size alone. The heavy end (800) with tight negative tracking makes titles feel like lit signage; the body at 400 stays soft and easy.
 
 ### Hierarchy
-- **Display** (850, `clamp(3rem, 11.5vw, 9.5rem)`, 0.86, width 118 percent): the name in the first viewport only. Scroll speed (`--wind`, 0 to 1) stretches each line sideways with `scaleX(1 + wind × --wind-max)` from its left edge. `--wind-max` is fitted per line to the room it has (capped at 0.14), so a letter never passes the page edge. The font width itself never changes, so nothing reflows or re-wraps.
-- **Headline** (800, `clamp(2rem, 11vw, 8rem)`, 0.92, width 125 percent): stop titles where the list underneath is plain (Experience). Larger variants reuse the same voice: the project title (`clamp(3rem, 9vw, 6.5rem)`, width 150), the case study title (`clamp(4rem, 16vw, 12rem)`, width 150), and the Contact title (`clamp(2.25rem, 14vw, 12rem)`, width 140). Tools uses a mid step (`clamp(2rem, 7vw, 5rem)`).
-- **Headline quiet** (800, `clamp(1.5rem, 2.6vw, 2.25rem)`, width 112): the stop title where the content itself is the headline (Work, About).
-- **Title** (800, `clamp(1.75rem, 4.6vw, 3.25rem)`, width 120): company names in Experience, tool rows (700, `clamp(1.5rem, 4vw, 3rem)`), case study section headings (`clamp(1.9rem, 4vw, 2.75rem)`) and the contact email (700, `clamp(1.35rem, 4.8vw, 4rem)`, width 100).
-- **Statement** (600, `clamp(1.75rem, 4.4vw, 3.5rem)`, 1.12, width 100): the About text, set in the display face at normal width, 62rem max.
-- **Lead** (500, `clamp(1.25rem, 2.2vw, 1.6rem)`, 1.35): project pitches and the case study pitch. The hero role is 600 at 1.25rem.
-- **Body** (400, 1.0625rem, 1.65): reading text; 1.125rem inside case studies with a 42rem measure.
-- **Label** (600, 0.875rem): dates, tool group names, stack lines, captions.
-- **HUD** (600, 0.8rem, width 85, tabular figures, uppercase, +0.04em): the odometer's stop name; the kilometre reading is 800 at 1.35rem.
+- **Display** (800, clamp(3rem, 9vw, 6rem), 0.92): the hero name, in pink, max 11ch. The 404 title uses the same voice at clamp(2.5rem, 8vw, 5.5rem).
+- **Display Title** (800, clamp(4rem, 14vw, 8rem), 0.88): the case-study title in yellow with a soft yellow text glow. The project title on Home uses the same voice at clamp(3rem, 8vw, 5.5rem).
+- **Display Close** (800, clamp(2.75rem, 9vw, 6rem), 0.95): "Say hi" in pink under the biggest lantern.
+- **Headline** (800, clamp(2rem, 5vw, 3.25rem), 1): section headings in moon, led by a glowing yellow spark at 0.6em.
+- **Title** (800, clamp(1.6rem, 4vw, 2.5rem), 1.05): company names in Experience; case-study h2 at clamp(1.8rem, 4vw, 2.5rem).
+- **Lede** (600, clamp(1.6rem, 3.6vw, 2.75rem), 1.2): the About text, set large on the night, max 52rem.
+- **Pitch** (700, clamp(1.3rem, 2.2vw, 1.65rem), 1.3): one-line project pitches.
+- **Card Title** (800, 1.5rem, 1.1): capiz card titles in yellow; tool cards at 1.35rem.
+- **Body Large** (700, 1.3rem, 1.45): the role line under the name, job roles, secondary contact links.
+- **Body** (400, 1.125rem, 1.6): reading text, max about 38 to 42rem.
+- **Label** (600, 0.9rem, 1.5): dates, stack lines, captions, in mist. Never uppercase, never tracked out.
 
 ### Named Rules
-**The Heading Steps Back Rule.** Heading size varies by stop. Where the content is already the headline (the project, the About statement), the stop title drops to the quiet size; where the content is a plain list, the title leads big.
+**The One Face Rule.** Baloo 2 is the only typeface. Hierarchy is weight (400, 600, 700, 800) and size; there is no second display or label face.
 
-**The Width Is The Voice Rule.** Hierarchy in the display face comes from width as much as size: 150 percent for project names, 125 to 140 for stop titles, 100 for anything read as a sentence. Body text never uses the display face.
+**The Tight Heavy Rule.** Anything at 800 and above 2rem tracks negative (-0.015em to -0.035em) and sets its line height at or under 1.
 
 ## Layout
 
-Every page is a single vertical ride. Content sits in an 80rem container with a fluid side gutter (`clamp(1.25rem, 5vw, 4rem)`); each stop is a full-width section with generous vertical padding (`clamp(6rem, 16vh, 11rem)`) so the scene shows between stops. The first viewport and the contact close are each at least a full screen tall (`100svh`).
+A single centred column, max 80rem, with a fluid gutter of clamp(1rem, 5vw, 4rem). The hero opens at clamp(3rem, 10vh, 6rem) from the top; each section opens with clamp(4.5rem, 12vh, 8rem) of night above it and stacks its parts with a clamp(2rem, 5vh, 3rem) gap. Rhythm is generous and vertical; sections do not get backgrounds or dividers.
 
-The hero is top left: name, then a 34rem column of role, intro and the charliworks line. The close is centred. Lists use a two-column rail from 760px up: a 12rem label column (dates, tool group) and a flexible content column, aligned on the baseline and separated by hairline rules. Project meta splits into two columns from 900px. Case studies read in a 42rem column centred under a full-width cover.
+Card groups use auto-fit grids (minmax(min(100%, 15rem), 1fr) for hero cards, 16rem for tools) with a 1rem gap. Project cards stack with a 2rem gap; inside, meta splits into two columns from 900px. Experience rows become a 12rem date column plus content from 760px. Case-study prose sits at 42rem, centred.
 
-On narrow screens the rail collapses to one column. At 560px and below the header keeps every section link. Below 1024px the odometer shows kilometres only, without the stop name and track. Text stays readable at 200 percent zoom on a 320px screen; display words may break mid-word only in that case.
+Lanterns are positioned absolutely and never take space: the hero group hangs from 4.5rem above the hero (behind the header) at the top right; section lanterns sit at the section's top at a set right offset and pool a 36 by 26rem radial of yellow light on the content below. Below 640px the hero group drops under the header at 0.55 scale and the name gains 5.5rem of top padding to clear it; section lanterns scale to 0.7. Header, main and footer clip horizontal overflow so a swinging lantern never scrolls the page sideways.
 
 ## Elevation & Depth
 
-Depth is the world, not the interface. The 3D scene supplies perspective, fog and light; the type layer is flat on top of it. Readability over the scene comes from soft veils rather than panels: a radial and bottom vignette of night (`rgb(8 10 30 / 0.25)`) fades in once the tone turns to night, the hero has a warm haze of horizon colour behind its copy, and the long read in a case study sits on a band of night (`rgb(8 10 32 / 0.62)`) feathered to transparent at both sides.
+The system is flat at rest and uses light instead of shadow. Depth comes from the sky gradient, from glows around lanterns and lit titles, and from translucent capiz fills lit from above. There are no offset or dark drop shadows anywhere.
 
 ### Shadow Vocabulary
-- **Window drop** (`--frame-shadow`: `box-shadow: 0 40px 80px -30px rgb(10 6 30 / 0.65)`): under image frames only, so a screenshot reads as a window held up in the evening air. The case study cover carries it as a box-shadow.
-- **Window drop, revealed** (`filter: drop-shadow(0 34px 34px rgb(10 6 30 / 0.5))`): the same lift on Work covers, set on the outer frame as a drop-shadow so it follows the scroll-reveal clip instead of being cut away by it.
-- **HUD halo** (`text-shadow: 0 1px 14px rgb(8 10 30 / 0.55)` on night, `rgb(253 225 168 / 0.8)` on day): a soft glow of the tone's own colour under the odometer and pause control, so they stay readable as content scrolls beneath them.
+- **Lantern glow** (`filter: drop-shadow(0 0 14px rgb(255 224 102 / 0.55))`): lanterns and heading sparks at rest.
+- **Lantern flash** (`filter: drop-shadow(0 0 26px rgb(255 224 102 / 0.95))`): a tapped lantern for 700ms.
+- **Lit card halo** (`box-shadow: 0 0 40px -12px rgb(255 224 102 / 0.45)`): the one lit hero card (the lead project).
+- **Title glow** (`text-shadow: 0 0 28px rgb(255 224 102 / 0.3)`): yellow project and case titles; 0.35 alpha on the email.
+- **Lantern pool** (`radial-gradient(closest-side, rgb(255 224 102 / 0.17), transparent)`): the light a section lantern casts on what sits below it.
 
 ### Named Rules
-**The Veil Not Panel Rule.** When text needs help against the scene, add a feathered veil of sky or night behind it. Never put text in a box, card or blurred glass panel.
+**The Light Not Shadow Rule.** Every depth cue is yellow light with zero offset. If something needs to lift, it glows.
 
 ## Shapes
 
-Type and images carry all the shape. Image frames are the only rounded containers (`--frame-radius`, 20px), and they open from an inset rounded clip (28px) to their full frame as they scroll in. Small brand images get gentle corners (favicon mark 5 to 6px, company logos 8px on a cream tile). Separators are 1px hairlines in cream at 22 to 28 percent. Icons are hand-drawn inline SVG strokes (arrows, the pause bars) at 1.8 to 2px with round caps. Nothing else has a border or a fill.
+Soft and rounded throughout, matching the rounded face. Capiz cards use 22px corners; images inset inside a card use 16px (15px on the case cover) so the inner radius sits concentric with the card. Small parts step down: 10px for job-logo plates and the skip link, 8px for the header favicon, 6px for inline code and the brand-line favicon, 4px for focus rings. The recurring silhouette is the favicon's four-point sparkle with curved concave sides: as lanterns, as heading sparks, as list bullets in case studies and as falling sparks. Borders are 1px and only on capiz cards (yellow) and Experience rows (hairline).
 
 ## Components
 
 ### Links
-Inline, inherit their colour, and carry a quiet underline.
-- **Rest:** 1px underline at 45 percent of the text colour, offset 0.24em.
-- **Hover / Focus:** underline thickens to 2px and turns pink, over 200ms.
-- **Header nav:** no underline at rest; pink underline on hover and focus.
-- **Focus ring:** 2px yellow outline, 4px offset, 3px radius; ink on day tone.
+- **Style:** inherit the text colour, underlined in pink at 1.5px with a 0.2em offset.
+- **Hover / Focus:** text turns pink and the underline thickens to 2.5px over 200ms on the house ease (cubic-bezier(0.16, 1, 0.3, 1)).
+- **Focus ring:** 2px solid yellow, 4px offset, 4px radius, on every focusable element.
 
-### Project (Work)
-The signature content block: a full-width cover image, then a huge wide title, year, pitch, the stack as one plain line joined by " · ", and a yellow "Read the case study" cue with an arrow. The whole row is the click target. On hover or focus the title turns pink, the arrow moves 6px right, and on hover-capable devices the cover tilts toward the pointer (up to 8 by 6 degrees).
-- **Cover structure:** an outer frame carries the view-transition name (class `cover`), the revealed window drop and the pointer tilt; an inner clip carries the Frame Plum fill and the scroll-scrubbed clip-path. Keep the shadow and the clip on separate boxes.
-- **Focus:** keyboard focus draws one ring around the whole row (2px yellow, 8px offset, frame radius), never on the title text; a mouse click draws none.
-- **Into the case study:** the cover and the title text share view-transition names with the case study page. The cover morphs as a single image (the old snapshot is hidden and the new one is not animated), so nothing doubles or washes. Both pages use the same cover srcset (640, 1024, 1600) so the image comes from cache, and the case page render-blocks on its cover.
+### Capiz Cards
+- **Corner Style:** 22px.
+- **Background:** the capiz fill under a radial yellow wash from above (120% by 90% at 50% -30%, 0.16 alpha to transparent at 65%).
+- **Border:** 1px capiz edge; capiz edge lit on hover or focus-within, with the fill dropping to 0.04 white, over 300ms.
+- **Pointer light:** with the script running, a 16rem yellow spot (0.14 alpha) follows the pointer inside the card and fades in over 400ms.
+- **Lit variant:** the lead card carries the lit edge at rest plus the lit card halo.
+- **Content:** a yellow Card Title over lavender body; tool cards use a description list in the same pattern.
+- **Internal Padding:** 1rem 1.25rem 1.15rem for hero cards, 1.1rem 1.3rem 1.25rem for tools, clamp(0.6rem, 1.5vw, 1rem) around a project cover.
 
-### Experience row and Tool row
-Two-column rows on a hairline rule: label on the left rail (haze, 600), content on the right. Experience rows slide in from the left as their rule draws itself. Tool rows set their items in the display face joined by middle dots, and drift apart sideways with scroll speed (alternating direction, 32px max on desktop, 6px on mobile), settling flush at rest.
+### Project Card
+A capiz card holding a cover image (16px radius, indigo placeholder, 3600:1500 crop anchored to the bottom), then a giant yellow title with a year in mist, a moon pitch and a mist stack line. The whole card is the click target through the title link's stretched pseudo-element; its focus ring draws around the full card at 22px. The cover carries a view-transition name and morphs into the case page cover.
 
-### Contact close
-A centred close at night: the Contact title in the widest display, the email in yellow as the biggest link on the page (hover turns it cream with a 3px pink underline), then the other links in a centred row at 1.25rem, 600.
+### Navigation
+- **Style:** a top bar inside the 80rem column: the favicon (32px, 8px radius) at left as the home link, section links at right at 1.05rem, weight 600, in moon.
+- **States:** underline transparent at rest, pink on hover and focus.
+- **Mobile:** below 560px the links tighten to 0.95rem with a 0.9rem gap and wrap.
+- **Skip link:** a yellow pill (10px radius) with night text that drops in from above on focus.
 
-### Odometer and pause (HUD)
-Fixed to the bottom corners, above the content. The odometer reads kilometres (pink, tabular), the current stop in uppercase HUD type, and a 7rem progress track that fills in yellow. Below 1024px the odometer shows kilometres only. The pause control is a text button with drawn pause bars, at least 2.75rem tall, underlined like a link; pausing stops the scene and every CSS animation. It comes early in tab order, right after the header, and fades in with the first-paint copy. When paused its icon swaps to a drawn play triangle and the label reads "Play motion"; the label keeps a fixed width so the control never shifts. Both follow the day and night tone and carry the HUD halo.
+### Section Heading
+Headline type in moon, led by the favicon spark in yellow at 0.6em with the lantern glow. Case-study h2s repeat the pattern at Title size.
 
-### Header
-Fixed, transparent, no background. The logo alone on the left (no wordmark; its accessible name is the site name), section links on the right. It slides away while you ride down past 240px and returns when you scroll up or tab into it; it leaves faster than it returns (300ms out, 600ms back). On phones (560px and below) it keeps every section link.
+### Experience Row
+Not a card: rows on the night ruled by hairlines above each and below the last. Dates in mist Label, company in moon Title with an optional logo on a moon plate, role in yellow Body Large, summary in lavender.
 
-### Motion
-Scroll is smoothed (lenis, lerp 0.09) and drives the camera, sky phase (tweened 1.4s) and odometer through GSAP ScrollTrigger. Entrances use one curve, `cubic-bezier(0.16, 1, 0.3, 1)` in CSS and `expo.out` in GSAP. Only the hero name rises on first paint (CSS); section headings rise as they scroll in (GSAP), moving the text inside each line while the line itself stays still as the mask. Copy fades up 16px, rows and contact links arrive in staggers of 80 to 120ms. The About statement lights from 40 percent to full opacity word by word as you read. Velocity effects (the name's wind, the Tools push) smooth over elapsed time, not frames, so a slow phone settles as fast as a fast screen, and they snap to rest at zero. Between Work and a case study, a 450ms view transition morphs the cover and title.
+### Contact Close
+Centred under the largest lantern (6.5rem, 4rem string): "Say hi" in pink Display Close, then the email as the brightest, largest link (800, clamp(1.4rem, 4.6vw, 3.4rem), yellow with a yellow glow and a 45% yellow underline that turns pink and 3px on hover), then the other links in Body Large, then the name in mist.
 
-The scene eases by real elapsed time and protects the page: a device that cannot hold about 40fps drops to 1x pixels, touch screens ignore address-bar height changes, and if WebGL loses its context the CSS sky takes over. Under reduced motion the scene holds one camera framing, smooth scroll is off and reveals are instant. When paused or under reduced motion the scene draws only when the view changes.
+### Parol Lantern (signature)
+A 1px string fading in from transparent to the string colour, then the sparkle star: yellow body, pale core, two pink stroked tails, wrapped in the lantern glow. Sized and dropped per placement (2.4 to 6.5rem wide, 1.5 to 8rem strings) and always decorative (aria-hidden).
+- **Arrival:** a 3.6s damped swing from 9deg to rest about the top of the string, staggered by up to 520ms.
+- **Live:** with the script, each lantern is a damped pendulum (stiffness 38, damping 2.2, max 28deg, heavier when larger). Scroll kicks visible lanterns, a pointer within 160px pushes like a breeze, a tap swings it hard, flashes it for 700ms and drops a few falling sparks (9px stars with a 4px glow, 1.1s fall).
+- **Reduced motion:** nothing moves; the lanterns hang still and the page is complete.
+
+### Page Transition
+Same-origin navigations use view transitions at 450ms on the house ease. The project cover morphs as one image (no cross-fade) from the Home card into the case page.
 
 ## Do's and Don'ts
 
 ### Do:
-- **Do** declare every new section with `data-sky` (a phase from 0 to 4) and `data-stop` (the odometer name), and let tone and sky follow from it.
-- **Do** set names, stop titles and lists of things in Anybody at 112 to 150 percent width; set sentences in the system sans.
-- **Do** step the stop title down to the quiet size when the content below it is already the headline.
-- **Do** keep pink for links, selection and the odometer, and yellow for light, highlights and the contact email.
-- **Do** use the darker pink (`accent-day`) for any pink text on the day sky.
-- **Do** help text over the scene with a feathered veil of night or horizon haze.
-- **Do** keep every page readable with JavaScript off, honour reduced motion with a still frame, and keep the pause control visible whenever anything moves.
+- **Do** keep the ground the indigo sky: night base with the dusk-to-indigo radial lift at the top right.
+- **Do** hang lanterns from the top edge on visible strings, and let a section lantern pool its light on the cards below it.
+- **Do** use capiz cards (22px, translucent fill, faint yellow edge) for things a lantern lights; set unlit sections straight onto the night.
+- **Do** keep pink for the name, the close and actionable links, and yellow for light and what it falls on.
+- **Do** set every role in Baloo 2 and build hierarchy with weight 400 to 800 and size.
+- **Do** express depth as zero-offset yellow glow.
+- **Do** make every lantern movement damped and settling, and render the page complete with reduced motion or without the script.
+- **Do** use the favicon's curved four-point sparkle wherever a mark or bullet is needed.
 
 ### Don't:
-- **Don't** put content in cards, glass panels or tinted boxes; image frames are the only rounded containers.
-- **Don't** use gradient text or a third accent colour.
-- **Don't** pick section backgrounds by hand; the sky comes from the phase table.
-- **Don't** set body paragraphs in the display face or at a stretched width.
-- **Don't** add tracked uppercase labels above headings; uppercase tracking belongs to the odometer and the scroll cue only.
-- **Don't** use light pink (`accent`) text on the day sky; it fails contrast there.
-
-### Link Preview Image
-`public/og.jpg` is a 1200 × 630 Playwright capture of the built Home first viewport, with the HUD, pause control, scroll cue, nav, intro and brand lines hidden. Every page uses it as `og:image`, except a case study, which uses its cover. Capture it again when the name, the role or the hero changes; its origin is embedded in the file.
+- **Don't** add a second typeface for display or labels.
+- **Don't** use offset or dark drop shadows; glows only.
+- **Don't** use pure white, pure black or grey text; step moon, lavender, mist.
+- **Don't** wrap every section in a card; Experience and About stay on the night.
+- **Don't** add looping or idle animation; lanterns move only on arrival or when pushed, then come to rest.
+- **Don't** let lanterns or long words cause horizontal scroll.

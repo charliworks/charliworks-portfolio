@@ -11,29 +11,23 @@ const { entries } = Astro.props;
 
 <ul class="work">
   {entries.map((entry) => (
-    <li class="project" data-tilt>
+    <li class="capiz project">
       <div
         class="cover"
-        data-tilt-frame
         style={`view-transition-name: cover-${entry.id}; view-transition-class: cover`}
       >
-        <div class="cover-clip" data-cover>
-          <Image
-            src={entry.data.cover}
-            alt={entry.data.coverAlt}
-            widths={[640, 1024, 1600]}
-            sizes="(min-width: 80rem) 72rem, 92vw"
-            class="cover-img"
-          />
-        </div>
+        <Image
+          src={entry.data.cover}
+          alt={entry.data.coverAlt}
+          widths={[640, 1024, 1600]}
+          sizes="(min-width: 80rem) 72rem, 92vw"
+          class="cover-img"
+        />
       </div>
       <div class="project-meta">
         <div class="project-head">
-          <a href={`/work/${entry.id}/`} class="project-title display">
-            <span
-              class="project-title-text"
-              style={`view-transition-name: title-${entry.id}`}
-            >
+          <a href={`/work/${entry.id}/`} class="project-title">
+            <span style={`view-transition-name: title-${entry.id}`}>
               {entry.data.title}
             </span>
           </a>
@@ -51,39 +45,41 @@ const { entries } = Astro.props;
 <style>
   .work {
     display: grid;
-    gap: clamp(4rem, 10vh, 7rem);
+    gap: 2rem;
   }
 
+  /* The project is one lit card; the whole card is the click target. */
   .project {
     position: relative;
+    padding: clamp(0.6rem, 1.5vw, 1rem);
   }
 
-  /* The frame's shadow is a drop-shadow on the outer box, so it follows the
-     clip of the reveal instead of being cut away by it. */
   .cover {
-    border-radius: var(--frame-radius);
-    filter: drop-shadow(0 34px 34px rgb(10 6 30 / 0.5));
-    will-change: transform;
-  }
-
-  .cover-clip {
     overflow: hidden;
-    border-radius: var(--frame-radius);
-    background: var(--frame-fill);
-    will-change: clip-path;
+    border-radius: 16px;
+    background: var(--indigo);
   }
 
+  /* Home shows the phones only; the cover's own title plate would repeat
+     the card's title. The full plate stays on the case page. */
   .cover-img {
     display: block;
     width: 100%;
     height: auto;
-    transform-origin: center;
+    aspect-ratio: 3600 / 1500;
+    object-fit: cover;
+    object-position: 50% 100%;
   }
 
   .project-meta {
     display: grid;
-    gap: 1.25rem 3rem;
-    margin-top: 2rem;
+    gap: 1rem 3rem;
+    padding: clamp(1.25rem, 3vw, 2rem) clamp(0.5rem, 2vw, 1.25rem)
+      clamp(0.75rem, 2vw, 1.25rem);
+  }
+
+  .project-meta > * {
+    min-width: 0;
   }
 
   @media (min-width: 900px) {
@@ -95,61 +91,57 @@ const { entries } = Astro.props;
 
   .project-head {
     display: flex;
+    flex-wrap: wrap;
     align-items: baseline;
-    gap: 1.25rem;
-  }
-
-  .project-title-text {
-    display: inline-block;
+    gap: 1rem;
   }
 
   .project-title {
-    font-size: clamp(3rem, 9vw, 6.5rem);
-    font-stretch: 150%;
+    font-weight: 800;
+    font-size: clamp(3rem, 8vw, 5.5rem);
     line-height: 0.9;
+    letter-spacing: -0.03em;
+    color: var(--yellow);
     text-decoration: none;
   }
 
-  /* The whole row is the click target. */
+  .project-title span {
+    display: inline-block;
+    text-shadow: 0 0 28px rgb(255 224 102 / 0.3);
+  }
+
   .project-title::after {
     content: '';
     position: absolute;
     inset: 0;
-    border-radius: var(--frame-radius);
-  }
-
-  .project-head time {
-    font-weight: 600;
-    color: var(--haze);
-  }
-
-  .project-pitch {
-    font-size: clamp(1.25rem, 2.2vw, 1.6rem);
-    line-height: 1.35;
-    font-weight: 500;
-  }
-
-  .project-stack {
-    margin-top: 1rem;
-    font-size: var(--text-sm);
-    font-weight: 600;
-    letter-spacing: 0.01em;
-    color: var(--haze);
-  }
-
-  .project:hover .project-title,
-  .project:focus-within .project-title {
-    color: var(--accent);
-  }
-
-  /* Keyboard only: a mouse click must not draw the ring (or carry it into
-     the page transition). */
-  .project-title:focus-visible::after {
-    outline: 2px solid var(--spark);
-    outline-offset: 8px;
+    border-radius: 22px;
   }
 
   .project-title:focus-visible {
     outline: none;
+  }
+
+  .project-title:focus-visible::after {
+    outline: 2px solid var(--yellow);
+    outline-offset: 4px;
+  }
+
+  .project-head time {
+    font-weight: 700;
+    color: var(--mist);
+  }
+
+  .project-pitch {
+    font-size: clamp(1.3rem, 2.2vw, 1.65rem);
+    line-height: 1.3;
+    font-weight: 700;
+    color: var(--moon);
+  }
+
+  .project-stack {
+    margin-top: 0.75rem;
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--mist);
   }
 </style>
