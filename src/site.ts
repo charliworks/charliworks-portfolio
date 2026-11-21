@@ -14,6 +14,10 @@ export type Job = {
 
 export type Site = {
   name: string;
+  /** Other forms of the name people search for. */
+  alternateNames: readonly string[];
+  /** Short job title for search engines. */
+  jobTitle: string;
   brand: { name: string; url: string };
   role: string;
   openTo: string;
@@ -21,12 +25,16 @@ export type Site = {
   email: string;
   github: string;
   linkedin: string | undefined;
+  /** Path under public/ to the résumé PDF. Unset hides the link. */
+  resume: string | undefined;
   experience: readonly Job[];
   tools: readonly ToolGroup[];
 };
 
 export const site: Site = {
   name: 'Charlito Jr Mecarez',
+  alternateNames: ['Charlito Mecarez', 'Charlito Mecarez Jr'],
+  jobTitle: 'Full-stack developer',
   brand: { name: 'charliworks', url: 'https://github.com/charliworks' },
   role: 'Full-stack developer in the Philippines, with 4 years of experience.',
   openTo: 'Open to full-time roles, collaborations and freelance work.',
@@ -35,6 +43,7 @@ export const site: Site = {
   email: 'charlitomecarezjr@gmail.com',
   github: 'charlitomecarez',
   linkedin: 'https://www.linkedin.com/in/charlito-mecarez-jr-5565431b4/',
+  resume: '/charlito-mecarez-resume.pdf',
   experience: [
     {
       role: 'Frontend Developer',

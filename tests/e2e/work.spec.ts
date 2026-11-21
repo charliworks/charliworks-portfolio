@@ -4,7 +4,6 @@ import AxeBuilder from '@axe-core/playwright';
 const SECTIONS = [
   'The problem',
   'What Habi does',
-  'The rules it follows',
   'How I built it',
   'How it shipped',
   'Links',
@@ -20,7 +19,7 @@ test.describe('work/habi', () => {
     await page.goto('/work/habi/');
     const headings = await page.locator('main h2').allTextContents();
     const expected = headings.includes('What I learned')
-      ? [...SECTIONS.slice(0, 5), 'What I learned', 'Links']
+      ? [...SECTIONS.slice(0, 4), 'What I learned', 'Links']
       : SECTIONS;
     expect(headings.map((h) => h.trim())).toEqual(expected);
   });

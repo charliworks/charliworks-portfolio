@@ -12,3 +12,18 @@ All notable changes to this project are listed here. The format follows [Keep a 
 - Home page and Habi case study in a simple, text-first design, with a 404 page.
 - Reduced-motion and Lighthouse budget checks in CI.
 - ADR 0002: hosting on Cloudflare Pages.
+- A "Résumé" link in the footer, next to GitHub and LinkedIn, to a one-page PDF without a phone number.
+- Search basics: `/sitemap.xml`, `/robots.txt`, Person and WebSite structured data on Home, a Home title and description with "charliworks", and a Lighthouse CI check that fails below an SEO score of 100.
+
+### Changed
+
+- Redesigned Home, the case study and the 404 page as one motorbike ride through the Philippines: a three.js scene behind the page moves from golden hour to night as you scroll, with smooth scroll (lenis) and scroll-linked motion (GSAP). Content is unchanged.
+- New display face: Anybody (variable width), self-hosted.
+- New link preview image from the redesigned first screen.
+- Polish: every section link now shows on phones; the pause control comes early in the tab order and its icon shows play or pause; the name's wind stretch no longer reflows or clips; headings rise inside a still mask; the Habi cover keeps its shadow during the scroll reveal and morphs as one image into the case study; the 3D scene idles when paused, adapts its resolution on slow devices and falls back to the CSS sky if WebGL is lost.
+
+### Removed
+
+- Less text: the Habi case study drops "The rules it follows" and keeps the first sentence of each build note and the one-line release fact; the "Read the case study" and "Scroll" labels are gone.
+
+- The hand-painted SVG hero (`HeroArt.astro`).

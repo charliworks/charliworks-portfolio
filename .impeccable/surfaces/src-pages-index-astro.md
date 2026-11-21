@@ -7,30 +7,26 @@ related_targets: ["src/pages/work"]
 
 # Surface brief: Home and case study pages
 
-Scope: `/` and `/work/<slug>`. Mode: Experience. The work and the writing lead; the interface recedes.
+Scope: `/` and `/work/<slug>`, plus 404. Mode: Experience. The ride leads; the content rides with it.
 
-Audience: recruiters, collaborators and clients who skim first. Job: judge whether Charlito is good and trustworthy, then make contact.
+Audience: recruiters, collaborators and clients who skim first. Job: make them stay, want to know more about Charlito, then make contact (user, 2026-11-21).
 
-Chosen direction: the category standard, by Charlito's choice after two rounds, executed at full craft. Reference: leerob.com, a text-first single column.
+Chosen direction: Golden Hour Ride (user pick, 2026-11-21), replacing the text-first column. User kept the Philippines scene idea and the pink and yellow accents; allowed three, lenis, gsap.
 
 ## Direction contract
 
-THESIS: The writing is the design. One narrow column of plain text and links, with one hand-painted hero on Home (user exception, 2026-11-20). It refuses project cards, buttons and any other decoration. The one exception is a small cover image in each Work row.
+THESIS: Scrolling the portfolio is one motorbike ride through the Philippines, from golden hour into night; each section is a stop on the road. It refuses the dark-neon dev template and the plain text column.
 
-OWN-WORLD: Light only. Near-white ground, near-black text, one mid grey for dates and secondary text, links in text colour with a thin underline. Pink and yellow from the Grape soda logo appear only as marks: the hover underline, the text selection and the highlighter behind the name. System sans stack, one weight for body, medium for the name and headings. No borders, cards, shadows, gradients or icons in the interface.
+OWN-WORLD: A live three.js scene fixed behind the page: stepped rice terraces, Mayon's cone, palms, a road with the rider. Sky moves coral and amber, then rose and violet dusk, then navy night with stars and a yellow headlight. Display type is Anybody (variable width), stretched wide; body is the system sans. Pink marks links, selection and the odometer; yellow is light: the sun, the headlight, the name's highlighter, and what the headlight falls on at the close (the email address). No cards, glass or gradient text.
 
-STORY: The visitor reads who Charlito is, sees Habi as the work, reads how it was built, and emails or opens GitHub.
+STORY: The visitor meets Charlito at sunset, rides to Habi, through experience, about and tools, and arrives at night at a large contact close centred in the headlight: the email address is the biggest link on the page. Heading scale varies by stop: where the content is the headline (Habi, About), the heading steps back.
 
-FIRST VIEWPORT: Left-aligned column about 36rem wide, top padding about 6rem. The 3:1 hero painting with its pause control, then the name in medium weight at body size plus one step, with the yellow highlighter. The charliworks label line follows the intro. Two short bio paragraphs. There is no open-to line. A "Work" heading with one row: a small cover image (128px, small radius, above the text on phones), then "Habi" with its year, its one-line pitch and its stack. An "Experience" list, an "About" section and a "Tools" section follow. Tools is a list grouped by area: a 14px grey label, then the tools in one line, split by " · ". A "Contact" row of plain links. All of it fits in the first viewport on desktop.
+FIRST VIEWPORT: Full-bleed scene. The name in huge wide display over the bright sky, top left, dark ink; role and intro under it; charliworks line; a fixed odometer bottom left reading km and stop (it reads first, like a dashboard), the pause control bottom right within thumb reach. Kilometre posts on the road shoulder echo the odometer in the world.
 
-FORM: The canon, executed straight. Position on the ordered list: not on it (user pin). seed:74e981de92457ae6
+FORM: Golden Hour Ride, my top grounded candidate (pick card). seed:b95e071113c2183d
 
 FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance
 
 ## Signature interaction
 
-The hero painting: clouds, smoke, sun glow, motorbike and wind run all the time; hover or the first 120px of scroll raises the wind. A "Pause motion" control stops it (WCAG 2.2.2). Also: the link underline thickens and turns pink over 150 ms, the whole work row is the click target, view transitions move the cover and title between pages, and blocks fade in on scroll. Reduced motion stops all of it.
-
-## Unresolved
-
-- Bio and intro text: Charlito writes them.
+Scroll drives the camera along the road and the time of day together (lenis + GSAP ScrollTrigger). The display name widens with scroll speed like wind. Habi's cover tilts toward the pointer. About words light up as you read. Tools drift in rows with scroll velocity. Pause stops the scene (WCAG 2.2.2); reduced motion shows one still frame and plain reveals.

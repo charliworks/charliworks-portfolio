@@ -2,102 +2,468 @@
 import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
 import WorkList from '../components/WorkList.astro';
-import HeroArt from '../components/HeroArt.astro';
 import { Content as About } from '../content/about.md';
 import { site } from '../site';
 import { sortWork } from '../lib/work';
 import { jobDates } from '../lib/experience';
+import {
+  homeDescription,
+  homeJsonLd,
+  homeTitle,
+  jsonLdScript,
+} from '../lib/seo';
 
 const work = sortWork(await getCollection('work'));
+const [first, ...rest] = site.name.split(' ');
+const nameLines = [first, rest.join(' ')].filter(Boolean);
+const jsonLd = jsonLdScript(homeJsonLd(site, Astro.site!));
 ---
 
 <Base
-  title={site.name}
-  description={`${site.name}, full-stack developer. ${site.openTo}`}
+  title={homeTitle(site)}
+  description={homeDescription(site)}
+  phase={0}
+  stop="Start"
 >
-  <HeroArt />
-  <h1 class="text-lg font-medium">
-    <span class="box-decoration-clone bg-[linear-gradient(transparent_55%,var(--color-spark)_55%)] px-1 -mx-1">
-      {site.name}
-    </span>
-  </h1>
-  <p class="text-text-muted">{site.role}</p>
-  {site.intro && <p class="mt-4">{site.intro}</p>}
-  <p class="mt-4 flex items-center gap-2 text-text-muted">
-    <img src="/favicon.png" alt="" width="20" height="20" class="rounded-sm" />
-    <span>
-      I ship my projects under <a href={site.brand.url}>{site.brand.name}</a>.
-    </span>
-  </p>
+  <script slot="head" is:inline type="application/ld+json" set:html={jsonLd} />
+  <section class="hero" data-sky="0" data-stop="Start" aria-labelledby="name">
+    <div class="hero-inner">
+      <h1 id="name" class="display hero-name">
+        {nameLines.map((line, i) => (
+          <span class="line" style={`--i:${i}`}>
+            <span>
+              <span class="name-ink">{line}</span>
+              {i < nameLines.length - 1 && ' '}
+            </span>
+          </span>
+        ))}
+      </h1>
+      <div class="hero-copy">
+        <p class="hero-role fade-up" style="--i:0">
+          {site.role}
+        </p>
+        {site.intro && (
+          <p class="hero-intro fade-up" style="--i:1">
+            {site.intro}
+          </p>
+        )}
+        <p class="hero-brand fade-up" style="--i:2">
+          <img src="/favicon.png" alt="" width="24" height="24" />
+          <span>
+            I ship my projects under{' '}
+            <a href={site.brand.url}>{site.brand.name}</a>.
+          </span>
+        </p>
+      </div>
+    </div>
+    <a href="#work" class="hero-cue fade-up" style="--i:4">
+      <span class="sr-only">Scroll to Work</span>
+      <svg viewBox="0 0 16 24" aria-hidden="true">
+        <path
+          d="M8 3v17M2.5 14.5 8 20l5.5-5.5"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        ></path>
+      </svg>
+    </a>
+  </section>
 
-  <section class="mt-14" aria-labelledby="work">
-    <h2 id="work" class="mb-3 font-medium">
-      Work
+  <section
+    id="work"
+    tabindex="-1"
+    class="stop"
+    data-sky="1"
+    data-stop="Work"
+    aria-labelledby="work-h"
+  >
+    <h2 id="work-h" class="display stop-title stop-title--quiet" data-rise>
+      <span class="line">
+        <span>Work</span>
+      </span>
     </h2>
     <WorkList entries={work} />
   </section>
 
-  <section class="mt-14" aria-labelledby="experience">
-    <h2 id="experience" class="mb-3 font-medium">
-      Experience
+  <section
+    id="experience"
+    tabindex="-1"
+    class="stop"
+    data-sky="2"
+    data-stop="Experience"
+    aria-labelledby="experience-h"
+  >
+    <h2 id="experience-h" class="display stop-title" data-rise>
+      <span class="line">
+        <span>Experience</span>
+      </span>
     </h2>
-    <ul class="space-y-6">
+    <ul class="jobs">
       {site.experience.map((job) => {
         const dates = jobDates(job.start, job.end);
         return (
-          <li class="reveal">
-            <div class="flex flex-wrap items-center justify-between gap-x-4">
-              <p class="flex items-center gap-2 font-medium">
+          <li class="job" data-row>
+            <span class="job-rule" data-rule aria-hidden="true" />
+            <p class="job-dates">
+              <time datetime={job.start}>{dates.start}</time>–
+              {job.end ? (
+                <time datetime={job.end}>{dates.end}</time>
+              ) : (
+                'present'
+              )}
+            </p>
+            <div class="job-main">
+              <p class="job-company display">
                 {job.logo && (
                   <img
                     src={job.logo}
                     alt=""
-                    width="20"
-                    height="20"
-                    class="size-5 shrink-0 object-contain"
+                    width="36"
+                    height="36"
+                    class="job-logo"
                   />
                 )}
-                <span>
-                  {job.role} ·{' '}
-                  {job.url ? <a href={job.url}>{job.company}</a> : job.company}
-                </span>
+                {job.url ? <a href={job.url}>{job.company}</a> : job.company}
               </p>
-              <p class="text-sm text-text-muted">
-                <time datetime={job.start}>{dates.start}</time>–
-                {job.end ? (
-                  <time datetime={job.end}>{dates.end}</time>
-                ) : (
-                  'present'
-                )}
-              </p>
+              <p class="job-role">{job.role}</p>
+              <p class="job-summary">{job.summary}</p>
             </div>
-            <p class="text-text-muted">{job.summary}</p>
           </li>
         );
       })}
     </ul>
   </section>
 
-  <section class="mt-14" aria-labelledby="about">
-    <h2 id="about" class="mb-3 font-medium">
-      About
+  <section
+    id="about"
+    tabindex="-1"
+    class="stop"
+    data-sky="3"
+    data-stop="About"
+    aria-labelledby="about-h"
+  >
+    <h2 id="about-h" class="display stop-title stop-title--quiet" data-rise>
+      <span class="line">
+        <span>About</span>
+      </span>
     </h2>
-    <div class="space-y-4">
+    <div class="about" data-read>
       <About />
     </div>
   </section>
 
-  <section class="mt-14" aria-labelledby="tools">
-    <h2 id="tools" class="mb-3 font-medium">
-      Tools
+  <section
+    id="tools"
+    tabindex="-1"
+    class="stop tools-stop"
+    data-sky="3.5"
+    data-stop="Tools"
+    aria-labelledby="tools-h"
+  >
+    <h2 id="tools-h" class="display stop-title stop-title--mid" data-rise>
+      <span class="line">
+        <span>Tools</span>
+      </span>
     </h2>
-    <dl class="space-y-3 sm:space-y-1">
+    <dl class="tools">
       {site.tools.map((group) => (
-        <div class="sm:grid sm:grid-cols-[8rem_1fr] sm:items-baseline sm:gap-x-4">
-          <dt class="text-sm text-text-muted">{group.label}</dt>
-          <dd>{group.items.join(' · ')}</dd>
+        <div class="tool-row">
+          <dt>{group.label}</dt>
+          <dd class="display" data-drift>
+            {group.items.join(' · ')}
+          </dd>
         </div>
       ))}
     </dl>
   </section>
 </Base>
+
+<style>
+  /* ——— first viewport ——— */
+  .hero {
+    position: relative;
+    overflow-x: clip;
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: clamp(7rem, 20vh, 12rem) clamp(1.25rem, 5vw, 4rem) 6rem;
+    color: var(--ink);
+    /* Golden-hour haze settles over the hills behind the copy. */
+    background-image: radial-gradient(
+      70% 55% at 22% 68%,
+      rgb(253 225 168 / 0.72),
+      rgb(253 225 168 / 0.3) 55%,
+      transparent 80%
+    );
+  }
+
+  @media (max-width: 760px) {
+    .hero {
+      background-image: radial-gradient(
+        130% 62% at 30% 60%,
+        rgb(253 225 168 / 0.9),
+        rgb(253 225 168 / 0.62) 55%,
+        transparent 85%
+      );
+    }
+  }
+
+  .hero-inner {
+    width: 100%;
+    max-width: 80rem;
+    margin-inline: auto;
+  }
+
+  .hero-name {
+    font-size: clamp(3rem, 11.5vw, 9.5rem);
+    font-stretch: 118%;
+    font-weight: 850;
+    letter-spacing: -0.035em;
+    line-height: 0.86;
+    margin-left: -0.04em;
+  }
+
+  /* Wind: scroll speed stretches each line sideways. A transform, not a
+     font-width change, so nothing reflows and the lines never re-wrap. */
+  .hero-name .line {
+    overflow: visible clip;
+    transform: scaleX(calc(1 + var(--wind) * var(--wind-max, 0.04)));
+    transform-origin: left center;
+    will-change: transform;
+  }
+
+  .hero-name .line:last-child .name-ink {
+    background: linear-gradient(
+      transparent 62%,
+      var(--spark) 62% 92%,
+      transparent 92%
+    );
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+  }
+
+  .hero-copy {
+    margin-top: clamp(2rem, 5vh, 3.5rem);
+    max-width: 34rem;
+    display: grid;
+    gap: 1rem;
+  }
+
+  .hero-role {
+    font-size: var(--text-lg);
+    line-height: var(--text-lg--line-height);
+    font-weight: 600;
+  }
+
+  .hero-intro {
+    color: var(--ink);
+    font-size: 1.125rem;
+  }
+
+  .hero-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    color: var(--ink);
+    font-size: var(--text-sm);
+    font-weight: 500;
+  }
+
+  .hero-brand img {
+    border-radius: 5px;
+  }
+
+  .hero-cue {
+    position: absolute;
+    left: 50%;
+    bottom: 1.6rem;
+    translate: -50% 0;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+  }
+
+  .hero-cue svg {
+    width: 14px;
+    animation: nudge 1.8s var(--ease-out) infinite;
+  }
+
+  :global(.is-paused) .hero-cue svg {
+    animation-play-state: paused;
+  }
+
+  @keyframes nudge {
+    50% {
+      transform: translateY(5px);
+    }
+  }
+
+  /* ——— stops ——— */
+  .stop {
+    position: relative;
+    width: 100%;
+    max-width: 80rem;
+    margin-inline: auto;
+    padding: clamp(6rem, 16vh, 11rem) clamp(1.25rem, 5vw, 4rem);
+    color: var(--cream);
+  }
+
+  .stop:focus {
+    outline: none;
+  }
+
+  .stop-title {
+    font-size: clamp(2rem, 11vw, 8rem);
+    font-stretch: 125%;
+    letter-spacing: -0.04em;
+    margin-bottom: clamp(2.5rem, 6vh, 4.5rem);
+  }
+
+  /* Where the content is the headline (Habi, the About text), the
+     heading steps back; where the list is plain, it leads. */
+  .stop-title--quiet {
+    font-size: clamp(1.5rem, 2.6vw, 2.25rem);
+    font-stretch: 112%;
+    letter-spacing: -0.01em;
+    margin-bottom: clamp(1.5rem, 4vh, 2.5rem);
+  }
+
+  .stop-title--mid {
+    font-size: clamp(2rem, 7vw, 5rem);
+  }
+
+  /* ——— experience ——— */
+  .jobs {
+    display: grid;
+    gap: 0;
+  }
+
+  .job {
+    position: relative;
+    display: grid;
+    gap: 0.75rem 2rem;
+    padding: 2.25rem 0;
+  }
+
+  @media (min-width: 760px) {
+    .job {
+      grid-template-columns: 12rem 1fr;
+      align-items: baseline;
+    }
+  }
+
+  .job-rule {
+    position: absolute;
+    inset: 0 0 auto;
+    height: 1px;
+    background: color-mix(in srgb, var(--cream) 28%, transparent);
+  }
+
+  .job-dates {
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--haze);
+  }
+
+  .job-company {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    font-size: clamp(1.75rem, 4.6vw, 3.25rem);
+    font-stretch: 120%;
+    line-height: 1;
+  }
+
+  .job-company a {
+    text-decoration-thickness: 2px;
+    text-underline-offset: 0.12em;
+  }
+
+  .job-logo {
+    width: clamp(1.75rem, 3vw, 2.25rem);
+    height: auto;
+    border-radius: 8px;
+    background: var(--cream);
+    padding: 3px;
+    object-fit: contain;
+  }
+
+  .job-role {
+    margin-top: 0.9rem;
+    font-weight: 600;
+    font-size: var(--text-lg);
+  }
+
+  .job-summary {
+    margin-top: 0.25rem;
+    max-width: 38rem;
+    color: var(--haze);
+  }
+
+  /* ——— about ——— */
+  .about {
+    max-width: 62rem;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-stretch: 100%;
+    font-size: clamp(1.75rem, 4.4vw, 3.5rem);
+    line-height: 1.12;
+    letter-spacing: -0.02em;
+    overflow-wrap: break-word;
+  }
+
+  .about :global(p + p) {
+    margin-top: 1em;
+  }
+
+  /* ——— tools ——— */
+  .tools-stop {
+    overflow-x: clip;
+  }
+
+  .tools {
+    display: grid;
+  }
+
+  .tool-row {
+    display: grid;
+    gap: 0.4rem 2rem;
+    padding: 1.6rem 0;
+    border-top: 1px solid color-mix(in srgb, var(--cream) 22%, transparent);
+  }
+
+  @media (min-width: 760px) {
+    .tool-row {
+      grid-template-columns: 12rem 1fr;
+      align-items: baseline;
+    }
+  }
+
+  .tool-row dt {
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--haze);
+  }
+
+  .tool-row dd {
+    font-size: clamp(1.5rem, 4vw, 3rem);
+    font-stretch: 112%;
+    font-weight: 700;
+    line-height: 1.1;
+  }
+
+  @media (max-width: 480px) {
+    .about {
+      overflow-wrap: anywhere;
+    }
+  }
+</style>

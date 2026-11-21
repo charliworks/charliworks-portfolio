@@ -22,13 +22,11 @@ test.describe('home', () => {
     await expect(page.getByText(site.openTo)).toHaveCount(0);
   });
 
-  test('shows a small cover image in each work row', async ({ page }) => {
+  test('shows a cover image in each work row', async ({ page }) => {
     await page.goto('/');
-    const img = page.locator('section[aria-labelledby="work"] li img');
+    const img = page.locator('section[aria-labelledby="work-h"] li img');
     await expect(img).toHaveCount(1);
     await expect(img).toHaveAttribute('alt', /.+/);
-    const box = await img.boundingBox();
-    expect(box?.width).toBeLessThanOrEqual(160);
   });
 
   test('links to the Habi case study', async ({ page }) => {
@@ -39,13 +37,13 @@ test.describe('home', () => {
   test('shows the intro and the About text', async ({ page }) => {
     await page.goto('/');
     await expect(page.getByText(site.intro ?? 'missing intro')).toBeVisible();
-    const about = page.locator('section[aria-labelledby="about"] p');
+    const about = page.locator('section[aria-labelledby="about-h"] p');
     expect(await about.count()).toBeGreaterThan(0);
   });
 
   test('lists the tools by group', async ({ page }) => {
     await page.goto('/');
-    const tools = page.locator('section[aria-labelledby="tools"]');
+    const tools = page.locator('section[aria-labelledby="tools-h"]');
     for (const group of site.tools) {
       await expect(tools.locator('dt', { hasText: group.label })).toBeVisible();
       await expect(
@@ -57,7 +55,7 @@ test.describe('home', () => {
   test('shows the year of each work row', async ({ page }) => {
     await page.goto('/');
     await expect(
-      page.locator('section[aria-labelledby="work"] li time'),
+      page.locator('section[aria-labelledby="work-h"] li time'),
     ).toHaveText('2026');
   });
 
@@ -95,6 +93,8 @@ test.describe('home', () => {
 
   test('no axe violations', async ({ page }) => {
     await page.goto('/');
+    // Let the opening lines finish rising before axe reads their colours.
+    await page.waitForTimeout(2500);
     const results = await new AxeBuilder({ page }).analyze();
     expect(results.violations).toEqual([]);
   });

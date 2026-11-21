@@ -8,7 +8,7 @@ web
 
 ## Stack
 
-Astro 7, Tailwind CSS v4, TypeScript. Static output, no client JavaScript by default. Hosted on Cloudflare Pages (free tier). See `docs/adr/0001-stack-choice.md`.
+Astro 7, Tailwind CSS v4, TypeScript, three.js, lenis, gsap. Static output; the page reads fully without JavaScript, and motion is added on top. Hosted on Cloudflare Pages (free tier). See `docs/adr/0001-stack-choice.md`.
 
 ## Users
 
@@ -40,6 +40,7 @@ The work is built for one real life in the Philippines, not for a demo. Habi joi
 - Case studies cover personal projects only. Employer work appears only as a row in the Home Experience section: role, company, years and one line. No employer code, screens or client names.
 - Habi is the only project for now. The layout must accept two or three more later.
 - No contact form, blog, CMS, analytics, skills grid, logo wall or percentage bars.
+- three.js, lenis and gsap are allowed (2026-11-21). The 3D scene loads after first paint and is not part of the initial JS budget.
 - Free tiers only, except the domain. The domain is not chosen yet: `charliworks.com` or `charli.works`.
 - Performance budget: LCP ≤ 2.5 s on throttled 4G, CLS ≤ 0.1, initial JS ≤ 200 KB, Lighthouse mobile ≥ 90.
 
@@ -50,8 +51,7 @@ The work is built for one real life in the Philippines, not for a demo. Habi joi
 - Voice follows charliworks `design/brand-voice.md`: clear before clever, warm not cute, confident not hype, short.
 - Charlito writes the personal copy: the intro line, About and "What I learned". Nobody invents opinions, feelings or history for Charlito.
 - Anti-goal: the site must not look like a common UI design system or template.
-- Standing preference (chosen 2026-11-19): simple, text-first, one narrow column, like leerob.com. The writing carries the identity, not decoration.
-- Exceptions (chosen 2026-11-20): one hand-painted, animated hero on Home, and pink and yellow accents from the Grape soda logo. The site is light only.
+- Visual world (chosen 2026-11-21, replacing the text-first column of 2026-11-19): an animated three.js ride through the Philippines from golden hour into night, with smooth scroll. Pink and yellow from the Grape soda logo stay as accents. The site is no longer light only.
 - charliworks is Charlito's maker label, not the subject of the site. The site stays personal and speaks as "I". The label appears once on Home and once on each case study.
 
 ## Evidence on Hand

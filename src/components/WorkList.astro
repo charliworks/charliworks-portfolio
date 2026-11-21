@@ -9,36 +9,147 @@ interface Props {
 const { entries } = Astro.props;
 ---
 
-<ul class="space-y-6">
+<ul class="work">
   {entries.map((entry) => (
-    <li class="reveal group relative flex flex-col gap-3 sm:flex-row sm:items-start sm:gap-4">
-      <Image
-        src={entry.data.cover}
-        alt={entry.data.coverAlt}
-        widths={[128, 256]}
-        sizes="8rem"
-        class="h-auto w-32 shrink-0 rounded-sm sm:mt-1"
-        style={`view-transition-name: cover-${entry.id}`}
-      />
-      <div class="min-w-0 flex-1">
-        <div class="flex items-baseline justify-between gap-4">
-          <a
-            href={`/work/${entry.id}/`}
-            class="font-medium group-hover:decoration-accent group-hover:decoration-2 after:absolute after:inset-0 after:content-['']"
-            style={`view-transition-name: title-${entry.id}`}
-          >
-            {entry.data.title}
-          </a>
-          <time
-            class="text-sm text-text-muted"
-            datetime={String(entry.data.year)}
-          >
-            {entry.data.year}
-          </time>
+    <li class="project" data-tilt>
+      <div
+        class="cover"
+        data-tilt-frame
+        style={`view-transition-name: cover-${entry.id}; view-transition-class: cover`}
+      >
+        <div class="cover-clip" data-cover>
+          <Image
+            src={entry.data.cover}
+            alt={entry.data.coverAlt}
+            widths={[640, 1024, 1600]}
+            sizes="(min-width: 80rem) 72rem, 92vw"
+            class="cover-img"
+          />
         </div>
-        <p class="text-text-muted">{entry.data.pitch}</p>
-        <p class="text-sm text-text-muted">{entry.data.stack.join(' · ')}</p>
+      </div>
+      <div class="project-meta">
+        <div class="project-head">
+          <a href={`/work/${entry.id}/`} class="project-title display">
+            <span
+              class="project-title-text"
+              style={`view-transition-name: title-${entry.id}`}
+            >
+              {entry.data.title}
+            </span>
+          </a>
+          <time datetime={String(entry.data.year)}>{entry.data.year}</time>
+        </div>
+        <div class="project-copy">
+          <p class="project-pitch">{entry.data.pitch}</p>
+          <p class="project-stack">{entry.data.stack.join(' · ')}</p>
+        </div>
       </div>
     </li>
   ))}
 </ul>
+
+<style>
+  .work {
+    display: grid;
+    gap: clamp(4rem, 10vh, 7rem);
+  }
+
+  .project {
+    position: relative;
+  }
+
+  /* The frame's shadow is a drop-shadow on the outer box, so it follows the
+     clip of the reveal instead of being cut away by it. */
+  .cover {
+    border-radius: var(--frame-radius);
+    filter: drop-shadow(0 34px 34px rgb(10 6 30 / 0.5));
+    will-change: transform;
+  }
+
+  .cover-clip {
+    overflow: hidden;
+    border-radius: var(--frame-radius);
+    background: var(--frame-fill);
+    will-change: clip-path;
+  }
+
+  .cover-img {
+    display: block;
+    width: 100%;
+    height: auto;
+    transform-origin: center;
+  }
+
+  .project-meta {
+    display: grid;
+    gap: 1.25rem 3rem;
+    margin-top: 2rem;
+  }
+
+  @media (min-width: 900px) {
+    .project-meta {
+      grid-template-columns: 1fr 1fr;
+      align-items: start;
+    }
+  }
+
+  .project-head {
+    display: flex;
+    align-items: baseline;
+    gap: 1.25rem;
+  }
+
+  .project-title-text {
+    display: inline-block;
+  }
+
+  .project-title {
+    font-size: clamp(3rem, 9vw, 6.5rem);
+    font-stretch: 150%;
+    line-height: 0.9;
+    text-decoration: none;
+  }
+
+  /* The whole row is the click target. */
+  .project-title::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: var(--frame-radius);
+  }
+
+  .project-head time {
+    font-weight: 600;
+    color: var(--haze);
+  }
+
+  .project-pitch {
+    font-size: clamp(1.25rem, 2.2vw, 1.6rem);
+    line-height: 1.35;
+    font-weight: 500;
+  }
+
+  .project-stack {
+    margin-top: 1rem;
+    font-size: var(--text-sm);
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    color: var(--haze);
+  }
+
+  .project:hover .project-title,
+  .project:focus-within .project-title {
+    color: var(--accent);
+  }
+
+  /* Keyboard only: a mouse click must not draw the ring (or carry it into
+     the page transition). */
+  .project-title:focus-visible::after {
+    outline: 2px solid var(--spark);
+    outline-offset: 8px;
+  }
+
+  .project-title:focus-visible {
+    outline: none;
+  }
+</style>
